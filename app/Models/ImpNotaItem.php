@@ -1,0 +1,130 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+class ImpNotaItem extends Model
+{
+    public $table = 'imp_nota_itens';
+
+    public $fillable = [
+        'imp_nota_id',
+        'cprod',
+        'cean',
+        'xprod',
+        'ncm',
+        'cest',
+        'cfop',
+        'ucom',
+        'qcom',
+        'vuncom',
+        'vprod',
+        'vdesc',
+        'voutro',
+        'vfrete',
+        'vseg',
+        'indtot',
+        'med_cprodanvisa',
+        'med_vpmc',
+        'icms_origem',
+        'icms_cst',
+        'icms_base_calculo',
+        'icms_percentual',
+        'icms_valor',
+        'vtottrib',
+        'icms_vicmsdeson',
+        'icms_motdes',
+        'icms_predbc',
+        'ipi_clenq',
+        'ipi_cnpjprod',
+        'ipi_cselo',
+        'ipi_qselo',
+        'ipi_cenq',
+        'ipi_cst',
+        'ipi_vbc',
+        'ipi_pipi',
+        'ipi_qunid',
+        'ipi_vunid',
+        'ipi_vipi',
+        'ii_vbc',
+        'ii_vdespadu',
+        'ii_vii',
+        'ii_viof',
+        'pis_cst',
+        'pis_vbc',
+        'pis_ppis',
+        'pis_vpis',
+        'pis_qbcprod',
+        'pis_valiqprod',
+        'cofins_cst',
+        'cofins_vbc',
+        'cofins_pcofins',
+        'cofins_vcofins',
+        'cofins_qbcprod',
+        'cofins_valiqprod',
+    ];
+
+    protected $casts = [
+        'imp_nota_id' => 'integer',
+        'cprod' => 'string',
+        'cean' => 'string',
+        'xprod' => 'string',
+        'ncm' => 'integer',
+        'cest' => 'integer',
+        'cfop' => 'integer',
+        'ucom' => 'string',
+        'qcom' => 'integer',
+        'vuncom' => 'decimal:2',
+        'vprod' => 'decimal:2',
+        'vdesc' => 'decimal:2',
+        'indtot' => 'integer',
+        'med_cprodanvisa' => 'integer',
+        'med_vpmc' => 'decimal:2',
+        'icms_cst' => 'string',
+        'icms_origem' => 'integer',
+        'icms_base_calculo' => 'decimal:2',
+        'icms_percentual' => 'decimal:4',
+        'icms_valor' => 'decimal:2',
+        'icms_vicmsdeson' => 'decimal:2',
+        'icms_motdes' => 'integer',
+        'icms_predbc' => 'decimal:2',
+        'ipi_clenq' => 'string',
+        'ipi_cnpjprod' => 'integer',
+        'ipi_cselo' => 'string',
+        'ipi_qselo' => 'string',
+        'ipi_cenq' => 'string',
+        'ipi_cst' => 'integer',
+        'ipi_vbc' => 'decimal:2',
+        'ipi_pipi' => 'decimal:4',
+        'ipi_qunid' => 'decimal:4',
+        'ipi_vunid' => 'decimal:2',
+        'ipi_vipi' => 'decimal:2',
+        'ii_vbc' => 'decimal:2',
+        'ii_vdespadu' => 'decimal:2',
+        'ii_vii' => 'decimal:2',
+        'ii_viof' => 'decimal:2',
+        'pis_cst' => 'integer',
+        'pis_vbc' => 'decimal:2',
+        'pis_ppis' => 'decimal:4',
+        'pis_vpis' => 'decimal:2',
+        'pis_qbcprod' => 'decimal:4',
+        'pis_valiqprod' => 'decimal:4',
+        'cofins_cst' => 'integer',
+        'cofins_vbc' => 'decimal:2',
+        'cofins_pcofins' => 'decimal:4',
+        'cofins_vcofins' => 'decimal:2',
+        'cofins_qbcprod' => 'decimal:4',
+        'cofins_valiqprod' => 'decimal:4',
+        'vtottrib' => 'decimal:2',
+    ];
+
+    /**
+     * @return BelongsTo
+     */
+    public function impNota(): BelongsTo
+    {
+        return $this->belongsTo(ImpNota::class, 'imp_nota_id');
+    }
+}

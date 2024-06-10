@@ -1,0 +1,29 @@
+.modal-content {
+    border-radius: 1rem;
+    border: none;
+}
+
+.btn-close {
+    color: #000;
+    border: none;
+    background-color: transparent;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.button {
+    padding: 10px 15px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
+    
+.blue{
+    background: #1e8deb;
+    color: white;
+}
+
+.white{
+    border: solid 1px;
+    background: white;
+    color: grey;
+}

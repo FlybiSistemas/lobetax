@@ -12,9 +12,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
+    <link href="{{ asset('css/iziToast.min.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- Scripts -->
+    @vite(['resources/css/theme-lobetax.css'])
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/iziToast.min.js') }}"></script>
 </head>
 
 <body>
@@ -24,94 +30,94 @@
         <div class="container">
             <!-- Page Heading -->
             @if (isset($header))
-            <div class="head">
-                <div>
-                    {{ $header }}
-                </div>
-                <div class="flex">
-                    <div class="input">
-                        <div class="input-1">
-                            <div class="iconearch">
-                                <img class="vector" src="{{ asset('img/vectors/vector.svg') }}" />
+                <div class="head">
+                    <div>
+                        {{ $header }}
+                    </div>
+                    <div class="flex">
+                        <div class="input">
+                            <div class="input-1">
+                                <div class="iconearch">
+                                    <img class="vector" src="{{ asset('img/vectors/vector.svg') }}" />
+                                </div>
+                                <div class="value">
+                                    <span class="placeholder">
+                                        Pesquisar
+                                    </span>
+                                </div>
                             </div>
-                            <div class="value">
-                                <span class="placeholder">
-                                    Pesquisar
-                                </span>
+                        </div>
+                        <div class="user">
+                            <div class="photo">
+                                <img class="user-1" src="{{ asset('img/vectors/user_18.svg') }}" />
+                            </div>
+                            <div class="name">
+                                Rafael Gomes
+                            </div>
+                        </div>
+                        <div class="buttons">
+                            <div class="btn-icon">
+                                <img class="header-icon" src="{{ asset('img/vectors/settings.svg') }}" />
+                            </div>
+                            <div class="btn-icon">
+                                <img class="header-icon" src="{{ asset('img/vectors/bell.svg') }}" />
                             </div>
                         </div>
                     </div>
-                    <div class="user">
-                        <div class="photo">
-                            <img class="user-1" src="{{ asset('img/vectors/user_18.svg') }}" />
-                        </div>
-                        <div class="name">
-                            Rafael Gomes
-                        </div>
-                    </div>
-                    <div class="buttons">
-                        <div class="btn-icon">
-                            <img class="header-icon" src="{{ asset('img/vectors/settings.svg') }}" />
-                        </div>
-                        <div class="btn-icon">
-                            <img class="header-icon" src="{{ asset('img/vectors/bell.svg') }}" />
-                        </div>
-                    </div>
                 </div>
-            </div>
-    
-            <style>
-                .table-list {
-                    width: 100%;
-                    table-layout: fixed;
-                    box-shadow: var(--shadow, 0px 3.5px 5.5px 0px rgba(0, 0, 0, 0.09));
-                    border-radius: 16px;
-                    background: var(--white-100, #FFFFFF);
-                    padding: 8px 16px 28px 16px;
-                    width: 100%;
-                    box-sizing: border-box;
-                }
-    
-                .table-list th,
-                .table-list td {
-                    padding: 8px;
-                    word-wrap: break-word;
-                }
-    
-                thead th {
-                    text-align: start;
-                    font-family: 'Inter';
-                    font-weight: 700;
-                    font-size: 10px;
-                    line-height: 1.5;
-                    text-transform: uppercase;
-                    color: var(--text-tertiary, #B3B4B6);
-                }
-    
-                tr {
-                    position: relative;
-                }
-    
-                tbody tr td {
-                    color: var(--text-secondary, #7E8185);
-                }
-    
-                tbody tr td:first-child {
-                    color: var(--text-primary, #2D3748);
-                }
-    
-                td span {
-                    text-align: center;
-                }
-    
-                .border-b {
-                    left: 0;
-                    bottom: 0;
-                    width: 100%;
-                    border-bottom: 1px solid var(--white-80, #E2E8F0);
-                    position: absolute;
-                }
-            </style>
+        
+                <style>
+                    .table-list {
+                        width: 100%;
+                        table-layout: fixed;
+                        box-shadow: var(--shadow, 0px 3.5px 5.5px 0px rgba(0, 0, 0, 0.09));
+                        border-radius: 16px;
+                        background: var(--white-100, #FFFFFF);
+                        padding: 8px 16px 28px 16px;
+                        width: 100%;
+                        box-sizing: border-box;
+                    }
+        
+                    .table-list th,
+                    .table-list td {
+                        padding: 8px;
+                        word-wrap: break-word;
+                    }
+        
+                    thead th {
+                        text-align: start;
+                        font-family: 'Inter';
+                        font-weight: 700;
+                        font-size: 10px;
+                        line-height: 1.5;
+                        text-transform: uppercase;
+                        color: var(--text-tertiary, #B3B4B6);
+                    }
+        
+                    tr {
+                        position: relative;
+                    }
+        
+                    tbody tr td {
+                        color: var(--text-secondary, #7E8185);
+                    }
+        
+                    tbody tr td:first-child {
+                        color: var(--text-primary, #2D3748);
+                    }
+        
+                    td span {
+                        text-align: center;
+                    }
+        
+                    .border-b {
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        border-bottom: 1px solid var(--white-80, #E2E8F0);
+                        position: absolute;
+                    }
+                </style>
             @endif
     
             <!-- Page Content -->
@@ -121,6 +127,60 @@
         </div>
     </div>
 </body>
+
+<div class="modal fade show" id="modalBasic" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+    aria-modal="true" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Título</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade show" id="modalSub" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="true"
+    aria-modal="true" role="dialog">
+    <div class="modal-dialog" role="document"
+        style="box-shadow: 0 5px 15px rgba(0,0,0,.5); top: 10px; left: 10px;">
+        <div class="modal-content">
+            <div class="modal-header modal-header-sub">
+                <h5 class="modal-title">Título</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade show" id="modalDelete" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+    aria-modal="true" role="dialog" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="headerModal">Exclusão de registro</h4>
+
+                <div class="loader-modal spinner" style="display:none">Loading...</div>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+
+            <div class="modal-body" id="bodyModalDelete">
+                Tem certeza que deseja excluir este registro?
+                <input type="hidden" id="modalDelete_urlExcluir">
+                <input type="hidden" id="modalDelete_callback">
+                <input type="hidden" id="modalDelete_id">
+            </div>
+
+            <div class="modal-footer" id="modalDelete_footerDeletar"></div>
+        </div>
+    </div>
+</div>
 
 </html>
 

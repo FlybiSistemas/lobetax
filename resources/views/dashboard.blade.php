@@ -10,7 +10,15 @@
         </span>
     </x-slot>
 
-    <div style="padding: 10px 20px 0 10px;">
+    <div style="padding: 10px 20px 0 10px;display: flex;flex-direction: column;">
+        <div class="btn-import" style="display: flex;justify-content: space-between;">
+            <span></span>
+
+            <div class="button blue">
+                <span onclick="Tela.abrirJanela('{{ route('impNotas.import') }}', 'Importação de XML por API', 'md')">IMPORTAR</span>
+            </div>
+        </div>
+
         <table class="table-list">
             <thead>
                 <tr class="titulos">
@@ -35,10 +43,10 @@
                     </td>
                     <td>
                         <div class="">
-                            <img class="acoes-img" src="{{ asset('img/vectors/eye.svg') }}" />
+                            <img class="acoes-img" src="http://lobetax.local/img/vectors/eye.svg">
                         </div>
                         <div class="">
-                            <img class="acoes-img" src="{{ asset('img/vectors/download.svg') }}" />
+                            <img class="acoes-img" src="http://lobetax.local/img/vectors/download.svg">
                         </div>
                         <div class="border-b"></div>
                     </td>
