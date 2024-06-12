@@ -12,8 +12,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
-    <link href="{{ asset('css/iziToast.min.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/iziToast.min.css') }}">
 
     <!-- Scripts -->
     @vite(['resources/css/theme-lobetax.css'])
@@ -34,19 +34,50 @@
                     <div>
                         {{ $header }}
                     </div>
-                    <div class="flex">
-                        <div class="input">
-                            <div class="input-1">
-                                <div class="iconearch">
-                                    <img class="vector" src="{{ asset('img/vectors/vector.svg') }}" />
-                                </div>
-                                <div class="value">
-                                    <span class="placeholder">
-                                        Pesquisar
-                                    </span>
-                                </div>
+                    <div class="flex" style="align-items: center;">
+                        <form action="" id="formSearch" class="formSearch" method="post">
+                            <div class="search-input input">
+                                @csrf
+                                <img class="search-icon" src="{{ asset('img/new/icons/search.ico') }}" />
+                                    <input type="text" class="form-control" id="filter_search" placeholder="Pesquisar">
+                                <input type="hidden" name="filter_take" id="filter_take" value="10">
                             </div>
-                        </div>
+
+                            <style>
+                                .form-control{
+                                    height: 50px;
+                                    width: 100%;
+                                    border: solid 1px #00000014;
+                                    border-radius: 25px;
+                                    padding-left: 3px;
+                                }
+                                .search-input {
+                                    position: relative;
+                                }
+
+                                .search-icon {
+                                    position: absolute;
+                                    left: 13px; /* Ajuste a posição conforme necessário */
+                                    top: 50%;
+                                    width: 25px;
+                                    transform: translateY(-50%);
+                                }
+
+                                .form-control:focus-visible {
+                                    outline: none;
+                                    border: solid 1px #00000014 !important;
+                                }
+
+                                .form-control:focus {
+                                    outline: none;
+                                    border: solid 1px #00000014;
+                                }
+
+                                .form-control {
+                                    padding-left: 45px !important;
+                                }
+                            </style>
+                        </form>
                         <div class="user">
                             <div class="photo">
                                 <img class="user-1" src="{{ asset('img/vectors/user_18.svg') }}" />
@@ -264,14 +295,12 @@
     .documentos .menu {
         display: flex;
         flex-direction: column;
-        width: fit-content;
+        width: 90%;
         box-sizing: border-box;
     }
 
     .documentos .sidebar {
-        padding: 0 20px 0 0;
         flex: 1;
-
         display: flex;
         flex-direction: column;
         align-items: start;
@@ -280,6 +309,7 @@
 
     .documentos .breadcrumb {
         margin-bottom: 4px;
+        background-color: #f3f4f6;
         align-self: flex-start;
         overflow-wrap: break-word;
         font-family: 'Inter';
@@ -468,6 +498,8 @@
         font-weight: 400;
         font-size: 13px;
         line-height: 1.4;
+        padding-right: 0px;
+        padding-left: 0px;
 
     }
 

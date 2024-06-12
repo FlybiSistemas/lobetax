@@ -24,15 +24,15 @@
 </form>
 <script>
     $(function() {
-        $('.select2-padrao').select2({
-            dropdownParent: "#modalBasic"
-        });
-
-        $('#data_inicio').val(moment().format('YYYY-MM-DD'));
-        $('#data_fim').val(moment().format('YYYY-MM-DD'));
-
         $("#form").submit(function(e) {
-            Ajax.salvarRegistro($(this));
+            var $fileUpload = $("input[type='file']");
+            // TODO: Deixar a quantidade de arquivos em configurações.
+            if (parseInt($fileUpload.get(0).files.length) > 500) {
+                Tela.avisoComErro("Você não pode enviar mais que 50 arquivos por vez.");
+                return false;
+            }
+
+            Ajax.salvarRegistroComArquivo($(this));
             e.preventDefault();
         });
     });

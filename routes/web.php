@@ -23,14 +23,20 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::group(['prefix' => 'impNotas'], function () {
+    Route::get('/', [ImpNotaController::class, 'index'])->name('impNotas');
+    Route::post('/search', [ImpNotaController::class, 'search'])->name('impNotas.search');
+    Route::get('/import', [ImpNotaController::class, 'import'])->name('impNotas.import');
+    Route::post('/importarNotaApi', [ImpNotaController::class, 'importarNotaApi'])->name('impNotas.importarNotaApi');
+    Route::resource('impNotas', ImpNotaController::class);
+});
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/impNotas/import', [ImpNotaController::class, 'import'])->name('impNotas.import');
-Route::post('/impNotas/importarNotaApi', [ImpNotaController::class, 'importarNotaApi'])->name('impNotas.importarNotaApi');
-Route::resource('impNotas', ImpNotaController::class);
 
 require __DIR__.'/auth.php';

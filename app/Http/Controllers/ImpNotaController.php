@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Log;
 use NFePHP\DA\NFe\Danfe;
 use stdClass;
 
-class ImpNotaController extends Controller
+class ImpNotaController
 {
     private ImpNotaRepository $impNotaRepository;
     private ImpNotaItemRepository $impNotaItemRepository;
@@ -36,7 +36,7 @@ class ImpNotaController extends Controller
         $searchData = $request->all();
         $impNotas = $this->impNotaRepository->all($searchData);
 
-        return view("{$this->basePath}imp_notas.table", [
+        return view("imp_notas.table", [
             "impNotas" => $impNotas,
             "page" => $request->input("page", 0)
         ]);
@@ -69,7 +69,7 @@ class ImpNotaController extends Controller
             $files = $request->file('arquivos');
             (new ImportarArquivosXMLAction())($files);
             DB::commit();
-            return response()->json("Importação realizada com sucesso. Foram importadas {$totalNotasImportadas} notas.", 200);
+            return response()->json("Importação realizada com sucesso.", 200);
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error($e->getMessage());

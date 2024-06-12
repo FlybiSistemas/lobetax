@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Models\ImpNota;
 
-class ImpNotaRepository
+class ImpNotaRepository extends BaseRepository
 {
     protected $modelClass = ImpNota::class;
 
