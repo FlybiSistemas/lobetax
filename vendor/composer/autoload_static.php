@@ -29,15 +29,18 @@ class ComposerStaticInitdaeef39bfed4d7f7b45fd36aa40241ba
         'aadac1114cab8dc19489a7f6dc24c003' => __DIR__ . '/..' . '/pestphp/pest-plugin-arch/src/Autoload.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
+        'e23faeee409e941dc9b4c80386209c39' => __DIR__ . '/..' . '/laracasts/flash/src/Laracasts/Flash/functions.php',
         '265b4faa2b3a9766332744949e83bf97' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Collections/helpers.php',
         'c7a3c339e7e14b60e06a2d7fcce9476b' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Events/functions.php',
         'f57d353b41eb2e234b26064d63d8c5dd' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Filesystem/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
         'f83ed111c2f97a0449abf067f157f418' => __DIR__ . '/..' . '/pestphp/pest/src/Functions.php',
         '7d2876738dc0328edeb8a103c76cd8e7' => __DIR__ . '/..' . '/pestphp/pest/src/Pest.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
+        'a28599dc506da421718fad75955a4b9d' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/helpers.php',
         'c72349b1fe8d0deeedd3a52e8aa814d8' => __DIR__ . '/..' . '/mockery/mockery/library/helpers.php',
         'ce9671a430e4846b44e1c68c7611f9f5' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
         'd634523d799d97a8ab4807b650bf5cea' => __DIR__ . '/..' . '/pestphp/pest-plugin-laravel/src/Autoload.php',
@@ -79,6 +82,7 @@ class ComposerStaticInitdaeef39bfed4d7f7b45fd36aa40241ba
             'Symfony\\Contracts\\Service\\' => 26,
             'Symfony\\Contracts\\EventDispatcher\\' => 34,
             'Symfony\\Component\\Yaml\\' => 23,
+            'Symfony\\Component\\VarExporter\\' => 30,
             'Symfony\\Component\\VarDumper\\' => 28,
             'Symfony\\Component\\Uid\\' => 22,
             'Symfony\\Component\\Translation\\' => 30,
@@ -153,6 +157,7 @@ class ComposerStaticInitdaeef39bfed4d7f7b45fd36aa40241ba
         ),
         'I' => 
         array (
+            'InfyOm\\Generator\\' => 17,
             'Illuminate\\Support\\' => 19,
             'Illuminate\\' => 11,
         ),
@@ -188,6 +193,7 @@ class ComposerStaticInitdaeef39bfed4d7f7b45fd36aa40241ba
         'C' => 
         array (
             'Cron\\' => 5,
+            'Collective\\Html\\' => 16,
             'Carbon\\Doctrine\\' => 16,
             'Carbon\\' => 7,
         ),
@@ -283,6 +289,10 @@ class ComposerStaticInitdaeef39bfed4d7f7b45fd36aa40241ba
         'Symfony\\Component\\Yaml\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/yaml',
+        ),
+        'Symfony\\Component\\VarExporter\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/var-exporter',
         ),
         'Symfony\\Component\\VarDumper\\' => 
         array (
@@ -497,6 +507,10 @@ class ComposerStaticInitdaeef39bfed4d7f7b45fd36aa40241ba
         array (
             0 => __DIR__ . '/..' . '/jean85/pretty-package-versions/src',
         ),
+        'InfyOm\\Generator\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src',
+        ),
         'Illuminate\\Support\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Macroable',
@@ -581,6 +595,10 @@ class ComposerStaticInitdaeef39bfed4d7f7b45fd36aa40241ba
         array (
             0 => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron',
         ),
+        'Collective\\Html\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravelcollective/html/src',
+        ),
         'Carbon\\Doctrine\\' => 
         array (
             0 => __DIR__ . '/..' . '/carbonphp/carbon-doctrine-types/src/Carbon/Doctrine',
@@ -597,6 +615,16 @@ class ComposerStaticInitdaeef39bfed4d7f7b45fd36aa40241ba
         array (
             0 => __DIR__ . '/../..' . '/app',
             1 => __DIR__ . '/..' . '/laravel/pint/app',
+        ),
+    );
+
+    public static $prefixesPsr0 = array (
+        'L' => 
+        array (
+            'Laracasts\\Flash' => 
+            array (
+                0 => __DIR__ . '/..' . '/laracasts/flash/src',
+            ),
         ),
     );
 
@@ -648,6 +676,7 @@ class ComposerStaticInitdaeef39bfed4d7f7b45fd36aa40241ba
         'App\\Http\\Controllers\\Auth\\PasswordResetLinkController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/PasswordResetLinkController.php',
         'App\\Http\\Controllers\\Auth\\RegisteredUserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisteredUserController.php',
         'App\\Http\\Controllers\\Auth\\VerifyEmailController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerifyEmailController.php',
+        'App\\Http\\Controllers\\ColunaController' => __DIR__ . '/../..' . '/app/Http/Controllers/ColunaController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\ImpNotaController' => __DIR__ . '/../..' . '/app/Http/Controllers/ImpNotaController.php',
         'App\\Http\\Controllers\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfileController.php',
@@ -664,6 +693,7 @@ class ComposerStaticInitdaeef39bfed4d7f7b45fd36aa40241ba
         'App\\Http\\Requests\\Auth\\LoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Auth/LoginRequest.php',
         'App\\Http\\Requests\\ProfileUpdateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ProfileUpdateRequest.php',
         'App\\Jobs\\ImportarNotasDaAPIPorCnpjJob' => __DIR__ . '/../..' . '/app/Jobs/ImportarNotasDaAPIPorCnpjJob.php',
+        'App\\Models\\Coluna' => __DIR__ . '/../..' . '/app/Models/Coluna.php',
         'App\\Models\\ImpNota' => __DIR__ . '/../..' . '/app/Models/ImpNota.php',
         'App\\Models\\ImpNotaItem' => __DIR__ . '/../..' . '/app/Models/ImpNotaItem.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
@@ -672,8 +702,12 @@ class ComposerStaticInitdaeef39bfed4d7f7b45fd36aa40241ba
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'App\\Repositories\\AbstractCrudRepository' => __DIR__ . '/../..' . '/app/Repositories/AbstractCrudRepository.php',
+        'App\\Repositories\\BaseRepository' => __DIR__ . '/../..' . '/app/Repositories/BaseRepository.php',
+        'App\\Repositories\\ColunaRepository' => __DIR__ . '/../..' . '/app/Repositories/ColunaRepository.php',
         'App\\Repositories\\ImpNotaItemRepository' => __DIR__ . '/../..' . '/app/Repositories/ImpNotaItemRepository.php',
         'App\\Repositories\\ImpNotaRepository' => __DIR__ . '/../..' . '/app/Repositories/ImpNotaRepository.php',
+        'App\\Repositories\\Traits\\CrudMethods' => __DIR__ . '/../..' . '/app/Repositories/Traits/CrudMethods.php',
         'App\\View\\Components\\AppLayout' => __DIR__ . '/../..' . '/app/View/Components/AppLayout.php',
         'App\\View\\Components\\GuestLayout' => __DIR__ . '/../..' . '/app/View/Components/GuestLayout.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
@@ -775,6 +809,13 @@ class ComposerStaticInitdaeef39bfed4d7f7b45fd36aa40241ba
         'Carbon\\Translator' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Translator.php',
         'Carbon\\TranslatorImmutable' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/TranslatorImmutable.php',
         'Carbon\\TranslatorStrongTypeInterface' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/TranslatorStrongTypeInterface.php',
+        'Collective\\Html\\Componentable' => __DIR__ . '/..' . '/laravelcollective/html/src/Componentable.php',
+        'Collective\\Html\\Eloquent\\FormAccessible' => __DIR__ . '/..' . '/laravelcollective/html/src/Eloquent/FormAccessible.php',
+        'Collective\\Html\\FormBuilder' => __DIR__ . '/..' . '/laravelcollective/html/src/FormBuilder.php',
+        'Collective\\Html\\FormFacade' => __DIR__ . '/..' . '/laravelcollective/html/src/FormFacade.php',
+        'Collective\\Html\\HtmlBuilder' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlBuilder.php',
+        'Collective\\Html\\HtmlFacade' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlFacade.php',
+        'Collective\\Html\\HtmlServiceProvider' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlServiceProvider.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/AbstractField.php',
         'Cron\\CronExpression' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/CronExpression.php',
@@ -2926,11 +2967,77 @@ class ComposerStaticInitdaeef39bfed4d7f7b45fd36aa40241ba
         'Illuminate\\View\\ViewFinderInterface' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewFinderInterface.php',
         'Illuminate\\View\\ViewName' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewName.php',
         'Illuminate\\View\\ViewServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewServiceProvider.php',
+        'InfyOm\\Generator\\Commands\\APIScaffoldGeneratorCommand' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Commands/APIScaffoldGeneratorCommand.php',
+        'InfyOm\\Generator\\Commands\\API\\APIControllerGeneratorCommand' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Commands/API/APIControllerGeneratorCommand.php',
+        'InfyOm\\Generator\\Commands\\API\\APIGeneratorCommand' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Commands/API/APIGeneratorCommand.php',
+        'InfyOm\\Generator\\Commands\\API\\APIRequestsGeneratorCommand' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Commands/API/APIRequestsGeneratorCommand.php',
+        'InfyOm\\Generator\\Commands\\API\\TestsGeneratorCommand' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Commands/API/TestsGeneratorCommand.php',
+        'InfyOm\\Generator\\Commands\\BaseCommand' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Commands/BaseCommand.php',
+        'InfyOm\\Generator\\Commands\\Common\\MigrationGeneratorCommand' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Commands/Common/MigrationGeneratorCommand.php',
+        'InfyOm\\Generator\\Commands\\Common\\ModelGeneratorCommand' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Commands/Common/ModelGeneratorCommand.php',
+        'InfyOm\\Generator\\Commands\\Common\\RepositoryGeneratorCommand' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Commands/Common/RepositoryGeneratorCommand.php',
+        'InfyOm\\Generator\\Commands\\Publish\\GeneratorPublishCommand' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Commands/Publish/GeneratorPublishCommand.php',
+        'InfyOm\\Generator\\Commands\\Publish\\PublishBaseCommand' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Commands/Publish/PublishBaseCommand.php',
+        'InfyOm\\Generator\\Commands\\Publish\\PublishTablesCommand' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Commands/Publish/PublishTablesCommand.php',
+        'InfyOm\\Generator\\Commands\\Publish\\PublishUserCommand' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Commands/Publish/PublishUserCommand.php',
+        'InfyOm\\Generator\\Commands\\RollbackGeneratorCommand' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Commands/RollbackGeneratorCommand.php',
+        'InfyOm\\Generator\\Commands\\Scaffold\\ControllerGeneratorCommand' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Commands/Scaffold/ControllerGeneratorCommand.php',
+        'InfyOm\\Generator\\Commands\\Scaffold\\RequestsGeneratorCommand' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Commands/Scaffold/RequestsGeneratorCommand.php',
+        'InfyOm\\Generator\\Commands\\Scaffold\\ScaffoldGeneratorCommand' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Commands/Scaffold/ScaffoldGeneratorCommand.php',
+        'InfyOm\\Generator\\Commands\\Scaffold\\ViewsGeneratorCommand' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Commands/Scaffold/ViewsGeneratorCommand.php',
+        'InfyOm\\Generator\\Common\\FileSystem' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Common/FileSystem.php',
+        'InfyOm\\Generator\\Common\\GeneratorConfig' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Common/GeneratorConfig.php',
+        'InfyOm\\Generator\\Common\\GeneratorField' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Common/GeneratorField.php',
+        'InfyOm\\Generator\\Common\\GeneratorFieldRelation' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Common/GeneratorFieldRelation.php',
+        'InfyOm\\Generator\\Criteria\\LimitOffsetCriteria' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Criteria/LimitOffsetCriteria.php',
+        'InfyOm\\Generator\\DTOs\\GeneratorNamespaces' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/DTOs/GeneratorNamespaces.php',
+        'InfyOm\\Generator\\DTOs\\GeneratorOptions' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/DTOs/GeneratorOptions.php',
+        'InfyOm\\Generator\\DTOs\\GeneratorPaths' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/DTOs/GeneratorPaths.php',
+        'InfyOm\\Generator\\DTOs\\GeneratorPrefixes' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/DTOs/GeneratorPrefixes.php',
+        'InfyOm\\Generator\\DTOs\\ModelNames' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/DTOs/ModelNames.php',
+        'InfyOm\\Generator\\Events\\GeneratorFileCreated' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Events/GeneratorFileCreated.php',
+        'InfyOm\\Generator\\Events\\GeneratorFileCreating' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Events/GeneratorFileCreating.php',
+        'InfyOm\\Generator\\Events\\GeneratorFileDeleted' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Events/GeneratorFileDeleted.php',
+        'InfyOm\\Generator\\Events\\GeneratorFileDeleting' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Events/GeneratorFileDeleting.php',
+        'InfyOm\\Generator\\Facades\\FileUtils' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Facades/FileUtils.php',
+        'InfyOm\\Generator\\Generators\\API\\APIControllerGenerator' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Generators/API/APIControllerGenerator.php',
+        'InfyOm\\Generator\\Generators\\API\\APIRequestGenerator' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Generators/API/APIRequestGenerator.php',
+        'InfyOm\\Generator\\Generators\\API\\APIResourceGenerator' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Generators/API/APIResourceGenerator.php',
+        'InfyOm\\Generator\\Generators\\API\\APIRoutesGenerator' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Generators/API/APIRoutesGenerator.php',
+        'InfyOm\\Generator\\Generators\\API\\APITestGenerator' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Generators/API/APITestGenerator.php',
+        'InfyOm\\Generator\\Generators\\BaseGenerator' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Generators/BaseGenerator.php',
+        'InfyOm\\Generator\\Generators\\FactoryGenerator' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Generators/FactoryGenerator.php',
+        'InfyOm\\Generator\\Generators\\MigrationGenerator' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Generators/MigrationGenerator.php',
+        'InfyOm\\Generator\\Generators\\ModelGenerator' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Generators/ModelGenerator.php',
+        'InfyOm\\Generator\\Generators\\RepositoryGenerator' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Generators/RepositoryGenerator.php',
+        'InfyOm\\Generator\\Generators\\RepositoryTestGenerator' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Generators/RepositoryTestGenerator.php',
+        'InfyOm\\Generator\\Generators\\Scaffold\\ControllerGenerator' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Generators/Scaffold/ControllerGenerator.php',
+        'InfyOm\\Generator\\Generators\\Scaffold\\MenuGenerator' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Generators/Scaffold/MenuGenerator.php',
+        'InfyOm\\Generator\\Generators\\Scaffold\\RequestGenerator' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Generators/Scaffold/RequestGenerator.php',
+        'InfyOm\\Generator\\Generators\\Scaffold\\RoutesGenerator' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Generators/Scaffold/RoutesGenerator.php',
+        'InfyOm\\Generator\\Generators\\Scaffold\\ViewGenerator' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Generators/Scaffold/ViewGenerator.php',
+        'InfyOm\\Generator\\Generators\\SeederGenerator' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Generators/SeederGenerator.php',
+        'InfyOm\\Generator\\Generators\\SwaggerGenerator' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Generators/SwaggerGenerator.php',
+        'InfyOm\\Generator\\Generators\\ViewServiceProviderGenerator' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Generators/ViewServiceProviderGenerator.php',
+        'InfyOm\\Generator\\InfyOmGeneratorServiceProvider' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/InfyOmGeneratorServiceProvider.php',
+        'InfyOm\\Generator\\Request\\APIRequest' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Request/APIRequest.php',
+        'InfyOm\\Generator\\Utils\\GeneratorFieldsInputUtil' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Utils/GeneratorFieldsInputUtil.php',
+        'InfyOm\\Generator\\Utils\\HTMLFieldGenerator' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Utils/HTMLFieldGenerator.php',
+        'InfyOm\\Generator\\Utils\\ResponseUtil' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Utils/ResponseUtil.php',
+        'InfyOm\\Generator\\Utils\\SchemaUtil' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Utils/SchemaUtil.php',
+        'InfyOm\\Generator\\Utils\\TableFieldsGenerator' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Utils/TableFieldsGenerator.php',
         'Jean85\\Exception\\ProvidedPackageException' => __DIR__ . '/..' . '/jean85/pretty-package-versions/src/Exception/ProvidedPackageException.php',
         'Jean85\\Exception\\ReplacedPackageException' => __DIR__ . '/..' . '/jean85/pretty-package-versions/src/Exception/ReplacedPackageException.php',
         'Jean85\\Exception\\VersionMissingExceptionInterface' => __DIR__ . '/..' . '/jean85/pretty-package-versions/src/Exception/VersionMissingExceptionInterface.php',
         'Jean85\\PrettyVersions' => __DIR__ . '/..' . '/jean85/pretty-package-versions/src/PrettyVersions.php',
         'Jean85\\Version' => __DIR__ . '/..' . '/jean85/pretty-package-versions/src/Version.php',
+        'Laracasts\\Flash\\Flash' => __DIR__ . '/..' . '/laracasts/flash/src/Laracasts/Flash/Flash.php',
+        'Laracasts\\Flash\\FlashNotifier' => __DIR__ . '/..' . '/laracasts/flash/src/Laracasts/Flash/FlashNotifier.php',
+        'Laracasts\\Flash\\FlashServiceProvider' => __DIR__ . '/..' . '/laracasts/flash/src/Laracasts/Flash/FlashServiceProvider.php',
+        'Laracasts\\Flash\\LaravelSessionStore' => __DIR__ . '/..' . '/laracasts/flash/src/Laracasts/Flash/LaravelSessionStore.php',
+        'Laracasts\\Flash\\Message' => __DIR__ . '/..' . '/laracasts/flash/src/Laracasts/Flash/Message.php',
+        'Laracasts\\Flash\\OverlayMessage' => __DIR__ . '/..' . '/laracasts/flash/src/Laracasts/Flash/OverlayMessage.php',
+        'Laracasts\\Flash\\SessionStore' => __DIR__ . '/..' . '/laracasts/flash/src/Laracasts/Flash/SessionStore.php',
         'Laravel\\Breeze\\BreezeServiceProvider' => __DIR__ . '/..' . '/laravel/breeze/src/BreezeServiceProvider.php',
         'Laravel\\Breeze\\Console\\InstallCommand' => __DIR__ . '/..' . '/laravel/breeze/src/Console/InstallCommand.php',
         'Laravel\\Breeze\\Console\\InstallsApiStack' => __DIR__ . '/..' . '/laravel/breeze/src/Console/InstallsApiStack.php',
@@ -6929,6 +7036,25 @@ class ComposerStaticInitdaeef39bfed4d7f7b45fd36aa40241ba
         'Symfony\\Component\\VarDumper\\Server\\DumpServer' => __DIR__ . '/..' . '/symfony/var-dumper/Server/DumpServer.php',
         'Symfony\\Component\\VarDumper\\Test\\VarDumperTestTrait' => __DIR__ . '/..' . '/symfony/var-dumper/Test/VarDumperTestTrait.php',
         'Symfony\\Component\\VarDumper\\VarDumper' => __DIR__ . '/..' . '/symfony/var-dumper/VarDumper.php',
+        'Symfony\\Component\\VarExporter\\Exception\\ClassNotFoundException' => __DIR__ . '/..' . '/symfony/var-exporter/Exception/ClassNotFoundException.php',
+        'Symfony\\Component\\VarExporter\\Exception\\ExceptionInterface' => __DIR__ . '/..' . '/symfony/var-exporter/Exception/ExceptionInterface.php',
+        'Symfony\\Component\\VarExporter\\Exception\\LogicException' => __DIR__ . '/..' . '/symfony/var-exporter/Exception/LogicException.php',
+        'Symfony\\Component\\VarExporter\\Exception\\NotInstantiableTypeException' => __DIR__ . '/..' . '/symfony/var-exporter/Exception/NotInstantiableTypeException.php',
+        'Symfony\\Component\\VarExporter\\Hydrator' => __DIR__ . '/..' . '/symfony/var-exporter/Hydrator.php',
+        'Symfony\\Component\\VarExporter\\Instantiator' => __DIR__ . '/..' . '/symfony/var-exporter/Instantiator.php',
+        'Symfony\\Component\\VarExporter\\Internal\\Exporter' => __DIR__ . '/..' . '/symfony/var-exporter/Internal/Exporter.php',
+        'Symfony\\Component\\VarExporter\\Internal\\Hydrator' => __DIR__ . '/..' . '/symfony/var-exporter/Internal/Hydrator.php',
+        'Symfony\\Component\\VarExporter\\Internal\\LazyObjectRegistry' => __DIR__ . '/..' . '/symfony/var-exporter/Internal/LazyObjectRegistry.php',
+        'Symfony\\Component\\VarExporter\\Internal\\LazyObjectState' => __DIR__ . '/..' . '/symfony/var-exporter/Internal/LazyObjectState.php',
+        'Symfony\\Component\\VarExporter\\Internal\\LazyObjectTrait' => __DIR__ . '/..' . '/symfony/var-exporter/Internal/LazyObjectTrait.php',
+        'Symfony\\Component\\VarExporter\\Internal\\Reference' => __DIR__ . '/..' . '/symfony/var-exporter/Internal/Reference.php',
+        'Symfony\\Component\\VarExporter\\Internal\\Registry' => __DIR__ . '/..' . '/symfony/var-exporter/Internal/Registry.php',
+        'Symfony\\Component\\VarExporter\\Internal\\Values' => __DIR__ . '/..' . '/symfony/var-exporter/Internal/Values.php',
+        'Symfony\\Component\\VarExporter\\LazyGhostTrait' => __DIR__ . '/..' . '/symfony/var-exporter/LazyGhostTrait.php',
+        'Symfony\\Component\\VarExporter\\LazyObjectInterface' => __DIR__ . '/..' . '/symfony/var-exporter/LazyObjectInterface.php',
+        'Symfony\\Component\\VarExporter\\LazyProxyTrait' => __DIR__ . '/..' . '/symfony/var-exporter/LazyProxyTrait.php',
+        'Symfony\\Component\\VarExporter\\ProxyHelper' => __DIR__ . '/..' . '/symfony/var-exporter/ProxyHelper.php',
+        'Symfony\\Component\\VarExporter\\VarExporter' => __DIR__ . '/..' . '/symfony/var-exporter/VarExporter.php',
         'Symfony\\Component\\Yaml\\Command\\LintCommand' => __DIR__ . '/..' . '/symfony/yaml/Command/LintCommand.php',
         'Symfony\\Component\\Yaml\\Dumper' => __DIR__ . '/..' . '/symfony/yaml/Dumper.php',
         'Symfony\\Component\\Yaml\\Escaper' => __DIR__ . '/..' . '/symfony/yaml/Escaper.php',
@@ -7169,6 +7295,7 @@ class ComposerStaticInitdaeef39bfed4d7f7b45fd36aa40241ba
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitdaeef39bfed4d7f7b45fd36aa40241ba::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitdaeef39bfed4d7f7b45fd36aa40241ba::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitdaeef39bfed4d7f7b45fd36aa40241ba::$prefixesPsr0;
             $loader->classMap = ComposerStaticInitdaeef39bfed4d7f7b45fd36aa40241ba::$classMap;
 
         }, null, ClassLoader::class);
