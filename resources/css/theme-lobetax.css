@@ -27,3 +27,94 @@
     background: white;
     color: grey;
 }
+
+.icon-grey {
+    filter: brightness(0);
+    opacity: 0.5;
+}
+
+.icon-white {
+    filter: brightness(100);
+}
+
+a.item.sub-item {
+    background: #ffffff7d;
+    padding: 5px;
+}
+
+.field-row {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+.search-input {
+    position: relative;
+}
+
+.field-row .input-float{
+  position: relative;
+}
+.field-row .label-float{
+  position: absolute;
+  left: 1.3rem;
+  top: -10px;
+  background: white;
+  padding: 0 6px;
+  font-size: .8rem;
+  font-weight: 400;
+  letter-spacing: 0.0168rem;
+  color: #157bda;
+}
+.field-row .input{
+  flex-shrink: 0;
+  width: var(--w-div-input, 50%);
+}
+.field-row .input>select, .field-row .input>input{
+  font-size: 1rem;
+  color: #1d1d1d;
+  font-family: Rethink Sans, 'Source Sans Pro';
+  width: var(--w-input, 95%);
+}
+.field-row .input>select::-moz-placeholder, .field-row .input>input::-moz-placeholder{
+  color: var(--placeholder,#1d1d1d);
+}
+.field-row .input>select::placeholder, .field-row .input>input::placeholder{
+  color: var(--placeholder,#1d1d1d);
+}
+
+.form-control{
+  height: 40px;
+  width: 100%;
+  border: solid 1px #00000014;
+  border-radius: 25px;
+  padding-left: 3px;
+}
+.search-input {
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  left: 13px; /* Ajuste a posição conforme necessário */
+  top: 50%;
+  width: 25px;
+  transform: translateY(-50%);
+}
+
+.form-control:focus-visible {
+  outline: none;
+  border: solid 1px #00000014 !important;
+}
+
+.form-control:focus {
+  outline: none;
+  border: solid 1px #00000014;
+}
+
+.form-control {
+  padding-left: 30px;
+}
+
+.form-control.with-icon {
+  padding-left: 45px;
+}

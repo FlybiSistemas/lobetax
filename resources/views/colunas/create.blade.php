@@ -1,12 +1,13 @@
-<x-form route="impNotas.store" enctype="multipart/form-data">
-    <div class="row">
-        <div class="col-sm-12">
-            <h4>Máximo de 50 arquivos por vez.</h4>
+<x-form route="colunas.store">
+    <div class="field-row">
+        <div class="search-input input input-float" style="flex: 1;">
+            <label class="label-float" for="nome">Nome</label>
+            <input type="text" name="nome" id="nome" class="form-control">
         </div>
-    </div>
-    <div class="form-group col-sm-12 required">
-        <label for="arquivos_xml">Arquivos XML:</label>
-        <input type="file" name="arquivos[]" id="arquivos_xml" class="form-control" multiple />
+        <div class="search-input input input-float" style="flex: 1;">
+            <label class="label-float" for="referencia">Referência</label>
+            <input type="text" name="referencia" id="referencia" class="form-control">
+        </div>
     </div>
 </x-form>
 <script>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ColunaController;
 use App\Http\Controllers\ImpNotaController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,11 @@ Route::group(['prefix' => 'impNotas'], function () {
     Route::get('/import', [ImpNotaController::class, 'import'])->name('impNotas.import');
     Route::post('/importarNotaApi', [ImpNotaController::class, 'importarNotaApi'])->name('impNotas.importarNotaApi');
     Route::resource('impNotas', ImpNotaController::class);
+});
+
+Route::group(['prefix' => 'tabelas'], function () {
+    Route::post('/colunas/search', [ColunaController::class, 'search'])->name('colunas.search');
+    Route::resource('colunas', ColunaController::class);
 });
 
 

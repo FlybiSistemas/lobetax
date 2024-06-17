@@ -42,41 +42,6 @@
                                     <input type="text" class="form-control" id="filter_search" placeholder="Pesquisar">
                                 <input type="hidden" name="filter_take" id="filter_take" value="10">
                             </div>
-
-                            <style>
-                                .form-control{
-                                    height: 50px;
-                                    width: 100%;
-                                    border: solid 1px #00000014;
-                                    border-radius: 25px;
-                                    padding-left: 3px;
-                                }
-                                .search-input {
-                                    position: relative;
-                                }
-
-                                .search-icon {
-                                    position: absolute;
-                                    left: 13px; /* Ajuste a posição conforme necessário */
-                                    top: 50%;
-                                    width: 25px;
-                                    transform: translateY(-50%);
-                                }
-
-                                .form-control:focus-visible {
-                                    outline: none;
-                                    border: solid 1px #00000014 !important;
-                                }
-
-                                .form-control:focus {
-                                    outline: none;
-                                    border: solid 1px #00000014;
-                                }
-
-                                .form-control {
-                                    padding-left: 45px !important;
-                                }
-                            </style>
                         </form>
                         <div class="user">
                             <div class="photo">
@@ -580,19 +545,24 @@
 </style>
 
 <script>
-  // Obtém todos os elementos com a classe "item"
   var items = document.querySelectorAll('.item');
 
-  // Itera sobre cada elemento
   items.forEach(function (item) {
-    // Adiciona um ouvinte de evento de clique a cada elemento
     item.addEventListener('click', function () {
-      // Remove a classe "active" de todos os elementos
       items.forEach(function (item) {
         item.classList.remove('active');
+        img = item.querySelector('img')
+        for (var i = 0; i <= img.classList.length; i++) {
+            img.classList.remove(img.classList[0])
+        }
+        img.classList.add('file-text');
       });
-      // Adiciona a classe "active" apenas ao elemento clicado
       this.classList.add('active');
+
+      let pai = $(this).parent();
+      if (pai.find('ul').length > 0) {
+        pai.find('ul').hide().slideToggle();
+      }
     });
   });
 </script>
