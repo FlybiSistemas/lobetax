@@ -2,7 +2,7 @@
     <x-slot name="header">
         <p class="breadcrumb">
             <span>Lobe</span>
-            <span>/</span>
+            <span>&nbsp;/&nbsp;</span>
             <span>Documentos</span>
         </p>
         <span class="title">

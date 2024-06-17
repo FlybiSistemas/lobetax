@@ -16,13 +16,13 @@
         </x-nav-link>
 
 
-        <x-nav-multi-link route="#" icon="nf" text="Tabelas">
-            <x-nav-link route="colunas.index" icon="nf" class="sub-item">
-                Colunas
+        <x-nav-multi-link route="tabela" icon="nf" text="Rotinas">
+            <x-nav-link route="impNotas" icon="nf" class="sub-item">
+                Tabelas
             </x-nav-link>
 
-            <x-nav-link route="impNotas" icon="nf" class="sub-item">
-                Rotinas
+            <x-nav-link route="colunas.index" icon="nf" class="sub-item">
+                Colunas
             </x-nav-link>
         </x-nav-multi-link>
 

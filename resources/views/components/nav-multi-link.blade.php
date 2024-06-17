@@ -7,7 +7,7 @@
 @endif
 
 <div>
-    <a class="item {{ $active ? 'active' : '' }}" href="{{ $route != '#' ? route($route) : '#' }}">
+    <a class="item {{ $active ? 'active' : '' }}">
         <div class="icon">
             <img class="file-text {{ $active ?? 'icon-white' }}" src="{{ asset('img/new/icons/'.$icon.'.ico') }}" />
         </div>
