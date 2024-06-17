@@ -144,6 +144,7 @@ class ComposerStaticInitdaeef39bfed4d7f7b45fd36aa40241ba
             'League\\Flysystem\\' => 17,
             'League\\Config\\' => 14,
             'League\\CommonMark\\' => 18,
+            'Laravel\\Ui\\' => 11,
             'Laravel\\Tinker\\' => 15,
             'Laravel\\SerializableClosure\\' => 28,
             'Laravel\\Sanctum\\' => 16,
@@ -158,7 +159,11 @@ class ComposerStaticInitdaeef39bfed4d7f7b45fd36aa40241ba
         'I' => 
         array (
             'InfyOm\\Generator\\' => 17,
+            'InfyOm\\GeneratorHelpers\\' => 24,
+            'InfyOm\\AdminLTETemplates\\' => 25,
+            'InfyOm\\AdminLTEPreset\\' => 22,
             'Illuminate\\Support\\' => 19,
+            'Illuminate\\Foundation\\Auth\\' => 27,
             'Illuminate\\' => 11,
         ),
         'G' => 
@@ -479,6 +484,10 @@ class ComposerStaticInitdaeef39bfed4d7f7b45fd36aa40241ba
         array (
             0 => __DIR__ . '/..' . '/league/commonmark/src',
         ),
+        'Laravel\\Ui\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravel/ui/src',
+        ),
         'Laravel\\Tinker\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/tinker/src',
@@ -511,11 +520,27 @@ class ComposerStaticInitdaeef39bfed4d7f7b45fd36aa40241ba
         array (
             0 => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src',
         ),
+        'InfyOm\\GeneratorHelpers\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/infyomlabs/laravel-generator-helpers/src',
+        ),
+        'InfyOm\\AdminLTETemplates\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/infyomlabs/adminlte-templates/src',
+        ),
+        'InfyOm\\AdminLTEPreset\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/infyomlabs/laravel-ui-adminlte/src',
+        ),
         'Illuminate\\Support\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Macroable',
             1 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Collections',
             2 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Conditionable',
+        ),
+        'Illuminate\\Foundation\\Auth\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravel/ui/auth-backend',
         ),
         'Illuminate\\' => 
         array (
@@ -667,6 +692,7 @@ class ComposerStaticInitdaeef39bfed4d7f7b45fd36aa40241ba
         'App\\Helpers\\TipoTributacaoHelper' => __DIR__ . '/../..' . '/app/Helpers/TipoTributacaoHelper.php',
         'App\\Helpers\\TipoTributoCategoriaHelper' => __DIR__ . '/../..' . '/app/Helpers/TipoTributoCategoriaHelper.php',
         'App\\Helpers\\XmlHelper' => __DIR__ . '/../..' . '/app/Helpers/XmlHelper.php',
+        'App\\Http\\Controllers\\AppBaseController' => __DIR__ . '/../..' . '/app/Http/Controllers/AppBaseController.php',
         'App\\Http\\Controllers\\Auth\\AuthenticatedSessionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AuthenticatedSessionController.php',
         'App\\Http\\Controllers\\Auth\\ConfirmablePasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmablePasswordController.php',
         'App\\Http\\Controllers\\Auth\\EmailVerificationNotificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/EmailVerificationNotificationController.php',
@@ -680,6 +706,7 @@ class ComposerStaticInitdaeef39bfed4d7f7b45fd36aa40241ba
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\ImpNotaController' => __DIR__ . '/../..' . '/app/Http/Controllers/ImpNotaController.php',
         'App\\Http\\Controllers\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfileController.php',
+        'App\\Http\\Controllers\\TabelaController' => __DIR__ . '/../..' . '/app/Http/Controllers/TabelaController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
@@ -691,11 +718,14 @@ class ComposerStaticInitdaeef39bfed4d7f7b45fd36aa40241ba
         'App\\Http\\Middleware\\ValidateSignature' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidateSignature.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Requests\\Auth\\LoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Auth/LoginRequest.php',
+        'App\\Http\\Requests\\CreateTabelaRequest' => __DIR__ . '/../..' . '/app/Http/Requests/CreateTabelaRequest.php',
         'App\\Http\\Requests\\ProfileUpdateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ProfileUpdateRequest.php',
+        'App\\Http\\Requests\\UpdateTabelaRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateTabelaRequest.php',
         'App\\Jobs\\ImportarNotasDaAPIPorCnpjJob' => __DIR__ . '/../..' . '/app/Jobs/ImportarNotasDaAPIPorCnpjJob.php',
         'App\\Models\\Coluna' => __DIR__ . '/../..' . '/app/Models/Coluna.php',
         'App\\Models\\ImpNota' => __DIR__ . '/../..' . '/app/Models/ImpNota.php',
         'App\\Models\\ImpNotaItem' => __DIR__ . '/../..' . '/app/Models/ImpNotaItem.php',
+        'App\\Models\\Tabela' => __DIR__ . '/../..' . '/app/Models/Tabela.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -707,6 +737,7 @@ class ComposerStaticInitdaeef39bfed4d7f7b45fd36aa40241ba
         'App\\Repositories\\ColunaRepository' => __DIR__ . '/../..' . '/app/Repositories/ColunaRepository.php',
         'App\\Repositories\\ImpNotaItemRepository' => __DIR__ . '/../..' . '/app/Repositories/ImpNotaItemRepository.php',
         'App\\Repositories\\ImpNotaRepository' => __DIR__ . '/../..' . '/app/Repositories/ImpNotaRepository.php',
+        'App\\Repositories\\TabelaRepository' => __DIR__ . '/../..' . '/app/Repositories/TabelaRepository.php',
         'App\\Repositories\\Traits\\CrudMethods' => __DIR__ . '/../..' . '/app/Repositories/Traits/CrudMethods.php',
         'App\\View\\Components\\AppLayout' => __DIR__ . '/../..' . '/app/View/Components/AppLayout.php',
         'App\\View\\Components\\GuestLayout' => __DIR__ . '/../..' . '/app/View/Components/GuestLayout.php',
@@ -2299,8 +2330,16 @@ class ComposerStaticInitdaeef39bfed4d7f7b45fd36aa40241ba
         'Illuminate\\Foundation\\Application' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/Application.php',
         'Illuminate\\Foundation\\Auth\\Access\\Authorizable' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/Auth/Access/Authorizable.php',
         'Illuminate\\Foundation\\Auth\\Access\\AuthorizesRequests' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/Auth/Access/AuthorizesRequests.php',
+        'Illuminate\\Foundation\\Auth\\AuthenticatesUsers' => __DIR__ . '/..' . '/laravel/ui/auth-backend/AuthenticatesUsers.php',
+        'Illuminate\\Foundation\\Auth\\ConfirmsPasswords' => __DIR__ . '/..' . '/laravel/ui/auth-backend/ConfirmsPasswords.php',
         'Illuminate\\Foundation\\Auth\\EmailVerificationRequest' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/Auth/EmailVerificationRequest.php',
+        'Illuminate\\Foundation\\Auth\\RedirectsUsers' => __DIR__ . '/..' . '/laravel/ui/auth-backend/RedirectsUsers.php',
+        'Illuminate\\Foundation\\Auth\\RegistersUsers' => __DIR__ . '/..' . '/laravel/ui/auth-backend/RegistersUsers.php',
+        'Illuminate\\Foundation\\Auth\\ResetsPasswords' => __DIR__ . '/..' . '/laravel/ui/auth-backend/ResetsPasswords.php',
+        'Illuminate\\Foundation\\Auth\\SendsPasswordResetEmails' => __DIR__ . '/..' . '/laravel/ui/auth-backend/SendsPasswordResetEmails.php',
+        'Illuminate\\Foundation\\Auth\\ThrottlesLogins' => __DIR__ . '/..' . '/laravel/ui/auth-backend/ThrottlesLogins.php',
         'Illuminate\\Foundation\\Auth\\User' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/Auth/User.php',
+        'Illuminate\\Foundation\\Auth\\VerifiesEmails' => __DIR__ . '/..' . '/laravel/ui/auth-backend/VerifiesEmails.php',
         'Illuminate\\Foundation\\Bootstrap\\BootProviders' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php',
         'Illuminate\\Foundation\\Bootstrap\\HandleExceptions' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php',
         'Illuminate\\Foundation\\Bootstrap\\LoadConfiguration' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php',
@@ -2967,6 +3006,11 @@ class ComposerStaticInitdaeef39bfed4d7f7b45fd36aa40241ba
         'Illuminate\\View\\ViewFinderInterface' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewFinderInterface.php',
         'Illuminate\\View\\ViewName' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewName.php',
         'Illuminate\\View\\ViewServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewServiceProvider.php',
+        'InfyOm\\AdminLTEPreset\\AdminLTELocalizedPreset' => __DIR__ . '/..' . '/infyomlabs/laravel-ui-adminlte/src/AdminLTELocalizedPreset.php',
+        'InfyOm\\AdminLTEPreset\\AdminLTEPreset' => __DIR__ . '/..' . '/infyomlabs/laravel-ui-adminlte/src/AdminLTEPreset.php',
+        'InfyOm\\AdminLTEPreset\\AdminLTEPresetServiceProvider' => __DIR__ . '/..' . '/infyomlabs/laravel-ui-adminlte/src/AdminLTEPresetServiceProvider.php',
+        'InfyOm\\AdminLTETemplates\\AdminLTETemplatesServiceProvider' => __DIR__ . '/..' . '/infyomlabs/adminlte-templates/src/AdminLTETemplatesServiceProvider.php',
+        'InfyOm\\GeneratorHelpers\\LaravelUtils' => __DIR__ . '/..' . '/infyomlabs/laravel-generator-helpers/src/LaravelUtils.php',
         'InfyOm\\Generator\\Commands\\APIScaffoldGeneratorCommand' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Commands/APIScaffoldGeneratorCommand.php',
         'InfyOm\\Generator\\Commands\\API\\APIControllerGeneratorCommand' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Commands/API/APIControllerGeneratorCommand.php',
         'InfyOm\\Generator\\Commands\\API\\APIGeneratorCommand' => __DIR__ . '/..' . '/infyomlabs/laravel-generator/src/Commands/API/APIGeneratorCommand.php',
@@ -3141,6 +3185,15 @@ class ComposerStaticInitdaeef39bfed4d7f7b45fd36aa40241ba
         'Laravel\\Tinker\\Console\\TinkerCommand' => __DIR__ . '/..' . '/laravel/tinker/src/Console/TinkerCommand.php',
         'Laravel\\Tinker\\TinkerCaster' => __DIR__ . '/..' . '/laravel/tinker/src/TinkerCaster.php',
         'Laravel\\Tinker\\TinkerServiceProvider' => __DIR__ . '/..' . '/laravel/tinker/src/TinkerServiceProvider.php',
+        'Laravel\\Ui\\AuthCommand' => __DIR__ . '/..' . '/laravel/ui/src/AuthCommand.php',
+        'Laravel\\Ui\\AuthRouteMethods' => __DIR__ . '/..' . '/laravel/ui/src/AuthRouteMethods.php',
+        'Laravel\\Ui\\ControllersCommand' => __DIR__ . '/..' . '/laravel/ui/src/ControllersCommand.php',
+        'Laravel\\Ui\\Presets\\Bootstrap' => __DIR__ . '/..' . '/laravel/ui/src/Presets/Bootstrap.php',
+        'Laravel\\Ui\\Presets\\Preset' => __DIR__ . '/..' . '/laravel/ui/src/Presets/Preset.php',
+        'Laravel\\Ui\\Presets\\React' => __DIR__ . '/..' . '/laravel/ui/src/Presets/React.php',
+        'Laravel\\Ui\\Presets\\Vue' => __DIR__ . '/..' . '/laravel/ui/src/Presets/Vue.php',
+        'Laravel\\Ui\\UiCommand' => __DIR__ . '/..' . '/laravel/ui/src/UiCommand.php',
+        'Laravel\\Ui\\UiServiceProvider' => __DIR__ . '/..' . '/laravel/ui/src/UiServiceProvider.php',
         'League\\CommonMark\\CommonMarkConverter' => __DIR__ . '/..' . '/league/commonmark/src/CommonMarkConverter.php',
         'League\\CommonMark\\ConverterInterface' => __DIR__ . '/..' . '/league/commonmark/src/ConverterInterface.php',
         'League\\CommonMark\\Delimiter\\Delimiter' => __DIR__ . '/..' . '/league/commonmark/src/Delimiter/Delimiter.php',
@@ -7130,6 +7183,7 @@ class ComposerStaticInitdaeef39bfed4d7f7b45fd36aa40241ba
         'Termwind\\ValueObjects\\Node' => __DIR__ . '/..' . '/nunomaduro/termwind/src/ValueObjects/Node.php',
         'Termwind\\ValueObjects\\Style' => __DIR__ . '/..' . '/nunomaduro/termwind/src/ValueObjects/Style.php',
         'Termwind\\ValueObjects\\Styles' => __DIR__ . '/..' . '/nunomaduro/termwind/src/ValueObjects/Styles.php',
+        'Tests\\ApiTestTrait' => __DIR__ . '/../..' . '/tests/ApiTestTrait.php',
         'Tests\\CreatesApplication' => __DIR__ . '/../..' . '/tests/CreatesApplication.php',
         'Tests\\TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
         'TheSeer\\Tokenizer\\Exception' => __DIR__ . '/..' . '/theseer/tokenizer/src/Exception.php',
