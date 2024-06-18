@@ -3,9 +3,9 @@
         <tr class="titulos">
             {!! $fieldHeaders !!}
             @if($config->options->localized)
-                <th colspan="3">@lang('crud.action')</th>
+                <th width="100">@lang('crud.action')</th>
             @else
-                <th colspan="3">Action</th>
+                <th width="100">Ações</th>
             @endif
         </tr>
     </thead>
@@ -13,7 +13,7 @@
         @@foreach(${{ $config->modelNames->camelPlural }} as ${{ $config->modelNames->camel }})
             <tr>
                 {!! $fieldBody !!}
-                <td>
+                <td class="flex">
                     <div class="">
                         <img class="acoes-img" src="http://lobetax.local/img/vectors/eye.svg">
                     </div>

@@ -17,7 +17,7 @@
 
 
         <x-nav-multi-link route="tabela" icon="nf" text="Rotinas">
-            <x-nav-link route="impNotas" icon="nf" class="sub-item">
+            <x-nav-link route="tabelas.index" icon="nf" class="sub-item">
                 Tabelas
             </x-nav-link>
 

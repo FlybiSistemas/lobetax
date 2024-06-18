@@ -2,17 +2,13 @@
     <thead>
         <tr class="titulos">
             <th>Nome</th>
-            <th>Referência</th>
-            <th>Ações
-                <div class="border-b"></div>
-            </th>
+            <th width="100">Ações</th>
         </tr>
     </thead>
     <tbody>
-        @foreach($colunas as $coluna)
+        @foreach($tabelas as $tabela)
             <tr>
-                <td>{{ $coluna->nome }}</td>
-                <td>{{ $coluna->referencia }}</td>
+                <td>{{ $tabela->nome }}</td>
                 <td class="flex">
                     <div class="">
                         <img class="acoes-img" src="http://lobetax.local/img/vectors/eye.svg">

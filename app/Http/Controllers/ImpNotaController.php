@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Actions\ImportarArquivosXMLAction;
 use App\Jobs\ImportarNotasDaAPIPorCnpjJob;
+use App\Models\Coluna;
 use App\Repositories\ImpNotaItemRepository;
 use App\Repositories\ImpNotaRepository;
 use Illuminate\Http\Request;
@@ -35,9 +36,22 @@ class ImpNotaController
     {
         $searchData = $request->all();
         $impNotas = $this->impNotaRepository->all($searchData);
+        $colunas = Coluna::all();
+        $table = [];
+
+        for($i = 0; $i < $impNotas->count(); $i++){
+            $xml = simplexml_load_string($impNotas[$i]->xml, 'SimpleXMLElement', LIBXML_NOBLANKS | LIBXML_NOCDATA);
+            foreach($colunas as $coluna){
+                $parts = explode('->', $coluna->referencia);
+                $result = array_reduce($parts, function ($carry, $part) {
+                    return is_object($carry) && isset($carry->{$part}) ? $carry->{$part} : null;
+                }, $xml);
+                $table[$i][$coluna->nome] = $result;
+            }
+        }
 
         return view("imp_notas.table", [
-            "impNotas" => $impNotas,
+            "table" => $table,
             "page" => $request->input("page", 0)
         ]);
     }

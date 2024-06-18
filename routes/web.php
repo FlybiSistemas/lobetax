@@ -3,6 +3,7 @@
 use App\Http\Controllers\ColunaController;
 use App\Http\Controllers\ImpNotaController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TabelaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,6 +36,7 @@ Route::group(['prefix' => 'impNotas'], function () {
 Route::group(['prefix' => 'rotinas'], function () {
     Route::post('/colunas/search', [ColunaController::class, 'search'])->name('colunas.search');
     Route::resource('colunas', ColunaController::class);
+    Route::post('/tabelas/search', [TabelaController::class, 'search'])->name('tabelas.search');
     Route::resource('tabelas', TabelaController::class);
 });
 
@@ -47,3 +49,4 @@ Route::middleware('auth')->group(function () {
 
 
 require __DIR__.'/auth.php';
+
