@@ -32,9 +32,10 @@ Route::group(['prefix' => 'impNotas'], function () {
     Route::resource('impNotas', ImpNotaController::class);
 });
 
-Route::group(['prefix' => 'tabelas'], function () {
+Route::group(['prefix' => 'rotinas'], function () {
     Route::post('/colunas/search', [ColunaController::class, 'search'])->name('colunas.search');
     Route::resource('colunas', ColunaController::class);
+    Route::resource('tabelas', TabelaController::class);
 });
 
 
