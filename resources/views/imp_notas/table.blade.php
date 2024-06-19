@@ -4,7 +4,7 @@
             @foreach(array_keys($table[0]) as $key)
                 <th>{{ $key }}</th>
             @endforeach
-            <th>Ações
+            <th width="100">Ações
                 <div class="border-b"></div>
             </th>
         </tr>
