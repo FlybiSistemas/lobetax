@@ -35,6 +35,14 @@ class ColunaController extends Controller
         return view("colunas.create");
     }
 
+    public function edit($id){
+        $coluna = $this->colunaRepository->find($id);
+
+        return view("colunas.edit", [
+            "coluna" => $coluna
+        ]);
+    }
+
     public function store(Request $request)
     {
         $input = $request->all();
@@ -45,5 +53,28 @@ class ColunaController extends Controller
         }
 
         return response()->json("Registro salvo com sucesso.", 200);
+    }
+
+    public function update($id, Request $request)
+    {
+        $input = $request->all();
+        $coluna = $this->colunaRepository->find($id);
+
+        if(!$coluna){
+            return response()->json("Registro não encontrado.", 500);
+        }
+        $this->colunaRepository->update($coluna, $input);
+
+        return response()->json("Registro atualizado com sucesso.", 200);
+    }
+
+    public function destroy($id)
+    {
+        $coluna = $this->colunaRepository->find($id);
+        if (!$coluna) {
+            return response()->json("Registro não encontrado.", 500);
+        }
+        $this->colunaRepository->delete($coluna);
+        return $id;
     }
 }

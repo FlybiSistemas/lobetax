@@ -49,15 +49,22 @@ class TabelaController extends Controller
     /**
      * Store a newly created Tabela in storage.
      */
-    public function store(CreateTabelaRequest $request)
+    public function store(Request $request)
     {
         $input = $request->all();
 
-        $tabela = $this->tabelaRepository->create($input);
+        if(isset($input["id"])){
+            $tabela = $this->tabelaRepository->find($input["id"]);
+            $this->tabelaRepository->update($tabela,$input);
+        }else{
+            $tabela = $this->tabelaRepository->create($input);
+        }
 
-        Flash::success('Tabela saved successfully.');
+        if(!$tabela){
+            return response()->json("Erro ao salvar registro.", 500);
+        }
 
-        return redirect(route('tabelas.index'));
+        return response()->json("Registro salvo com sucesso.", 200);
     }
 
     /**
@@ -83,13 +90,11 @@ class TabelaController extends Controller
     {
         $tabela = $this->tabelaRepository->find($id);
 
-        if (empty($tabela)) {
-            Flash::error('Tabela not found');
-
-            return redirect(route('tabelas.index'));
+        if(!$tabela){
+            return response()->json('Tabela não encontrada', 500);
         }
 
-        return view('tabelas.edit')->with('tabela', $tabela);
+        return view('tabelas.edit', compact('tabela'));
     }
 
     /**
@@ -99,16 +104,14 @@ class TabelaController extends Controller
     {
         $tabela = $this->tabelaRepository->find($id);
 
-        if (empty($tabela)) {
-            Flash::error('Tabela not found');
-
-            return redirect(route('tabelas.index'));
+        if(!$tabela){
+            return response()->json('Tabela não encontrada', 500);
         }
 
+        $input = $request->all();
 
-        Flash::success('Tabela updated successfully.');
-
-        return redirect(route('tabelas.index'));
+        $this->tabelaRepository->update($tabela, $input);
+        return response()->json('Tabela atualizada com sucesso');
     }
 
     /**
@@ -119,17 +122,10 @@ class TabelaController extends Controller
     public function destroy($id)
     {
         $tabela = $this->tabelaRepository->find($id);
-
-        if (empty($tabela)) {
-            Flash::error('Tabela not found');
-
-            return redirect(route('tabelas.index'));
+        if (!$tabela) {
+            return response()->json("Registro não encontrado.", 500);
         }
-
-        $this->tabelaRepository->delete($id);
-
-        Flash::success('Tabela deleted successfully.');
-
-        return redirect(route('tabelas.index'));
+        $this->tabelaRepository->delete($tabela);
+        return $id;
     }
 }

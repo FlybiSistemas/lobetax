@@ -17,10 +17,10 @@
                 @endforeach
                     <td class="flex">
                         <div class="">
-                            <img class="acoes-img" src="http://lobetax.local/img/vectors/eye.svg">
+                            <img class="acoes-img" src="{{ asset('img/new/icons/eye.ico') }}">
                         </div>
                         <div class="">
-                            <img class="acoes-img" src="http://lobetax.local/img/vectors/download.svg">
+                            <img class="acoes-img" src="{{ asset('img/new/icons/trash.ico') }}">
                         </div>
                         <div class="border-b"></div>
                     </td>

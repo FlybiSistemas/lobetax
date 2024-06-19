@@ -482,3 +482,8 @@ padding: 24px 16px 0 24px;
 
 box-sizing: border-box;
 }
+
+tbody .actions{
+  display: flex;
+  gap: .5rem;
+}

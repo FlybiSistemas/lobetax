@@ -11,7 +11,7 @@
             Início
         </x-nav-link>
 
-        <x-nav-link route="impNotas" icon="nf">
+        <x-nav-link route="impNotas.index" icon="nf">
             NF-s
         </x-nav-link>
 

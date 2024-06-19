@@ -1,9 +1,14 @@
-@props(['route', 'submit'])
+@props(['route', 'submit', 'params'])
 @php
     $submit = $submit ?? 'SALVAR';
+    $params = $params ?? '';
 @endphp
 
-<form href="{{ $route != '#' ? route($route) : '#' }}" id="form" method="post">
+@if($params == '')
+    <form action="{{ $route != '#' ? route($route) : '#' }}" id="form">
+@else
+    <form action="{{ $route != '#' ? route($route, $params) : '#' }}" id="form">
+@endif
     @csrf
     {{ $slot }}
 
@@ -18,3 +23,11 @@
         </div>
     </div>
 </form>
+<script>
+    $(function() {
+        $("#form").submit(function(e) {
+            Ajax.salvarRegistro($(this));
+            e.preventDefault();
+        });
+    });
+</script>

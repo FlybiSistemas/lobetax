@@ -14,7 +14,7 @@ use {{ $config->namespaces->repository }}\{{ $config->modelNames->name }}Reposit
 use Illuminate\Http\Request;
 use Flash;
 
-class {{ $config->modelNames->name }}Controller extends AppBaseController
+class {{ $config->modelNames->name }}Controller extends Controller
 {
     /** @var {{ $config->modelNames->name }}Repository ${{ $config->modelNames->camel }}Repository*/
     private ${{ $config->modelNames->camel }}Repository;

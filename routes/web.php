@@ -30,8 +30,8 @@ Route::group(['prefix' => 'impNotas'], function () {
     Route::post('/search', [ImpNotaController::class, 'search'])->name('impNotas.search');
     Route::get('/import', [ImpNotaController::class, 'import'])->name('impNotas.import');
     Route::post('/importarNotaApi', [ImpNotaController::class, 'importarNotaApi'])->name('impNotas.importarNotaApi');
-    Route::resource('impNotas', ImpNotaController::class);
 });
+Route::resource('impNotas', ImpNotaController::class);
 
 Route::group(['prefix' => 'rotinas'], function () {
     Route::post('/colunas/search', [ColunaController::class, 'search'])->name('colunas.search');
@@ -39,7 +39,6 @@ Route::group(['prefix' => 'rotinas'], function () {
     Route::post('/tabelas/search', [TabelaController::class, 'search'])->name('tabelas.search');
     Route::resource('tabelas', TabelaController::class);
 });
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
