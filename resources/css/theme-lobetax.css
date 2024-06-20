@@ -487,3 +487,7 @@ tbody .actions{
   display: flex;
   gap: .5rem;
 }
+
+.card-footer.clearfix{
+  background-color: #f3f4f6;
+}

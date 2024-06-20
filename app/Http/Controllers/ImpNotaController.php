@@ -42,17 +42,20 @@ class ImpNotaController
         for($i = 0; $i < $impNotas->count(); $i++){
             $xml = simplexml_load_string($impNotas[$i]->xml, 'SimpleXMLElement', LIBXML_NOBLANKS | LIBXML_NOCDATA);
             foreach($colunas as $coluna){
-                $parts = explode('->', $coluna->referencia);
+                $parts = explode('/', $coluna->referencia);
                 $result = array_reduce($parts, function ($carry, $part) {
                     return is_object($carry) && isset($carry->{$part}) ? $carry->{$part} : null;
                 }, $xml);
                 $table[$i][$coluna->nome] = $result;
             }
+            $table[$i]['n° Item'] = $impNotas[$i]->nItem;
         }
 
         return view("imp_notas.table", [
             "table" => $table,
-            "page" => $request->input("page", 0)
+            'impNotas' => $impNotas,
+            "page" => $request->input("page", 0),
+            'filter_take' => $request->input('filter_take'),
         ]);
     }
 
