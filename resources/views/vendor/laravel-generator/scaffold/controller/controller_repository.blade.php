@@ -37,6 +37,17 @@ class {{ $config->modelNames->name }}Controller extends AppBaseController
         return view('{{ $config->prefixes->getViewPrefixForInclude() }}{{ $config->modelNames->snakePlural }}.create');
     }
 
+    public function search(Request $request)
+    {
+        $searchData = $request->all();
+        ${{ $config->modelNames->camel }} = $this->{{ $config->modelNames->camel }}Repository->all();
+
+        return view("{{ $config->modelNames->camel }}.table", [
+            "{{ $config->modelNames->camel }}" => ${{ $config->modelNames->camel }},
+            "page" => $request->input("page", 0)
+        ]);
+    }
+
     /**
      * Store a newly created {{ $config->modelNames->name }} in storage.
      */
@@ -44,11 +55,14 @@ class {{ $config->modelNames->name }}Controller extends AppBaseController
     {
         $input = $request->all();
 
+        /** @var {{ $config->modelNames->name }} ${{ $config->modelNames->camel }} */
         ${{ $config->modelNames->camel }} = $this->{{ $config->modelNames->camel }}Repository->create($input);
 
-        @include('laravel-generator::scaffold.controller.messages.save_success')
-
-        return redirect(route('{{ $config->prefixes->getRoutePrefixWith('.') }}{{ $config->modelNames->camelPlural }}.index'));
+        if(${{ $config->modelNames->camel }}){
+            return response()->json('Registro criado com sucesso', 200);
+        }
+        
+        return response()->json('Erro ao criar registro', 500);
     }
 
     /**
@@ -56,9 +70,12 @@ class {{ $config->modelNames->name }}Controller extends AppBaseController
      */
     public function show($id)
     {
+        /** @var {{ $config->modelNames->name }} ${{ $config->modelNames->camel }} */
         ${{ $config->modelNames->camel }} = $this->{{ $config->modelNames->camel }}Repository->find($id);
 
-        @include('laravel-generator::scaffold.controller.messages.not_found')
+        if(!${{ $config->modelNames->camel }}){
+            return response()->json('Registro não encontrado', 500);
+        }
 
         return view('{{ $config->prefixes->getViewPrefixForInclude() }}{{ $config->modelNames->snakePlural }}.show')->with('{{ $config->modelNames->camel }}', ${{ $config->modelNames->camel }});
     }
@@ -68,9 +85,12 @@ class {{ $config->modelNames->name }}Controller extends AppBaseController
      */
     public function edit($id)
     {
+        /** @var {{ $config->modelNames->name }} ${{ $config->modelNames->camel }} */
         ${{ $config->modelNames->camel }} = $this->{{ $config->modelNames->camel }}Repository->find($id);
 
-        @include('laravel-generator::scaffold.controller.messages.not_found')
+        if(!${{ $config->modelNames->camel }}){
+            return response()->json('Registro não encontrado', 500);
+        }
 
         return view('{{ $config->prefixes->getViewPrefixForInclude() }}{{ $config->modelNames->snakePlural }}.edit')->with('{{ $config->modelNames->camel }}', ${{ $config->modelNames->camel }});
     }
@@ -80,15 +100,15 @@ class {{ $config->modelNames->name }}Controller extends AppBaseController
      */
     public function update($id, Update{{ $config->modelNames->name }}Request $request)
     {
+        /** @var {{ $config->modelNames->name }} ${{ $config->modelNames->camel }} */
         ${{ $config->modelNames->camel }} = $this->{{ $config->modelNames->camel }}Repository->find($id);
 
-        @include('laravel-generator::scaffold.controller.messages.not_found')
+        if(!${{ $config->modelNames->camel }}){
+            return response()->json('Registro não encontrado', 500);
+        }
 
-        ${{ $config->modelNames->camel }} = $this->{{ $config->modelNames->camel }}Repository->update($request->all(), $id);
-
-        @include('laravel-generator::scaffold.controller.messages.update_success')
-
-        return redirect(route('{{ $config->prefixes->getRoutePrefixWith('.') }}{{ $config->modelNames->camelPlural }}.index'));
+        $this->{{ $config->modelNames->camel }}Repository->update(${{ $config->modelNames->camel }}, $request->all());
+        return response()->json('Registro atualizado com sucesso', 200);
     }
 
     /**
@@ -98,14 +118,15 @@ class {{ $config->modelNames->name }}Controller extends AppBaseController
      */
     public function destroy($id)
     {
+        /** @var {{ $config->modelNames->name }} ${{ $config->modelNames->camel }} */
         ${{ $config->modelNames->camel }} = $this->{{ $config->modelNames->camel }}Repository->find($id);
 
-        @include('laravel-generator::scaffold.controller.messages.not_found')
+        if(!${{ $config->modelNames->camel }}){
+            return response()->json('Registro não encontrado', 500);
+        }
 
-        $this->{{ $config->modelNames->camel }}Repository->delete($id);
+        ${{ $config->modelNames->camel }}->delete();
 
-        @include('laravel-generator::scaffold.controller.messages.delete_success')
-
-        return redirect(route('{{ $config->prefixes->getRoutePrefixWith('.') }}{{ $config->modelNames->camelPlural }}.index'));
+        return response()->json('Registro deletado com sucesso', 200);
     }
 }
