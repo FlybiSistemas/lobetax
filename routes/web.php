@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ColunaController;
 use App\Http\Controllers\ImpNotaController;
+use App\Http\Controllers\LbtaxufController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TabelaController;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +41,12 @@ Route::group(['prefix' => 'rotinas'], function () {
     Route::resource('tabelas', TabelaController::class);
 });
 
+
+Route::group(['prefix' => 'lbtaxufs'], function () {
+    Route::post('/lbtaxufs/search', [LbtaxufController::class, 'search'])->name('lbtaxufs.search');
+});
+Route::resource('lbtaxufs', App\Http\Controllers\LbtaxufController::class);
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -48,4 +55,5 @@ Route::middleware('auth')->group(function () {
 
 
 require __DIR__.'/auth.php';
+
 

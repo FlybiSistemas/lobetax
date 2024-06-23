@@ -5,3 +5,10 @@
         <p>Tabelas</p>
     </a>
 </li>
+
+<li class="nav-item">
+    <a href="{{ route('lbtaxufs.index') }}" class="nav-link {{ Request::is('lbtaxufs*') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-home"></i>
+        <p>Lbtaxufs</p>
+    </a>
+</li>
