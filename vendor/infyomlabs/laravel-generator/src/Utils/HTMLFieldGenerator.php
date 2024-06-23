@@ -26,6 +26,15 @@ class HTMLFieldGenerator
                     'selectValues' => GeneratorFieldsInputUtil::prepareKeyValueArrayStr($keyValues),
                 ];
                 break;
+            
+            case 'selectHelper':
+                $viewName = 'selectHelper';
+                $keyValues = GeneratorFieldsInputUtil::prepareKeyValueArrFromLabelValueStr($field->htmlValues);
+
+                $variables = [
+                    'selectValues' => GeneratorFieldsInputUtil::prepareKeyValueArrayStr($keyValues),
+                ];
+                break;
             case 'checkbox':
                 if (count($field->htmlValues) > 0) {
                     $checkboxValue = $field->htmlValues[0];
