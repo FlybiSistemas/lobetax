@@ -8,9 +8,13 @@
         @endif
         <!-- <input type="text" name="{{ $fieldName }}" id="{{ $fieldName }}" class="form-control" value="@{{ ${{ $config->modelNames->camel }}->{{ $fieldName }} ?? '' }}"> -->
         <select name="{{ $fieldName }}" id="{{ $fieldName }}" class="form-control">
-            @foreach($config->options->options as $option)
-                <option value="{{ $option->value }}" @if($config->model->{$fieldName} == $option->value) selected @endif>{{ $option->label }}</option>
-            @endforeach
+            @@if(${{ $config->modelNames->camel }}->{{ $fieldName }} == 0)
+                <option value="0" selected="selected">N</option>
+                <option value="1" >S</option>
+            @@else
+                <option value="0" >N</option>
+                <option value="1" selected="selected">S</option>
+            @@endif
         </select>
     </div>
 </div>

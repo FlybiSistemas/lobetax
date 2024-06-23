@@ -122,16 +122,12 @@ class LbtaxufController extends AppBaseController
     {
         $lbtaxuf = $this->lbtaxufRepository->find($id);
 
-        if (empty($lbtaxuf)) {
-            Flash::error('Lbtaxuf not found');
-
-            return redirect(route('lbtaxufs.index'));
+        if(!$lbtaxuf){
+            return response()->json('Registro não encontrado.');
         }
 
-        $this->lbtaxufRepository->delete($id);
+        $lbtaxuf->delete();
 
-        Flash::success('Lbtaxuf deleted successfully.');
-
-        return redirect(route('lbtaxufs.index'));
+        return response()->json('Registro deletado com sucesso.');
     }
 }

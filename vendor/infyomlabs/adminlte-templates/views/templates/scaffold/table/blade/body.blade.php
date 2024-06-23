@@ -11,7 +11,7 @@
     </thead>
     <tbody>
         @@foreach(${{ $config->modelNames->camelPlural }} as ${{ $config->modelNames->camel }})
-            <tr>
+            <tr id="row_@{{ ${{ $config->modelNames->camel }}->id }}">
                 {!! $fieldBody !!}
                 <td class="flex">
                     <div class="">

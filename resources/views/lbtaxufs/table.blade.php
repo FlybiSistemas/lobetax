@@ -10,19 +10,18 @@
     </thead>
     <tbody>
         @foreach($lbtaxufs as $lbtaxuf)
-            <tr>
+            <tr id="row_{{ $lbtaxuf->id }}">
                 <td>{{ $lbtaxuf->uf }}</td>
                     <td>{{ $lbtaxuf->imposto }}</td>
                     <td>{{ $lbtaxuf->ordem }}</td>
                     <td>{{ $lbtaxuf->legislacao }}</td>
-                <td class="flex">
-                    <div class="">
-                        <img class="acoes-img" src="http://lobetax.local/img/new/icons/eye.ico">
+                <td class="actions">
+                    <div onclick="Tela.abrirJanela('{{ route('lbtaxufs.edit', $lbtaxuf->id) }}', 'Visualizar', 'md')">
+                        <img class="acoes-img" src="{{ asset('img/new/icons/eye.ico') }}">
                     </div>
-                    <div class="">
-                        <img class="acoes-img" src="http://lobetax.local/img/new/icons/trash.ico">
+                    <div onclick="Tela.abrirJanelaExcluir('{{ route('lbtaxufs.destroy', [$lbtaxuf->id]) }}?_token={{ csrf_token() }}', '{{ $lbtaxuf->id }}')">
+                        <img class="acoes-img" src="{{ asset('img/new/icons/trash.ico') }}">
                     </div>
-                    <div class="border-b"></div>
                 </td>
             </tr>
         @endforeach
