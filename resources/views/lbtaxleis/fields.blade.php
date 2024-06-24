@@ -19,7 +19,7 @@
     </div>
 </div>
 
-<input type="hidden" name="chave" id="chave" value="">
+<input type="hidden" name="chave" id="chave" value="{{ $lbtaxlei->chave ?? '' }}">
 
 <div style="padding-top: 1rem;margin-bottom: 1rem;border-bottom: 1px solid #e9ecef;">
     Validações
@@ -78,3 +78,18 @@
         <input type="checkbox" id="pjd" class="form-control chk">
     </div>
 </div>
+
+<script>
+    $('#form').on('submit', function(e) {
+        e.preventDefault();
+        chaves = $('.chk')
+            .map(function() {
+                if(this.checked)
+                    return 'S';
+                else
+                    return 'N';
+            })
+            .get();
+        $('#chave').val(chaves.join(''));
+    });
+</script>

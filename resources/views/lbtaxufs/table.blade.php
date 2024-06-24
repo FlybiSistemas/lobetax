@@ -12,9 +12,9 @@
         @foreach($lbtaxufs as $lbtaxuf)
             <tr id="row_{{ $lbtaxuf->id }}">
                 <td>{{ $lbtaxuf->uf }}</td>
-                    <td>{{ $lbtaxuf->imposto }}</td>
-                    <td>{{ $lbtaxuf->ordem }}</td>
-                    <td>{{ $lbtaxuf->legislacao }}</td>
+                <td>{{ $lbtaxuf->imposto }}</td>
+                <td>{{ $lbtaxuf->ordem }}</td>
+                <td>{{ $lbtaxuf->legislacao }}</td>
                 <td class="actions">
                     <div onclick="Tela.abrirJanela('{{ route('lbtaxufs.edit', $lbtaxuf->id) }}', 'Visualizar', 'md')">
                         <img class="acoes-img" src="{{ asset('img/new/icons/eye.ico') }}">
