@@ -6,6 +6,6 @@
         @else
             <label class="label-float" for="{{ $fieldName }}">{{ $fieldTitle }}:</label>
         @endif
-        <input type="text" name="{{ $fieldName }}" id="{{ $fieldName }}" class="form-control" value="@{{ ${{ $config->modelNames->camel }}->{{ $fieldName }} ?? '' }}">
+        <input type="text" name="{{ $fieldName }}" id="{{ $fieldName }}" class="form-control" value="{{ ${{ $config->modelNames->camel }}->{{ $fieldName }} ?? '' }}">
     </div>
 </div>

@@ -40,10 +40,10 @@ class {{ $config->modelNames->name }}Controller extends AppBaseController
     public function search(Request $request)
     {
         $searchData = $request->all();
-        ${{ $config->modelNames->camel }} = $this->{{ $config->modelNames->camel }}Repository->all();
+        ${{ $config->modelNames->camelPlural }} = $this->{{ $config->modelNames->camel }}Repository->all($searchData);
 
-        return view("{{ $config->modelNames->camel }}.table", [
-            "{{ $config->modelNames->camel }}" => ${{ $config->modelNames->camel }},
+        return view("{{ $config->modelNames->camelPlural }}.table", [
+            "{{ $config->modelNames->camelPlural }}" => ${{ $config->modelNames->camelPlural }},
             "page" => $request->input("page", 0)
         ]);
     }

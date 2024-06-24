@@ -1,16 +1,17 @@
-@php
-    echo "<?php".PHP_EOL;
-@endphp
+<?php
 
-namespace {{ $config->namespaces->repository }};
+namespace App\Repositories;
 
-use {{ $config->namespaces->model }}\{{ $config->modelNames->name }};
+use App\Models\Lbtaxlei;
 
-class {{ $config->modelNames->name }}Repository extends AbstractCrudRepository
+class LbtaxleiRepository extends AbstractCrudRepository
 {
-    protected $modelClass = {{ $config->modelNames->name }}::class;
+    protected $modelClass = Lbtaxlei::class;
     protected $fieldSearchable = [
-        {!! $fieldSearchable !!}
+        'imposto',
+        'cod',
+        'bsl',
+        'chave'
     ];
 
     public function all($params)
@@ -56,6 +57,6 @@ class {{ $config->modelNames->name }}Repository extends AbstractCrudRepository
 
     public function model(): string
     {
-        return {{ $config->modelNames->name }}::class;
+        return Lbtaxlei::class;
     }
 }

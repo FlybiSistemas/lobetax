@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ColunaController;
 use App\Http\Controllers\ImpNotaController;
+use App\Http\Controllers\LbtaxleiController;
 use App\Http\Controllers\LbtaxufController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TabelaController;
@@ -45,7 +46,12 @@ Route::group(['prefix' => 'rotinas'], function () {
 Route::group(['prefix' => 'lbtaxufs'], function () {
     Route::post('/lbtaxufs/search', [LbtaxufController::class, 'search'])->name('lbtaxufs.search');
 });
-Route::resource('lbtaxufs', App\Http\Controllers\LbtaxufController::class);
+Route::resource('lbtaxufs', LbtaxufController::class);
+
+Route::group(['prefix' => 'lbtaxleis'], function () {
+    Route::post('/lbtaxleis/search', [LbtaxleiController::class, 'search'])->name('lbtaxleis.search');
+});
+Route::resource('lbtaxleis', LbtaxleiController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -55,5 +61,3 @@ Route::middleware('auth')->group(function () {
 
 
 require __DIR__.'/auth.php';
-
-

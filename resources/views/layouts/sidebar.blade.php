@@ -32,8 +32,8 @@
                 LBTAXUF
             </x-nav-link>
 
-            <x-nav-link route="colunas.index" icon="nf" class="sub-item">
-                Colunas
+            <x-nav-link route="lbtaxleis.index" icon="nf" class="sub-item">
+                LBTAXLEIS
             </x-nav-link>
         </x-nav-multi-link>
 

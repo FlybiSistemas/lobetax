@@ -11,14 +11,14 @@
     </thead>
     <tbody>
         @@foreach(${{ $config->modelNames->camelPlural }} as ${{ $config->modelNames->camel }})
-            <tr id="row_@{{ ${{ $config->modelNames->camel }}->id }}">
+            <tr id="row_{{ ${{ $config->modelNames->camel }}->id }}">
                 {!! $fieldBody !!}
                 <td class="flex">
                     <div class="">
-                        <img class="acoes-img" src="{{ asset('img/new/icons/eye.ico') }}">
+                        <img class="acoes-img" src="@{{ asset('img/new/icons/eye.ico') }}">
                     </div>
                     <div class="">
-                        <img class="acoes-img" src="{{ asset('img/new/icons/trash.ico') }}">
+                        <img class="acoes-img" src="@{{ asset('img/new/icons/trash.ico') }}">
                     </div>
                     <div class="border-b"></div>
                 </td>
