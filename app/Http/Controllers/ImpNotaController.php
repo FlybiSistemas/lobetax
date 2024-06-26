@@ -40,6 +40,7 @@ class ImpNotaController
         $table = [];
 
         for($i = 0; $i < $impNotas->count(); $i++){
+            $table[$i]['n° Item'] = $impNotas[$i]->nItem;
             $xml = simplexml_load_string($impNotas[$i]->xml, 'SimpleXMLElement', LIBXML_NOBLANKS | LIBXML_NOCDATA);
             foreach($colunas as $coluna){
                 $parts = explode('/', $coluna->referencia);
@@ -48,7 +49,6 @@ class ImpNotaController
                 }, $xml);
                 $table[$i][$coluna->nome] = $result;
             }
-            $table[$i]['n° Item'] = $impNotas[$i]->nItem;
         }
 
         return view("imp_notas.table", [

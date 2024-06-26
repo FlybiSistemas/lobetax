@@ -19,3 +19,10 @@
         <p>Lbtaxleis</p>
     </a>
 </li>
+
+<li class="nav-item">
+    <a href="{{ route('lbtaxs.index') }}" class="nav-link {{ Request::is('lbtaxs*') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-home"></i>
+        <p>Lbtaxs</p>
+    </a>
+</li>

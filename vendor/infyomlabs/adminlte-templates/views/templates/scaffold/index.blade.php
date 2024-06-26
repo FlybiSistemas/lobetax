@@ -1,3 +1,7 @@
+@php
+    $open = '{{';
+    $close = '}}';
+@endphp
 <@x-app-layout>
     <@x-slot name="header">
         <p class="breadcrumb">
@@ -21,7 +25,7 @@
             <span></span>
 
             <div class="button blue">
-                <span onclick="Tela.abrirJanela('@{{ route('{!! $config->prefixes->getRoutePrefixWith('.') !!}{!! $config->modelNames->camelPlural !!}.create') }}', 'Nova {{ $config->modelNames->human }}', 'md')">COLUNA</span>
+                <span onclick="Tela.abrirJanela('@{{ route('{!! $config->prefixes->getRoutePrefixWith('.') !!}{!! $config->modelNames->camelPlural !!}.create') }}', 'Nova {{ $config->modelNames->human }}', 'md')">NOVO</span>
             </div>
         </div>
 
@@ -30,18 +34,12 @@
         </div>
         <script>
             $(function() {
-                var routePrefix = '{!! $config->prefixes->getRoutePrefixWith(".") !!}';
-                var camelPlural = '{!! $config->modelNames->camelPlural !!}';
-                var routeName = routePrefix + camelPlural + '.search';
-                var route = 'route("\' + routeName + \'")';
-
-                @@php
+                @php
                     $routePrefix = $config->prefixes->getRoutePrefixWith('.');
                     $camelPlural = $config->modelNames->camelPlural;
                     $routeName = $routePrefix . $camelPlural . '.search';
-                    $route = route( $routeName );
-                @@endphp
-                $('#formSearch').attr('action', '@@php $route @@endphp'
+                @endphp
+                $('#formSearch').attr('action', '{{ $open }} route('{{ $routeName}}') }}');
                 $('#filter_search').attr('name', 'filter_nome');
                 Filtro.inicializaFormBusca("#formSearch", "#divList", true);
             });

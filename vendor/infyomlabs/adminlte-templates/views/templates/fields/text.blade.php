@@ -1,4 +1,8 @@
 <!-- {{ $fieldTitle }} Field -->
+@php
+    $open = '{{';
+    $close = '}}';
+@endphp
 <div class="field-row">
     <div class="search-input input input-float" style="flex: 1;">
         @if($config->options->localized)
@@ -6,6 +10,6 @@
         @else
             <label class="label-float" for="{{ $fieldName }}">{{ $fieldTitle }}:</label>
         @endif
-        <input type="text" name="{{ $fieldName }}" id="{{ $fieldName }}" class="form-control" value="{{ ${{ $config->modelNames->camel }}->{{ $fieldName }} ?? '' }}">
+        <input type="text" name="{{ $fieldName }}" id="{{ $fieldName }}" class="form-control" value="{{ $open }} ${{ $config->modelNames->camel }}->{{ $fieldName }} ?? '' {{ $close }}">
     </div>
 </div>

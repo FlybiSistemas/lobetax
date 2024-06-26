@@ -1,3 +1,7 @@
+@php
+    $open = '{{';
+    $close = '}}';
+@endphp
 <table class="table-list">
     <thead>
         <tr class="titulos">
@@ -11,14 +15,14 @@
     </thead>
     <tbody>
         @@foreach(${{ $config->modelNames->camelPlural }} as ${{ $config->modelNames->camel }})
-            <tr id="row_{{ ${{ $config->modelNames->camel }}->id }}">
+            <tr id="row_{{ $open }} ${{ $config->modelNames->camel }}->id {{ $close }}">
                 {!! $fieldBody !!}
-                <td class="flex">
-                    <div class="">
-                        <img class="acoes-img" src="@{{ asset('img/new/icons/eye.ico') }}">
+                <td class="actions">
+                    <div onclick="Tela.abrirJanela('{{ $open }} route('{{ $config->modelNames->camelPlural }}.edit', ${{ $config->modelNames->camel }}->id) {{ $close }}', 'Visualizar', 'md')">
+                        <img class="acoes-img" src="{{ $open }} asset('img/new/icons/eye.ico') }}">
                     </div>
-                    <div class="">
-                        <img class="acoes-img" src="@{{ asset('img/new/icons/trash.ico') }}">
+                    <div onclick="Tela.abrirJanelaExcluir('{{ $open }} route('{{ $config->modelNames->camelPlural }}.destroy', [${{ $config->modelNames->camel }}->id]) {{ $close }}?_token=@{{ csrf_token() }}', '{{ $open }} ${{ $config->modelNames->camel }}->id {{ $close }}')">
+                        <img class="acoes-img" src="{{ $open }} asset('img/new/icons/trash.ico') }}">
                     </div>
                     <div class="border-b"></div>
                 </td>

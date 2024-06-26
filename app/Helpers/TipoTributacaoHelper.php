@@ -6,9 +6,10 @@ class TipoTributacaoHelper
 {
     public static $tipos = [
         'T' => 'TRIBUTADO',
-        'M' => 'MONOFASICO',
+        'R' => 'REDUÇÃO',
         'I' => 'ISENTO',
-        'Z' => 'ALIQUOTA ZERO',
+        'S' => 'SUBSTITUIDO',
+        'N' => 'NAO INCIDÊNCIA',
     ];
 
     public static function get($valor)

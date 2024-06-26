@@ -18,7 +18,7 @@
                     @foreach($list as $key => $value)
                         <td>{{ $value }}</td>
                     @endforeach
-                        <td class="flex">
+                        <td class="actions">
                             <div class="">
                                 <img class="acoes-img" src="{{ asset('img/new/icons/eye.ico') }}">
                             </div>
