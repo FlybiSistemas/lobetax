@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('tipo_campo');
             $table->string('chave_campo');
             $table->string('descricao_chave_campo');
-            $table->string('info', 1);
+            $table->string('info', 10);
             $table->timestamps();
         });
     }

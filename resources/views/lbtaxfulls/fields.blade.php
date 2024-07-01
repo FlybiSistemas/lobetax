@@ -8,7 +8,7 @@
         <label class="label-float" for="imposto">Imposto:</label>
         <select name="imposto" id="imposto" class="form-control">
             @foreach(\App\Helpers\ImpostoHelper::$impostos as $key => $value)
-            <option value="{{ $key }}">{{ $value }}</option>
+                <option value="{{ $key }}" @if(isset($lbtaxfull) && $lbtaxfull->imposto == $key) selected @endif>{{ $value }}</option>
             @endforeach
         </select>
     </div>
@@ -28,14 +28,19 @@
 
 <div class="field-row">
     <!-- Descricao Field -->
-    <div class="search-input input input-float" style="flex: 1;">
+    <div class="search-input input input-float" style="flex: 3;">
         <label class="label-float" for="descricao">Descricao:</label>
         <input type="text" name="descricao" id="descricao" class="form-control" value="{{ $lbtaxfull->descricao ?? '' }}">
     </div>
     <!-- Tipo Campo Field -->
     <div class="search-input input input-float" style="flex: 1;">
         <label class="label-float" for="tipo_campo">Tipo Campo:</label>
-        <input type="text" name="tipo_campo" id="tipo_campo" class="form-control" value="{{ $lbtaxfull->tipo_campo ?? '' }}">
+        <select name="tipo_campo" id="tipo_campo" class="form-control">
+            <option value="">-</option>
+            @foreach(\App\Helpers\TipoCampoHelper::$tipos as $key => $value)
+                <option value="{{ $key }}" @if(isset($lbtaxfull) && $lbtaxfull->tipo_campo == $key) selected @endif>{{ $value }}</option>
+            @endforeach
+        </select>
     </div>
 </div>
 

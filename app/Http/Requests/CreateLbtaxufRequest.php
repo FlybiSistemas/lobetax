@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Models\Lbtaxuf;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CreateLbtaxufRequest extends FormRequest
 {
@@ -24,14 +25,19 @@ class CreateLbtaxufRequest extends FormRequest
      */
     public function rules()
     {
-        // ordem unique
         return [
             'uf' => 'required|max:2',
-            'imposto' => 'required|max:255',
-            'ordem' => 'required|integer|unique:lbtaxufs,ordem',
+            'imposto' => [
+                'required',
+                'max:255',
+                Rule::unique('lbtaxufs')->where(function ($query) {
+                    return $query->where('ordem', $this->ordem);
+                }),
+            ],
             'legislacao' => 'required|max:255',
         ];
     }
+
 
     public function messages()
     {
@@ -42,7 +48,7 @@ class CreateLbtaxufRequest extends FormRequest
             'imposto.max' => 'O campo Imposto não pode ter mais que 255 caracteres.',
             'ordem.required' => 'O campo Ordem é obrigatório.',
             'ordem.integer' => 'O campo Ordem deve ser um número inteiro.',
-            'ordem.unique' => 'O campo Ordem deve ser único.',
+            'imposto.unique' => 'A combinação de Imposto e Ordem já existe.',
         ];
     }
 }
