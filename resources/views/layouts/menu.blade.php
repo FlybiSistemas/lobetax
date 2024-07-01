@@ -26,3 +26,10 @@
         <p>Lbtaxs</p>
     </a>
 </li>
+
+<li class="nav-item">
+    <a href="{{ route('lbtaxfulls.index') }}" class="nav-link {{ Request::is('lbtaxfulls*') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-home"></i>
+        <p>Lbtaxfulls</p>
+    </a>
+</li>

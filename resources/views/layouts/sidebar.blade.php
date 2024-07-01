@@ -39,6 +39,10 @@
             <x-nav-link route="lbtaxs.index" icon="nf" class="sub-item">
                 LBTAX
             </x-nav-link>
+
+            <x-nav-link route="lbtaxfulls.index" icon="nf" class="sub-item">
+                LBTAXFULL
+            </x-nav-link>
         </x-nav-multi-link>
 
         {{--

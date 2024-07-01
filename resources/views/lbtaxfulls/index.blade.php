@@ -2,12 +2,10 @@
     <x-slot name="header">
         <p class="breadcrumb">
             <span>Lobe</span>
-            <span>&nbsp;/&nbsp;</span>
-            <span>NFs</span>
+            <span>/</span>
+            <span>Lbtaxfull</span>
         </p>
-        <span class="title">
-            NFs
-        </span>
+        <span class="title">Lbtaxfull</span>
     </x-slot>
 
     <div style="padding: 10px 20px 0 10px;display: flex;flex-direction: column;">
@@ -15,16 +13,16 @@
             <span></span>
 
             <div class="button blue">
-                <span onclick="Tela.abrirJanela('{{ route('impNotas.import') }}', 'Importação de XML por API', 'md')">IMPORTAR</span>
+                <span onclick="Tela.abrirJanela('{{ route('lbtaxfulls.create') }}', 'Nova Lbtaxfull', 'md')">NOVO</span>
             </div>
         </div>
 
         <div id="divList">
-            
+
         </div>
         <script>
             $(function() {
-                $('#formSearch').attr('action', '{{ route('impNotas.search') }}');
+                $('#formSearch').attr('action', '{{ route('lbtaxfulls.search')}}');
                 $('#filter_search').attr('name', 'filter_nome');
                 Filtro.inicializaFormBusca("#formSearch", "#divList", true);
             });

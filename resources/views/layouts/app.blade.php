@@ -63,6 +63,9 @@
                 </div>
         
                 <style>
+                    main{
+                        width: 100%;
+                    }
                     .table-list {
                         width: 100%;
                         table-layout: fixed;
@@ -77,6 +80,7 @@
                     .table-list th,
                     .table-list td {
                         padding: 8px;
+                        white-space: nowrap;
                         word-wrap: break-word;
                     }
         

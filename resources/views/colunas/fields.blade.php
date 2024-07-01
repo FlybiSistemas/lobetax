@@ -1,5 +1,5 @@
 <script>
-    var referenciaCount = 0;
+    var referenciaCount = $('.referencia-div').length;
 
     function addReferencia(){
         var clone = $("#referencia_clone").clone();
@@ -8,12 +8,16 @@
         label = clone.find('.label-float');
         input = clone.find('.form-control');
 
-        div.attr('id', htmlId + '[new]');
-        input.attr('name', htmlId + '[new]');
+        div.attr('id', htmlId + '[referencia]');
+        input.attr('name', htmlId + '[referencia]');
         $('#referencia-list').append(clone)
         
         clone.show();
         referenciaCount++;
+    }
+
+    function removeReferencia(idx){
+        $('#referencia' + idx).remove();
     }
 </script>
 <div class="field-row" style="padding-bottom: 5px;">
@@ -41,5 +45,13 @@
     </button>
 </div>
 <div id="referencia-list">
-
+    @if($coluna)
+        @if($coluna->referencias->count() > 0)
+            @foreach($coluna->referencias as $i => $referencia)
+                <div id="referencia{{$i}}" data-idx="{{$i}}" class="referencia-div">
+                    @include('colunas.referencia', ['referencia' => $referencia, 'i' => $i])
+                </div>
+            @endforeach
+        @endif
+    @endif
 </div>

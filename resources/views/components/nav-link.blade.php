@@ -1,6 +1,6 @@
 @props(['route', 'icon'])
 
-@if($route != '#' && Request::is($route.'*'))
+@if($route != '#' && Route::currentRouteNamed($route))
     @php $classes = 'item active'; $iconClasses = 'icon-white'; @endphp
 @else
     @php $classes = 'item' @endphp

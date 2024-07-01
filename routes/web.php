@@ -3,6 +3,7 @@
 use App\Http\Controllers\ColunaController;
 use App\Http\Controllers\ImpNotaController;
 use App\Http\Controllers\LbtaxController;
+use App\Http\Controllers\LbtaxfullController;
 use App\Http\Controllers\LbtaxleiController;
 use App\Http\Controllers\LbtaxufController;
 use App\Http\Controllers\ProfileController;
@@ -58,6 +59,11 @@ Route::group(['prefix' => 'lbtaxs'], function () {
     Route::post('/lbtaxs/search', [LbtaxController::class, 'search'])->name('lbtaxs.search');
 });
 Route::resource('lbtaxs', LbtaxController::class);
+
+Route::group(['prefix' => 'lbtaxfulls'], function () {
+    Route::post('/lbtaxfulls/search', [LbtaxfullController::class, 'search'])->name('lbtaxfulls.search');
+});
+Route::resource('lbtaxfulls', LbtaxfullController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
