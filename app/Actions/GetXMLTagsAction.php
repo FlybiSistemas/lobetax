@@ -2,7 +2,12 @@
 
 namespace App\Actions;
 
+use App\Helpers\TipoCampoHelper;
 use App\Models\Coluna;
+use App\Models\Lbtax;
+use App\Models\Lbtaxfull;
+use App\Models\Lbtaxlei;
+use App\Models\Lbtaxuf;
 use SimpleXMLElement;
 
 class GetXMLTagsAction
@@ -20,15 +25,28 @@ class GetXMLTagsAction
             $table[$i]['n° Item'] = $impNotas[$i]->nItem;
             $xml = simplexml_load_string($impNotas[$i]->xml, 'SimpleXMLElement', LIBXML_NOBLANKS | LIBXML_NOCDATA);
             foreach($colunas as $coluna){
-                $valor = $this->getValueByReferencia($coluna->referencia, $xml);
-                if(is_null($valor) && $coluna->referencias->count() > 0)
-                {
-                    foreach($coluna->referencias as $referencia){
-                        $valor = $this->getValueByReferencia($referencia->referencia, $xml);
-                        if($valor) break;
+                if(is_null($coluna->referencia)){
+                    $valorIA = $this->getValueIa($xml, $table[$i]);
+                    if($valorIA && $valorIA->descricao){
+                        $table[$i][$coluna->nome] = $valorIA->descricao;
+                        continue;
                     }
+                    $table[$i][$coluna->nome] = '';
                 }
-                $table[$i][$coluna->nome] = $valor;
+                else{
+                    $valor = $this->getValueByReferencia($coluna->referencia, $xml);
+    
+                    
+                    if(is_null($valor) && $coluna->referencias->count() > 0)
+                    {
+                        foreach($coluna->referencias as $referencia){
+                            $valor = $this->getValueByReferencia($referencia->referencia, $xml);
+                            if($valor) break;
+                        }
+                    }
+                    $table[$i][$coluna->nome] = $valor;
+                }
+                
             }
         }
 
@@ -41,5 +59,62 @@ class GetXMLTagsAction
         return array_reduce($parts, function ($carry, $part) {
             return is_object($carry) && isset($carry->{$part}) ? $carry->{$part} : null;
         }, $xml);
+    }
+
+    private function getValueIa(SimpleXMLElement $xml, $item)
+    {
+        $ufD = $item['UF Destino'];
+        $imposto = 'ICMSST';
+
+        $leisPorUF = Lbtaxuf::where('uf', $ufD)
+            ->where('imposto', $imposto)->orderBy('ordem')->get();
+
+        foreach($leisPorUF as $lei){
+            $chave = '|';
+            $legislacao = $lei->legislacao;
+            $regra = Lbtaxlei::where('cod', $legislacao)->first();
+            $i = 0;
+            foreach(TipoCampoHelper::$tipos as $key => $value){
+                if($regra && isset($regra->chave[$i]) && $regra->chave[$i] == 'S'){ //Se for para validar
+                    $retorno = $this->searchLbtaxfull($key, $legislacao, $item);
+                    if($retorno) //Se for encontrado o valor correspondente em lbtaxfull
+                        $chave .= 'S|';
+                    else //Caso não ache nada
+                        $chave .= 'N|';
+                }
+                else // Se não for, padrão "S"
+                    $chave .= 'S|';
+                $i++;
+            }
+            $chave = $legislacao.$chave;
+            $regraEncontrada = Lbtax::where('iafis', 'ilike', '%'.$chave.'%')->first();
+            if($regraEncontrada)
+                return $regraEncontrada;
+        }
+    }
+
+    private function searchLbtaxfull($referencia_campo, $legislacao, $item){
+        $coluna = Coluna::where('referencia_campo', $referencia_campo)->first();
+        if(!$coluna)
+            return True;
+        $valorDeBusca = $item[$coluna->nome];
+        if($referencia_campo != 'ncm'){
+            return Lbtaxfull::where('chave_lei', $legislacao)
+                ->where('chave_campo', $valorDeBusca)
+                ->first();
+        }
+        else{
+            $removeCont = 1;
+            while (strlen($valorDeBusca) >= 4) {
+                // remover $removeCont caracteres do final do valorDeBusca
+                $valorDeBusca = substr($valorDeBusca, 0, - $removeCont);
+                $removeCont++;
+                $retorno = Lbtaxfull::where('chave_lei', $legislacao)
+                  ->where('chave_campo', $valorDeBusca)
+                  ->first();
+                if($retorno)
+                    return $retorno;
+            }
+        }
     }
 }

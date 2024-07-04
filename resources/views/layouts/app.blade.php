@@ -39,8 +39,10 @@
                             <div class="search-input input">
                                 @csrf
                                 <img class="search-icon" src="{{ asset('img/new/icons/search.ico') }}" />
-                                    <input type="text" class="form-control with-icon" id="filter_search" placeholder="Pesquisar">
+                                <input type="text" class="form-control with-icon" id="filter_search" placeholder="Pesquisar">
                                 <input type="hidden" name="filter_take" id="filter_take" value="10">
+                                <input type="hidden" name="filter_order" id="filter_order" value="asc">
+                                <input type="hidden" name="filter_sort" id="filter_sort" value="id">
                             </div>
                         </form>
                         <div class="user">

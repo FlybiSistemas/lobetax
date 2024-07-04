@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id('id');
             $table->string('imposto', 20);
             $table->string('cod', 20);
-            $table->string('bsl', 20);
+            $table->string('bsl', 50);
             $table->string('chave', 20);
             $table->timestamps();
         });

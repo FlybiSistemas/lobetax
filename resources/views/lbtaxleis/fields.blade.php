@@ -1,5 +1,5 @@
 <style>
-    .field-row.chk .label-float {
+    .field-row.chkr .label-float {
         left: 50%;
         transform: translateX(-50%);
     }
@@ -32,13 +32,13 @@
     Validações
 </div>
 
-<div class="field-row chk">
+<div class="field-row chkr">
     @php $break = true; @endphp
     @foreach(\App\Helpers\TipoCampoHelper::$tipos as $key => $value)
         @if($loop->index >= count(\App\Helpers\TipoCampoHelper::$tipos) / 2 && $break)
             @php $break = false; @endphp
             </div>
-            <div class="field-row chk">
+            <div class="field-row chkr">
         @endif
         <div class="search-input input input-float" style="flex: 1;">
             <label class="label-float" for="{{ $key }}">{{ $value }}</label>

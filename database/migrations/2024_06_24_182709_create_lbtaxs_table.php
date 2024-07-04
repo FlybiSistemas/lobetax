@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('lbtaxs', function (Blueprint $table) {
             $table->id('id');
-            $table->string('iafis', 40);
+            $table->string('iafis', 150);
             $table->integer('aplica');
             $table->string('icms', 1);
             $table->string('icmsst', 1);

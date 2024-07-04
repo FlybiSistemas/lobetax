@@ -68,13 +68,11 @@ class LbtaxufController extends AppBaseController
     {
         $lbtaxuf = $this->lbtaxufRepository->find($id);
 
-        if (empty($lbtaxuf)) {
-            Flash::error('Lbtaxuf not found');
-
-            return redirect(route('lbtaxufs.index'));
+        if($lbtaxuf){
+            return response()->json('Registro criado com sucesso', 200);
         }
-
-        return view('lbtaxufs.show')->with('lbtaxuf', $lbtaxuf);
+        
+        return response()->json('Erro ao criar registro', 500);
     }
 
     /**
@@ -84,10 +82,8 @@ class LbtaxufController extends AppBaseController
     {
         $lbtaxuf = $this->lbtaxufRepository->find($id);
 
-        if (empty($lbtaxuf)) {
-            Flash::error('Lbtaxuf not found');
-
-            return redirect(route('lbtaxufs.index'));
+        if(!$lbtaxuf){
+            return response()->json('Registro não encontrado', 500);
         }
 
         return view('lbtaxufs.edit')->with('lbtaxuf', $lbtaxuf);
@@ -100,17 +96,12 @@ class LbtaxufController extends AppBaseController
     {
         $lbtaxuf = $this->lbtaxufRepository->find($id);
 
-        if (empty($lbtaxuf)) {
-            Flash::error('Lbtaxuf not found');
-
-            return redirect(route('lbtaxufs.index'));
+        if(!$lbtaxuf){
+            return response()->json('Registro não encontrado', 500);
         }
 
-        $lbtaxuf = $this->lbtaxufRepository->update($request->all(), $id);
-
-        Flash::success('Lbtaxuf updated successfully.');
-
-        return redirect(route('lbtaxufs.index'));
+        $this->lbtaxufRepository->update($lbtaxuf, $request->all());
+        return response()->json('Registro atualizado com sucesso', 200);
     }
 
     /**

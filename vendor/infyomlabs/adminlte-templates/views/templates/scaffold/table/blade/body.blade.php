@@ -4,7 +4,7 @@
 @endphp
 <table class="table-list">
     <thead>
-        <tr class="titulos">
+        <tr class="titulos" style="display: contents;">
             {!! $fieldHeaders !!}
             @if($config->options->localized)
                 <th width="100">@lang('crud.action')</th>
@@ -13,7 +13,7 @@
             @endif
         </tr>
     </thead>
-    <tbody>
+    <tbody style="display: block;">
         @@foreach(${{ $config->modelNames->camelPlural }} as ${{ $config->modelNames->camel }})
             <tr id="row_{{ $open }} ${{ $config->modelNames->camel }}->id {{ $close }}">
                 {!! $fieldBody !!}
@@ -30,3 +30,30 @@
         @@endforeach
     </tbody>
 </table>
+<script>
+    $(document).ready(function() {
+        let ths = $('.titulos>th');
+        let tds = $('tbody>tr:first>td');
+        
+        ths.each(function(index) {
+            let tdWidth = $(tds[index]).outerWidth();
+            if(tdWidth < 100)
+                tdWidth = 100;
+            if ($(this).hasClass('ac'))
+                tdWidth = 65;
+            $(this).css('width', tdWidth);
+        });
+        $('tbody>tr>td').each(function() {
+            let tdWidth = $(this).outerWidth();
+            if(tdWidth < 100) {
+                $(this).css('width', '100px');
+            }
+        });
+
+        let telaWidth = $(window).width();
+        let sidebarWidth = $('.sidebar').width();
+        let contentWidth = telaWidth - sidebarWidth;
+        $('.container').css('width', contentWidth-20);
+        $('tbody').css('display', 'contents');
+    });
+</script>

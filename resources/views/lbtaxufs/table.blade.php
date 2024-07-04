@@ -27,3 +27,11 @@
         @endforeach
     </tbody>
 </table>
+<div class="card-footer clearfix">
+    <div class="float-right">
+        @include('layouts.pagination', [
+            'paginator' => $lbtaxufs,
+            'filtro' => '&' . http_build_query(request()->except('page')),
+        ])
+    </div>
+</div>

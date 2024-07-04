@@ -10,7 +10,7 @@ class Coluna extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nome', 'referencia', 'coluna_id'];
+    protected $fillable = ['nome', 'referencia', 'coluna_id', 'referencia_campo'];
 
     public function referencias(): BelongsToMany
     {

@@ -21,13 +21,18 @@
     }
 </script>
 <div class="field-row" style="padding-bottom: 5px;">
-    <div class="search-input input input-float" style="flex: 1;">
+    <div class="search-input input input-float" style="flex: 2;">
         <label class="label-float" for="nome">Nome</label>
         <input type="text" name="nome" id="nome" class="form-control" value="{{ $coluna->nome ?? '' }}">
     </div>
     <div class="search-input input input-float" style="flex: 1;">
-        <label class="label-float" for="formato">Formatação</label>
-        <input type="text" name="formato" id="formato" class="form-control" value="{{ $coluna->formato ?? ''}}">
+        <label class="label-float" for="referencia_campo">Tipo de Campo</label>
+        <select name="referencia_campo" id="referencia_campo" class="form-control">
+            <option value="">-</option>
+            @foreach(\App\Helpers\TipoCampoHelper::$tipos as $key => $value)
+                <option value="{{ $key }}" @if(isset($coluna) && $coluna->referencia_campo == $key) selected @endif>{{ $value }}</option>
+            @endforeach
+        </select>
     </div>
 </div>
 <div class="field-row">
