@@ -22,8 +22,8 @@
         </div>
         <script>
             $(function() {
-                                $('#formSearch').attr('action', '{{ route('lbtaxs.search') }}');
-                $('#filter_search').attr('name', 'filter_nome');
+                $('#formSearch').attr('action', '{{ route('lbtaxs.search') }}');
+                $('#filter_search').attr('name', 'filter_search');
                 Filtro.inicializaFormBusca("#formSearch", "#divList", true);
             });
 

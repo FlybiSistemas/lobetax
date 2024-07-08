@@ -24,6 +24,9 @@ class LbtaxRepository extends AbstractCrudRepository
         if (isset($params['filter_cnf'])) {
             $qry = $qry->where('ide_cnf', $params['filter_cnf']);
         }
+        if (isset($params['filter_search'])) {
+            $qry = $qry->where('iafis', 'like', '%'.$params['filter_search'].'%');
+        }
 
         if (isset($params['filter_cnpj'])) {
             $qry = $qry->where(function ($qry) use ($params) {

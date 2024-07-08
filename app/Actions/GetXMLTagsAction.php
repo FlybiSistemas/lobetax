@@ -27,8 +27,8 @@ class GetXMLTagsAction
             foreach($colunas as $coluna){
                 if(is_null($coluna->referencia)){
                     $valorIA = $this->getValueIa($xml, $table[$i]);
-                    if($valorIA && $valorIA->descricao){
-                        $table[$i][$coluna->nome] = $valorIA->descricao;
+                    if($valorIA && $valorIA->bsl){
+                        $table[$i][$coluna->nome] = $valorIA->bsl;
                         continue;
                     }
                     $table[$i][$coluna->nome] = '';
@@ -89,7 +89,7 @@ class GetXMLTagsAction
             $chave = $legislacao.$chave;
             $regraEncontrada = Lbtax::where('iafis', 'ilike', '%'.$chave.'%')->first();
             if($regraEncontrada)
-                return $regraEncontrada;
+                return $regra;
         }
     }
 
@@ -104,10 +104,11 @@ class GetXMLTagsAction
                 ->first();
         }
         else{
-            $removeCont = 1;
+            $removeCont = 0;
             while (strlen($valorDeBusca) >= 4) {
                 // remover $removeCont caracteres do final do valorDeBusca
-                $valorDeBusca = substr($valorDeBusca, 0, - $removeCont);
+                if($removeCont != 0)
+                    $valorDeBusca = substr($valorDeBusca, 0, - $removeCont);
                 $removeCont++;
                 $retorno = Lbtaxfull::where('chave_lei', $legislacao)
                   ->where('chave_campo', $valorDeBusca)

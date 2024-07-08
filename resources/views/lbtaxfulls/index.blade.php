@@ -23,7 +23,7 @@
         <script>
             $(function() {
                 $('#formSearch').attr('action', '{{ route('lbtaxfulls.search')}}');
-                $('#filter_search').attr('name', 'filter_nome');
+                $('#filter_search').attr('name', 'filter_search');
                 Filtro.inicializaFormBusca("#formSearch", "#divList", true);
             });
         </script>

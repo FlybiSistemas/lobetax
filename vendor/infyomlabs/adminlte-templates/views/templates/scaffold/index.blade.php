@@ -40,7 +40,7 @@
                     $routeName = $routePrefix . $camelPlural . '.search';
                 @endphp
                 $('#formSearch').attr('action', '{{ $open }} route('{{ $routeName}}') }}');
-                $('#filter_search').attr('name', 'filter_nome');
+                $('#filter_search').attr('name', 'filter_search');
                 Filtro.inicializaFormBusca("#formSearch", "#divList", true);
             });
 
