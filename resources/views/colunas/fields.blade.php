@@ -18,6 +18,7 @@
 
     function removeReferencia(idx){
         $('#referencia' + idx).remove();
+        referenciaCount--;
     }
 </script>
 <div class="field-row" style="padding-bottom: 5px;">

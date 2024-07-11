@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Tabela extends Model
 {
@@ -16,9 +17,10 @@ class Tabela extends Model
         'nome' => 'string'
     ];
 
-    public static array $rules = [
-        
-    ];
+    public function colunas():BelongsToMany
+    {
+        return $this->belongsToMany(Coluna::class)->withPivot('ordem');
+    }
 
     
 }

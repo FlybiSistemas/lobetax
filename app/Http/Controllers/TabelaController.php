@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateTabelaRequest;
 use App\Http\Requests\UpdateTabelaRequest;
+use App\Models\Coluna;
 use App\Repositories\AbstractCrudRepository;
 use App\Repositories\TabelaRepository;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\DB;
 
 class TabelaController extends Controller
 {
@@ -43,7 +45,8 @@ class TabelaController extends Controller
      */
     public function create()
     {
-        return view('tabelas.create');
+        $colunas = Coluna::all();
+        return view('tabelas.create', compact('colunas'));
     }
 
     /**
@@ -53,16 +56,28 @@ class TabelaController extends Controller
     {
         $input = $request->all();
 
-        if(isset($input["id"])){
-            $tabela = $this->tabelaRepository->find($input["id"]);
-            $this->tabelaRepository->update($tabela,$input);
-        }else{
-            $tabela = $this->tabelaRepository->create($input);
+        DB::beginTransaction();
+        $tabela = $this->tabelaRepository->create($input);
+
+        try{
+            if(count($input['coluna']) > 0){
+                $tabela->colunas()->detach();
+                foreach($input['coluna'] as $index => $coluna){
+                    $tabela->colunas()->attach([$coluna], ['ordem' => $index]);
+                }
+            }
+        }
+        catch(\Exception $e){
+            DB::rollBack();
+            return response()->json($e->getMessage(), 500);
         }
 
+
         if(!$tabela){
+            DB::rollBack();
             return response()->json("Erro ao salvar registro.", 500);
         }
+        DB::commit();
 
         return response()->json("Registro salvo com sucesso.", 200);
     }
@@ -94,7 +109,10 @@ class TabelaController extends Controller
             return response()->json('Tabela não encontrada', 500);
         }
 
-        return view('tabelas.edit', compact('tabela'));
+        $colunasTabela = $tabela->colunas()->withPivot('ordem')->orderBy('pivot_ordem')->get();
+
+        $colunas = Coluna::all();
+        return view('tabelas.edit', compact('tabela', 'colunas', 'colunasTabela'));
     }
 
     /**
@@ -109,8 +127,21 @@ class TabelaController extends Controller
         }
 
         $input = $request->all();
-
+        DB::beginTransaction();
         $this->tabelaRepository->update($tabela, $input);
+        if(isset($input['coluna'])){
+            $tabela->colunas()->detach();
+            foreach($input['coluna'] as $index => $coluna){
+                $tabela->colunas()->attach([$coluna], ['ordem' => $index]);
+            }
+        }
+        else{
+            $tabela->colunas()->detach();
+        }
+        DB::commit();
+        if(!$tabela){
+            return response()->json('Erro ao atualizar registro', 500);
+        }
         return response()->json('Tabela atualizada com sucesso');
     }
 
@@ -127,5 +158,21 @@ class TabelaController extends Controller
         }
         $this->tabelaRepository->delete($tabela);
         return $id;
+    }
+
+    public function ordenaColunas(Request $request)
+    {
+        $input = $request->all();
+        $tabela = $this->tabelaRepository->find($input['tabela_id']);
+        if(!$tabela){
+            return response()->json("Tabela não encontrada.", 500);
+        }
+        $tabela->colunas()->detach();
+
+        foreach($input['colunas'] as $index => $coluna){
+            $tabela->colunas()->attach([$coluna], ['ordem' => $index]);
+        }
+
+        return response()->json("Colunas ordenadas com sucesso.", 200);
     }
 }

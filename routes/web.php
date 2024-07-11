@@ -41,6 +41,7 @@ Route::group(['prefix' => 'rotinas'], function () {
     Route::post('/colunas/search', [ColunaController::class, 'search'])->name('colunas.search');
     Route::resource('colunas', ColunaController::class);
     Route::post('/tabelas/search', [TabelaController::class, 'search'])->name('tabelas.search');
+    Route::post('/tabelas/ordenaColunas', [TabelaController::class, 'ordenaColunas'])->name('tabelas.ordenaColunas');
     Route::resource('tabelas', TabelaController::class);
 });
 
