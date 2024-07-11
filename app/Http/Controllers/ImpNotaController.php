@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Actions\GetXMLTagsAction;
 use App\Actions\ImportarArquivosXMLAction;
 use App\Jobs\ImportarNotasDaAPIPorCnpjJob;
+use App\Models\Tabela;
 use App\Repositories\ImpNotaItemRepository;
 use App\Repositories\ImpNotaRepository;
 use Illuminate\Http\Request;
@@ -29,7 +30,8 @@ class ImpNotaController
 
     public function index()
     {
-        return view("imp_notas.index");
+        $tabelas = Tabela::all();
+        return view("imp_notas.index", compact('tabelas'));
     }
 
     public function search(Request $request)
@@ -37,8 +39,12 @@ class ImpNotaController
         $searchData = $request->all();
         $impNotas = $this->impNotaRepository->all($searchData);
         $table = [];
+        
+        if($searchData['tabela'])
+            $table = (new GetXMLTagsAction())($impNotas, Tabela::find($searchData['tabela'])->colunas);
+        else
+            $table = (new GetXMLTagsAction())($impNotas);
 
-        $table = (new GetXMLTagsAction())($impNotas);
 
         return view("imp_notas.table", [
             "table" => $table,

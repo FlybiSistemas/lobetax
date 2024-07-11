@@ -43,6 +43,7 @@
                             <input type="hidden" name="filter_take" id="filter_take" value="10">
                             <input type="hidden" name="filter_order" id="filter_order" value="asc">
                             <input type="hidden" name="filter_sort" id="filter_sort" value="id">
+                            <input type="hidden" name="tabela" value="">
                         </div>
                     </form>
                     <div class="user">

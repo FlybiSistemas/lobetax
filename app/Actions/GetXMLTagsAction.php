@@ -16,10 +16,11 @@ class GetXMLTagsAction
      * Load data from file and Save on Imp Nota table.
      */
 
-    public function __invoke($impNotas)
+    public function __invoke($impNotas, $colunas = null)
     {
         $table = [];
-        $colunas = Coluna::all();
+        if(is_null($colunas))
+            $colunas = Coluna::all();
 
         for($i = 0; $i < $impNotas->count(); $i++){
             $table[$i]['n° Item'] = $impNotas[$i]->nItem;
