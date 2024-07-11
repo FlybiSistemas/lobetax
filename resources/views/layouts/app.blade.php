@@ -19,7 +19,7 @@
     <!-- Scripts -->
     <!-- @vite(['resources/css/app.css', 'resources/js/app.js']) -->
     <script src="{{ asset('js/jquery.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('build/assets/app-BV3ZkziF.js') }}"></script>
     <script src="{{ asset('js/iziToast.min.js') }}"></script>
 </head>
 
