@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="{{ asset('css/iziToast.min.css') }}">
 
     <!-- Scripts -->
-    @vite(['resources/css/theme-lobetax.css'])
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
