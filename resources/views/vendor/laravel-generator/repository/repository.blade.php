@@ -1,5 +1,6 @@
 @php
     echo "<?php".PHP_EOL;
+    $aspas = "''";
 @endphp
 
 namespace {{ $config->namespaces->repository }};
@@ -20,19 +21,19 @@ class {{ $config->modelNames->name }}Repository extends AbstractCrudRepository
         if (isset($params['filter_id'])) {
             $qry = $qry->where('id', '=', $params['filter_id']);
         }
-        if (isset($params['filter_cnf'])) {
-            $qry = $qry->where('ide_cnf', $params['filter_cnf']);
+
+        @foreach (explode(',', $fieldSearchable) as $field)
+if (isset($params["filter_{!!str_replace($aspas[0], '', $field)!!}"])) {
+            $qry = $qry->where({!!$field!!}, $params["filter_{!!str_replace($aspas[0], '', $field)!!}"]);
         }
 
-        if (isset($params['filter_cnpj'])) {
-            $qry = $qry->where(function ($qry) use ($params) {
-                $qry = $qry->where('emit_cnpj', $params['filter_cnpj']);
-                $qry = $qry->orWhere('dest_cnpj', $params['filter_cnpj']);
-            });
-        }
+        /* if (isset($params["filter_{!!str_replace($aspas[0], '', $field)!!}"])) {
+            $qry = $qry->where({!!$field!!}, 'ilike', $params["filter_{!!str_replace($aspas[0], '', $field)!!}"]);
+        } */
+        @endforeach
 
-        if (isset($params['filter_sort'])) {
-            $qry = $qry->orderBy($params['filter_sort'], $params['filter_order']);
+        if (isset($params['filter_search'])) {
+            $qry = $qry->where('@php explode(',', $fieldSearchable)[0] @endphp', 'ilike', '%'.$params['filter_search'].'%');
         }
 
         return $this->doQuery($qry, $params['filter_take'], true);

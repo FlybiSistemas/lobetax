@@ -45,6 +45,13 @@
             </x-nav-link>
         </x-nav-multi-link>
 
+
+        <x-nav-multi-link route="cadastro" icon="nf" text="Cadastros">
+            <x-nav-link route="participantes.index" icon="nf" class="sub-item">
+                Participantes
+            </x-nav-link>
+        </x-nav-multi-link>
+
         {{--
             <div class="item">
                 <div class="icon">

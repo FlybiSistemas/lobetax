@@ -2,7 +2,9 @@
 
 namespace App\Actions;
 
-use Illuminate\Support\Facades\Auth;
+use App\Models\Participantes;
+use Exception;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
 class ImportarNotaAction
@@ -17,6 +19,8 @@ class ImportarNotaAction
     public function __invoke(string $xmlString, string $filename): void
     {
         $obj = simplexml_load_string($xmlString, 'SimpleXMLElement', LIBXML_NOBLANKS | LIBXML_NOCDATA);
+
+        
         if (!isset($obj->NFe)) { // Se não for uma nota fiscal.
             // verificar se é um evento
             // if (isset($obj->evento)) {
@@ -36,6 +40,12 @@ class ImportarNotaAction
         // }
         Log::info(">> Importando Nota: {$chNFE}");
         $impNota = (new CreateNotaFromFileAction())($xmlString, $chNFE);
+
+        $emit =(string)$obj->NFe->infNFe->emit->CNPJ;
+        $dest =(string)$obj->NFe->infNFe->dest->CNPJ;
+
+        $this->createParticipante($emit);
+        $this->createParticipante($dest);
         // verifica se possui a tag de protocolo e se foi de cancelamento
         if (isset($obj->protNFe)) {
             if (isset($obj->protNFe->infProt)) {
@@ -63,4 +73,44 @@ class ImportarNotaAction
             $evento = (new CreateEventoFromFileAction())($xmlString, $chaveEvento);
         }
     }
+
+    public function createParticipante($cnpj){
+        $cnpj = preg_replace("/\D/", '', $cnpj);
+        if(strlen($cnpj > 11)){
+            $participante = Participantes::where('cnpj', $cnpj)->first();
+            if($participante){
+                return;
+            }
+            $urlApi = 'https://flytax.com.br/api/empresas';
+            try {
+                $response = Http::acceptJson()
+                    ->withHeaders([
+                        'x-flytax-id' => 1,
+                    ])
+                    ->get("{$urlApi}/{$cnpj}");
+            } catch (Exception $e) {
+                $em = 'Não foi possível consultar o CNPJ!<br/>';
+                Log::info('show-warning-message', $em);
+                return;
+            }
+            if (!$response->json('razao_social')) {
+                Log::info('show-warning-message', 'Não foi possível consultar o CNPJ!<br/>Confira se é um número válido');
+                return;
+            }
+            
+            $cnaesJson = json_decode($response->json('cnaes'));
+            $cnaesCadastrados = (new CreateCnaeFromJsonAction())($cnaesJson);
+    
+            $participante = [
+                'cnpj' => $cnpj,
+                'razao_social' => $response->json('razao_social'),
+                'natureza' => $response->json('natureza_juridica'),
+                'categoria' => $cnaesCadastrados[2] ? 'C' : ''
+            ];
+    
+            $participante = Participantes::create($participante);
+            $participante->cnaes()->sync($cnaesCadastrados[0]);
+        }
+    }
+
 }
