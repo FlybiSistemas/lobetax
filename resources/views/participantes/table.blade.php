@@ -1,33 +1,43 @@
-<table class="table-list">
-    <thead>
-        <tr class="titulos" style="display: contents;">
-            <th>Cnpj</th>
-                <th>Razao Social</th>
-                <th>Natureza</th>
-                <th>Categoria</th>
-                <th width="100">Ações</th>
-            </tr>
-    </thead>
-    <tbody style="display: block;">
-        @foreach($participantes as $participante)
-            <tr id="row_{{ $participante->id }}">
-                <td>{{ App\Helpers\FormatterHelper::formatCnpjCpf($participante->cnpj) }}</td>
+<div style="overflow-x: scroll;">
+    <table class="table-list">
+        <thead>
+            <tr class="titulos" style="display: contents;">
+                <th>Cnpj</th>
+                    <th>Razao Social</th>
+                    <th>Natureza</th>
+                    <th>Categoria</th>
+                    <th width="100">Ações</th>
+                </tr>
+        </thead>
+        <tbody style="display: block;">
+            @foreach($participantes as $participante)
+                <tr id="row_{{ $participante->id }}">
+                    <td>{{ App\Helpers\FormatterHelper::formatCnpjCpf($participante->cnpj) }}</td>
                     <td>{{ $participante->razao_social }}</td>
                     <td>{{ $participante->natureza }}</td>
                     <td>{{ \App\Helpers\CategoriaHelper::get($participante->categoria) }}</td>
-                <td class="actions">
-                    <div onclick="Tela.abrirJanela('{{ route('participantes.edit', $participante->id) }}', 'Visualizar', 'md')">
-                        <img class="acoes-img" src="{{ asset('img/new/icons/eye.ico') }}">
-                    </div>
-                    <div onclick="Tela.abrirJanelaExcluir('{{ route('participantes.destroy', [$participante->id]) }}?_token={{ csrf_token() }}', '{{ $participante->id }}')">
-                        <img class="acoes-img" src="{{ asset('img/new/icons/trash.ico') }}">
-                    </div>
-                    <div class="border-b"></div>
-                </td>
-            </tr>
-        @endforeach
-    </tbody>
-</table>
+                    <td class="actions">
+                        <div onclick="Tela.abrirJanela('{{ route('participantes.edit', $participante->id) }}', 'Visualizar', 'md')">
+                            <img class="acoes-img" src="{{ asset('img/new/icons/eye.ico') }}">
+                        </div>
+                        <div onclick="Tela.abrirJanelaExcluir('{{ route('participantes.destroy', [$participante->id]) }}?_token={{ csrf_token() }}', '{{ $participante->id }}')">
+                            <img class="acoes-img" src="{{ asset('img/new/icons/trash.ico') }}">
+                        </div>
+                        <div class="border-b"></div>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+<div class="card-footer clearfix">
+    <div class="float-right">
+        @include('layouts.pagination', [
+            'paginator' => $participantes,
+            'filtro' => '&' . http_build_query(request()->except('page')),
+        ])
+    </div>
+</div>
 <script>
     $(document).ready(function() {
         let ths = $('.titulos>th');

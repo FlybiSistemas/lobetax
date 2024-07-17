@@ -2,16 +2,14 @@
 
 namespace App\Repositories;
 
-use App\Models\Participantes;
+use App\Models\Ncm;
 
-class ParticipantesRepository extends AbstractCrudRepository
+class NcmRepository extends AbstractCrudRepository
 {
-    protected $modelClass = Participantes::class;
+    protected $modelClass = Ncm::class;
     protected $fieldSearchable = [
-        'cnpj',
-        'razao_social',
-        'natureza',
-        'categoria'
+        'codigo',
+        'tipo'
     ];
 
     public function all($params)
@@ -22,24 +20,29 @@ class ParticipantesRepository extends AbstractCrudRepository
             $qry = $qry->where('id', '=', $params['filter_id']);
         }
 
-        if (isset($params["filter_cnpj"])) {
-            $qry = $qry->where('cnpj', 'ilike', $params["filter_cnpj"]);
+        if (isset($params["filter_codigo"])) {
+            $qry = $qry->where('codigo', $params["filter_codigo"]);
         }
 
-        if (isset($params["filter_razao_social"])) {
-            $qry = $qry->where('razao_social', 'ilike', $params["filter_razao_social"]);
+        /* if (isset($params["filter_codigo"])) {
+            $qry = $qry->where('codigo', 'ilike', $params["filter_codigo"]);
+        } */
+        if (isset($params["filter_
+        tipo"])) {
+            $qry = $qry->where(
+        'tipo', $params["filter_
+        tipo"]);
         }
 
-        if (isset($params["filter_natureza"])) {
-            $qry = $qry->where('natureza', $params["filter_natureza"]);
-        }
-
-        if (isset($params["filter_categoria"])) {
-            $qry = $qry->where('categoria', $params["filter_categoria"]);
-        }
+        /* if (isset($params["filter_
+        tipo"])) {
+            $qry = $qry->where(
+        'tipo', 'ilike', $params["filter_
+        tipo"]);
+        } */
         
         if (isset($params['filter_search'])) {
-            $qry = $qry->where('razao_social', 'ilike', '%'.$params['filter_search'].'%');
+            $qry = $qry->where('', 'ilike', '%'.$params['filter_search'].'%');
         }
 
         return $this->doQuery($qry, $params['filter_take'], true);
@@ -63,6 +66,6 @@ class ParticipantesRepository extends AbstractCrudRepository
 
     public function model(): string
     {
-        return Participantes::class;
+        return Ncm::class;
     }
 }

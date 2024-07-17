@@ -6,6 +6,7 @@ use App\Http\Controllers\LbtaxController;
 use App\Http\Controllers\LbtaxfullController;
 use App\Http\Controllers\LbtaxleiController;
 use App\Http\Controllers\LbtaxufController;
+use App\Http\Controllers\NcmController;
 use App\Http\Controllers\ParticipantesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TabelaController;
@@ -46,31 +47,40 @@ Route::group(['prefix' => 'rotinas'], function () {
     Route::resource('tabelas', TabelaController::class);
 });
 
+Route::group(['prefix' => 'parametros'], function () {
+    Route::group(['prefix' => 'lbtaxufs'], function () {
+        Route::post('/lbtaxufs/search', [LbtaxufController::class, 'search'])->name('lbtaxufs.search');
+    });
+    Route::resource('lbtaxufs', LbtaxufController::class);
 
-Route::group(['prefix' => 'lbtaxufs'], function () {
-    Route::post('/lbtaxufs/search', [LbtaxufController::class, 'search'])->name('lbtaxufs.search');
-});
-Route::resource('lbtaxufs', LbtaxufController::class);
+    Route::group(['prefix' => 'lbtaxleis'], function () {
+        Route::post('/search', [LbtaxleiController::class, 'search'])->name('lbtaxleis.search');
+    });
+    Route::resource('lbtaxleis', LbtaxleiController::class);
 
-Route::group(['prefix' => 'lbtaxleis'], function () {
-    Route::post('/search', [LbtaxleiController::class, 'search'])->name('lbtaxleis.search');
-});
-Route::resource('lbtaxleis', LbtaxleiController::class);
+    Route::group(['prefix' => 'lbtaxs'], function () {
+        Route::post('/search', [LbtaxController::class, 'search'])->name('lbtaxs.search');
+    });
+    Route::resource('lbtaxs', LbtaxController::class);
 
-Route::group(['prefix' => 'lbtaxs'], function () {
-    Route::post('/search', [LbtaxController::class, 'search'])->name('lbtaxs.search');
+    Route::group(['prefix' => 'lbtaxfulls'], function () {
+        Route::post('/search', [LbtaxfullController::class, 'search'])->name('lbtaxfulls.search');
+    });
+    Route::resource('lbtaxfulls', LbtaxfullController::class);
 });
-Route::resource('lbtaxs', LbtaxController::class);
+
 
 Route::group(['prefix' => 'cadastros'], function () {
     Route::post('/participantes/search', [ParticipantesController::class, 'search'])->name('participantes.search');
+    Route::post('/ncms/search', [NcmController::class, 'search'])->name('ncms.search');
 });
 Route::resource('cadastros/participantes', ParticipantesController::class);
+Route::resource('cadastros/ncms', NcmController::class);
 
-Route::group(['prefix' => 'lbtaxfulls'], function () {
-    Route::post('/search', [LbtaxfullController::class, 'search'])->name('lbtaxfulls.search');
+
+Route::group(['prefix' => 'parti'], function () {
+    Route::post('/search', [LbtaxfullController::class, 'search'])->name('parti.search');
 });
-Route::resource('lbtaxfulls', LbtaxfullController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -80,4 +90,3 @@ Route::middleware('auth')->group(function () {
 
 
 require __DIR__.'/auth.php';
-Route::resource('participantes', App\Http\Controllers\ParticipantesController::class);
