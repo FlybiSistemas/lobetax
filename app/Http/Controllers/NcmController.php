@@ -59,6 +59,10 @@ class NcmController extends AppBaseController
         $ncm = $this->ncmRepository->create($input);
 
         if($ncm){
+            if(isset($request->cnae)) {
+                $ncm->cnaes()->attach($request->cnae);
+            }
+
             return response()->json('Registro criado com sucesso', 200);
         }
         
