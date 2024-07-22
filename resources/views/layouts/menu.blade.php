@@ -45,4 +45,8 @@
     <x-nav-link route="ncms.index" icon="nf" class="sub-item">
         NCMs
     </x-nav-link>
+
+    <x-nav-link route="cnaes.index" icon="nf" class="sub-item">
+        CNAEs
+    </x-nav-link>
 </x-nav-multi-link>

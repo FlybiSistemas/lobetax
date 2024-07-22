@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Ncm extends Model
 {
@@ -21,6 +22,11 @@ class Ncm extends Model
     public static array $rules = [
         
     ];
+
+    public function cnaes():BelongsToMany
+    {
+        return $this->belongsToMany(Cnae::class);
+    }
 
     
 }

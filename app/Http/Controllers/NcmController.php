@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateNcmRequest;
 use App\Http\Requests\UpdateNcmRequest;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Cnae;
 use App\Repositories\NcmRepository;
 use Illuminate\Http\Request;
 use Flash;
@@ -32,7 +33,8 @@ class NcmController extends AppBaseController
      */
     public function create()
     {
-        return view('ncms.create');
+        $cnaes = Cnae::all();
+        return view('ncms.create', compact('cnaes'));
     }
 
     public function search(Request $request)
@@ -90,7 +92,9 @@ class NcmController extends AppBaseController
             return response()->json('Registro não encontrado', 500);
         }
 
-        return view('ncms.edit')->with('ncm', $ncm);
+        $cnaes = Cnae::all();
+
+        return view('ncms.edit', compact('ncm', 'cnaes'));
     }
 
     /**
@@ -103,6 +107,11 @@ class NcmController extends AppBaseController
 
         if(!$ncm){
             return response()->json('Registro não encontrado', 500);
+        }
+
+        $ncm->cnaes()->detach();
+        if(isset($request->cnae)) {
+            $ncm->cnaes()->attach($request->cnae);
         }
 
         $this->ncmRepository->update($ncm, $request->all());

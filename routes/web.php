@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CnaeController;
 use App\Http\Controllers\ColunaController;
 use App\Http\Controllers\ImpNotaController;
 use App\Http\Controllers\LbtaxController;
@@ -73,9 +74,11 @@ Route::group(['prefix' => 'parametros'], function () {
 Route::group(['prefix' => 'cadastros'], function () {
     Route::post('/participantes/search', [ParticipantesController::class, 'search'])->name('participantes.search');
     Route::post('/ncms/search', [NcmController::class, 'search'])->name('ncms.search');
+    Route::post('/cnaes/search', [CnaeController::class, 'search'])->name('cnaes.search');
 });
 Route::resource('cadastros/participantes', ParticipantesController::class);
 Route::resource('cadastros/ncms', NcmController::class);
+Route::resource('cadastros/cnaes', App\Http\Controllers\CnaeController::class);
 
 
 Route::group(['prefix' => 'parti'], function () {
