@@ -3,17 +3,17 @@
         <p class="breadcrumb">
             <span>Lobe</span>
             <span>/</span>
-                            <span>Ncms</span>
-                    </p>
-                    <span class="title">Ncms</span>
-            </x-slot>
+            <span>Ncms</span>
+        </p>
+        <span class="title">Ncms</span>
+    </x-slot>
 
     <div style="padding: 10px 20px 0 10px;display: flex;flex-direction: column;">
         <div class="btn-import" style="display: flex;justify-content: space-between;">
             <span></span>
 
             <div class="button blue">
-                <span onclick="Tela.abrirJanela('{{ route('ncms.create') }}', 'Nova Ncm', 'md')">NOVO</span>
+                <span onclick="Tela.abrirJanela('{{ route('ncms.create') }}', 'Nova Ncm', 'lg')">NOVO</span>
             </div>
         </div>
 

@@ -12,6 +12,9 @@ window.Ajax = Ajax;
 import Tela from "./telas";
 window.Tela = Tela;
 
+import Utils from "./utils";
+window.Utils = Utils;
+
 import Sortable from 'sortablejs';
 window.Sortable = Sortable;
 

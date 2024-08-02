@@ -45,10 +45,15 @@ class CnaeRepository extends AbstractCrudRepository
     {
         $q = strtoupper($q);
         $qry = $this->newQuery();
-        $qry = $qry->whereRaw("UPPER(name) ilike '%$q%' ");
+        $qry = $qry->where('codigo', 'ilike', $q . '%');
+        $qry = $qry->orWhere('descricao', 'ilike', "%$q%");
+        $qry->take(30);
         $objetos = $qry->get();
+
         return $objetos->map(function ($item, $key) {
-            return ['id' => $item->id, 'text' => "{$item->name}"];
+            $nome = $item->codigo;
+            $nome = isset($item->descricao) ? $item->codigo . " | " . $item->descricao : $item->codigo;
+            return ['id' => $item->id, 'text' => $nome];
         });
     }
 

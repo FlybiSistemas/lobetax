@@ -42,6 +42,8 @@ Route::resource('impNotas', ImpNotaController::class);
 
 Route::group(['prefix' => 'rotinas'], function () {
     Route::post('/colunas/search', [ColunaController::class, 'search'])->name('colunas.search');
+    Route::get('/colunas/searchModelFillable/{model}', [ColunaController::class, 'searchModelFillable'])->name('colunas.searchModelFillable');
+    Route::get('/colunas/searchModelRelations/{model}', [ColunaController::class, 'searchModelRelations'])->name('colunas.searchModelRelations');
     Route::resource('colunas', ColunaController::class);
     Route::post('/tabelas/search', [TabelaController::class, 'search'])->name('tabelas.search');
     Route::post('/tabelas/ordenaColunas', [TabelaController::class, 'ordenaColunas'])->name('tabelas.ordenaColunas');
@@ -90,6 +92,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/cnaes/find', [CnaeController::class, 'find'])->name('cnaes.find');
 
 
 require __DIR__.'/auth.php';

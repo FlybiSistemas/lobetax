@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Coluna;
 use App\Models\Referencia;
 use App\Repositories\ColunaRepository;
 use Illuminate\Http\Request;
@@ -31,16 +32,68 @@ class ColunaController extends Controller
         ]);
     }
 
+    public function searchModelFillable($model)
+    {
+        $modelClass = "\App\Models\\" . $model;
+        $modelInstance = app($modelClass);
+
+        // Obtenha os campos preenchíveis
+        $fillables = $modelInstance->getFillable();
+
+        return response()->json($fillables);
+    }
+
+    public function searchModelRelations($model)
+    {
+        $modelClass = "\App\Models\\" . $model;
+        $reflectionClass = new \ReflectionClass($modelClass);
+        $methods = $reflectionClass->getMethods();
+
+        $relationshipMethods = [];
+        foreach ($methods as $method) {
+            if ($modelClass == "\\".str_replace("/", "\\",$method->class)) {
+                $relationshipMethods[] = $method->name;
+            }
+        }
+
+        return response()->json($relationshipMethods);
+    }
+
     public function create()
     {
-        return view("colunas.create");
+        $colunas = Coluna::all();
+        $modelFiles = scandir(app_path('Models'));
+        $modelsToUse = [];
+
+        foreach ($modelFiles as $file) {
+            if (strpos($file, '.php') !== false) {
+                $modelName = str_replace('.php', '', $file);
+                $modelsToUse[] = $modelName;
+            }
+        }
+        return view("colunas.create", [
+            "colunas" => $colunas,
+            "modelsToUse" => $modelsToUse,
+        ]);
     }
 
     public function edit($id){
         $coluna = $this->colunaRepository->find($id);
+        $colunas = Coluna::all();
+        $modelFiles = scandir(app_path('Models'));
+        $modelsToUse = [];
+
+        foreach ($modelFiles as $file) {
+            if (strpos($file, '.php') !== false) {
+                $modelName = str_replace('.php', '', $file);
+                $modelsToUse[] = $modelName;
+            }
+        }
 
         return view("colunas.edit", [
-            "coluna" => $coluna
+            "coluna" => $coluna,
+            "colunas" => $colunas,
+            "modelsToUse" => $modelsToUse,
         ]);
     }
 

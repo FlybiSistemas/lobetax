@@ -12,7 +12,7 @@
                 <td>{{ $ncm->codigo }}</td>
                 <td>{{ \App\Helpers\TributacaoNcmHelper::get($ncm->tipo) }}</td>
                 <td class="actions">
-                    <div onclick="Tela.abrirJanela('{{ route('ncms.edit', $ncm->id) }}', 'Visualizar', 'md')">
+                    <div onclick="Tela.abrirJanela('{{ route('ncms.edit', $ncm->id) }}', 'Visualizar', 'lg')">
                         <img class="acoes-img" src="{{ asset('img/new/icons/eye.ico') }}">
                     </div>
                     <div onclick="Tela.abrirJanelaExcluir('{{ route('ncms.destroy', [$ncm->id]) }}?_token={{ csrf_token() }}', '{{ $ncm->id }}')">
@@ -31,16 +31,16 @@
         
         ths.each(function(index) {
             let tdWidth = $(tds[index]).outerWidth();
-            if(tdWidth < 100)
-                tdWidth = 100;
+            if(tdWidth < 20)
+                tdWidth = 20;
             if ($(this).hasClass('ac'))
                 tdWidth = 65;
             $(this).css('width', tdWidth);
         });
         $('tbody>tr>td').each(function() {
             let tdWidth = $(this).outerWidth();
-            if(tdWidth < 100) {
-                $(this).css('width', '100px');
+            if(tdWidth < 20) {
+                $(this).css('width', '20px');
             }
         });
 

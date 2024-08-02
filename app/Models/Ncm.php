@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Ncm extends Model
 {
     public $table = 'ncms';
+    public $search = 'codigo';
+
 
     public $fillable = [
         'codigo',

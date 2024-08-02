@@ -46,6 +46,13 @@ class CnaeController extends AppBaseController
         ]);
     }
 
+    public function find(Request $request)
+    {
+        $cnaes = $this->cnaeRepository->findToSelect2js($request->input('q'));
+
+        return json_encode($cnaes);
+    }
+
     /**
      * Store a newly created Cnae in storage.
      */
