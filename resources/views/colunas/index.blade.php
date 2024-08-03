@@ -15,7 +15,7 @@
             <span></span>
 
             <div class="button blue">
-                <span onclick="Tela.abrirJanela('{{ route('colunas.create') }}', 'Nova Coluna', 'md')">COLUNA</span>
+                <span onclick="Tela.abrirJanela('{{ route('colunas.create') }}', 'Nova Coluna', 'lg')">COLUNA</span>
             </div>
         </div>
 

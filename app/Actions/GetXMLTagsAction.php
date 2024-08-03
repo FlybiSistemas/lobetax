@@ -2,6 +2,7 @@
 
 namespace App\Actions;
 
+use App\Helpers\FormatarValorHelper;
 use App\Helpers\TipoCampoHelper;
 use App\Models\Coluna;
 use App\Models\Lbtax;
@@ -26,15 +27,7 @@ class GetXMLTagsAction
             $table[$i]['n° Item'] = $impNotas[$i]->nItem;
             $xml = simplexml_load_string($impNotas[$i]->xml, 'SimpleXMLElement', LIBXML_NOBLANKS | LIBXML_NOCDATA);
             foreach($colunas as $coluna){
-                if(is_null($coluna->referencia)){
-                    $valorIA = $this->getValueIa($xml, $table[$i]);
-                    if($valorIA && $valorIA->bsl){
-                        $table[$i][$coluna->nome] = $valorIA->bsl;
-                        continue;
-                    }
-                    $table[$i][$coluna->nome] = '';
-                }
-                else{
+                if($coluna->tipo_coluna == 'r'){
                     $valor = $this->getValueByReferencia($coluna->referencia, $xml);
     
                     
@@ -45,7 +38,39 @@ class GetXMLTagsAction
                             if($valor) break;
                         }
                     }
+                    if($coluna->nome == 'NCM'){
+                        $valor = FormatarValorHelper::format($valor, '00.00-0000');
+                    }
                     $table[$i][$coluna->nome] = $valor;
+                    continue;
+                }
+                if($coluna->tipo_coluna == 'b'){
+                    $table[$i][$coluna->nome] = '';
+                    $search_value_1 = $table[$i][$coluna->coluna->nome];
+
+                    $modelClass = "\App\Models\\" . $coluna->model_name;
+                    $modelInstance = app($modelClass);
+
+                    $result_1 = $modelInstance::where('codigo', $search_value_1)->first();
+
+                    if(!$result_1){
+                        $table[$i][$coluna->nome] = '';
+                        continue;
+                    }
+
+                    continue;
+
+
+                    
+
+                }
+                else{
+                    $valorIA = $this->getValueIa($xml, $table[$i]);
+                    if($valorIA && $valorIA->bsl){
+                        $table[$i][$coluna->nome] = $valorIA->bsl;
+                        continue;
+                    }
+                    $table[$i][$coluna->nome] = '';
                 }
                 
             }

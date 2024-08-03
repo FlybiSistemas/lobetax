@@ -22,13 +22,13 @@
         referenciaCount--;
     }
 
-    $('#tipo_campo').on('change', function(){
+    $('#tipo_coluna').on('change', function(){
         $aux = this.value;
         $('.modo').fadeOut();
         $('.modo-' + $aux).fadeIn();
     })
 
-    $('#modelsToUse').on('change', function() {
+    $('#model_name').on('change', function() {
         modelSearch = this.value;
         var url = '{{ route("colunas.searchModelFillable", "") }}/' + modelSearch;
         $.ajax({
@@ -36,7 +36,7 @@
             type: 'GET',
             dataType: 'json',
             success: function(data, textStatus, jqXHR) {
-                const selectElement = document.getElementById('subSearch');
+                const selectElement = document.getElementById('buscar_name');
 
                 selectElement.innerHTML = '';
 
@@ -65,7 +65,7 @@
         });
     });
 
-    $('#subSearch').on('change', function() {
+    $('#buscar_name').on('change', function() {
         if(this.value == 'subrelacao'){
             debugger;
             $('#subrelacao-list').fadeIn();
@@ -75,7 +75,7 @@
                 type: 'GET',
                 dataType: 'json',
                 success: function(data, textStatus, jqXHR) {
-                    const selectElement = document.getElementById('relacoes');
+                    const selectElement = document.getElementById('subrelacao_name');
     
                     selectElement.innerHTML = '';
     
@@ -110,14 +110,15 @@
         <input type="text" name="nome" id="nome" class="form-control" value="{{ $coluna->nome ?? '' }}">
     </div>
     <div class="search-input input input-float" style="flex: 1;">
-        <label class="label-float" for="tipo_campo">Tipo de Campo</label>
-        <select name="tipo_campo" id="tipo_campo" class="form-control">
-            <option value="referencia">Referencia</option>
-            <option value="busca">Busca</option>
+        <label class="label-float" for="tipo_coluna">Tipo de Campo</label>
+        <select name="tipo_coluna" id="tipo_coluna" class="form-control">
+            @foreach(App\Helpers\TipoColunaHelper::$tipos as $key => $value)
+                <option value="{{ $key }}" @if(isset($coluna) && $coluna->tipo_coluna == $key) selected @endif>{{ $value }}</option>
+            @endforeach
         </select>
     </div>
 </div>
-<div class="modo modo-referencia">
+<div class="modo modo-r" @if(isset($coluna)) @if($coluna->tipo_coluna == 'r' || $coluna->tipo_coluna == '') style="display: block;" @else style="display: none;" @endif @else style="display: block;" @endif>
     <div class="field-row">
         <div class="search-input input input-float" style="flex: 1;">
             <label class="label-float" for="referencia_campo">Campo</label>
@@ -154,41 +155,57 @@
     </div>
 </div>
 
-<div class="modo modo-busca" style="display: none;">
+<div class="modo modo-b" @if(isset($coluna)) @if($coluna->tipo_coluna == 'b') style="display: block;" @else style="display: none;" @endif @else style="display: none;" @endif>
     <div class="field-row">
         <div class="search-input input input-float" style="flex: 1;">
-            <label class="label-float" for="col_xml">Coluna XML</label>
-            <select name="col_xml" id="col_xml" class="form-control">
+            <label class="label-float" for="coluna_id">Coluna XML</label>
+            <select name="coluna_id" class="form-control">
                 <option value="">-</option>
-                @foreach($colunas as $coluna)
-                    <option value="{{ $coluna->id }}" @if(isset($coluna) && $coluna->id == $coluna->id) selected @endif>{{ $coluna->nome }}</option>
+                @foreach($colunas as $col)
+                    <option value="{{ $col->id }}" @if(isset($coluna) && $coluna->coluna_id == $col->id) selected @endif>{{ $col->nome }}</option>
                 @endforeach
             </select>
         </div>
         
         <div class="search-input input input-float" style="flex: 1;">
-            <label class="label-float" for="modelsToUse">Models</label>
-            <select name="modelsToUse" id="modelsToUse" class="form-control">
+            <label class="label-float" for="model_name">Models</label>
+            <select name="model_name" id="model_name" class="form-control">
                 <option value="">-</option>
                 @foreach($modelsToUse as $model)
-                    <option value="{{ $model }}" @if(isset($model) && $model == $coluna->model) selected @endif>{{ $model }}</option>
+                    <option value="{{ $model }}" @if(isset($coluna) && $coluna->model_name == $model) selected @endif>{{ $model }}</option>
                 @endforeach
             </select>
         </div>
         
         <div class="search-input input input-float" style="flex: 1;">
-            <label class="label-float" for="subSearch">Buscar</label>
-            <select name="subSearch" id="subSearch" class="form-control">
+            <label class="label-float" for="buscar_name">Buscar</label>
+            <select name="buscar_name" id="buscar_name" class="form-control">
                 <option value="">-</option>
+                @if(isset($coluna) && $coluna->buscar_name != null)
+                    <option value="{{ $coluna->buscar_name }}" selected>{{ str_replace(' ', '_', ucfirst($coluna->buscar_name)) }}</option>
+                @endif
             </select>
         </div>
     </div>
 
-    <div id="subrelacao-list" class="field-row" style="display: none;">
+    <div id="subrelacao-list" class="field-row" @if(isset($coluna) && $coluna->buscar_name != null) '' @else style="display: none;" @endif>
         <div class="search-input input input-float" style="flex: 1;">
-            <label class="label-float" for="relacoes">Relações</label>
-            <select name="relacoes" id="relacoes" class="form-control">
+            <label class="label-float" for="coluna_id2">Coluna XML 2</label>
+            <select id="coluna_id2" name="coluna_id2" class="form-control">
                 <option value="">-</option>
+                @foreach($colunas as $col)
+                    <option value="{{ $col->id }}" @if(isset($coluna) && $coluna->coluna_id2 == $col->id) selected @endif>{{ $col->nome }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="search-input input input-float" style="flex: 1;">
+            <label class="label-float" for="subrelacao_name">Relações</label>
+            <select name="subrelacao_name" id="subrelacao_name" class="form-control" style="--w-input: 98%;">
+                <option value="">-</option>
+                @if(isset($coluna) && $coluna->subrelacao_name != null)
+                    <option value="{{ $coluna->subrelacao_name }}" selected>{{ str_replace(' ', '_', ucfirst($coluna->subrelacao_name)) }}</option>
+                @endif
             </select>
         </div>
     </div>
@@ -196,11 +213,11 @@
     <div class="field-row">
         <div class="search-input input input-float" style="flex: 1;">
             <label class="label-float" for="verdadeiro">Verdadeiro</label>
-            <input type="text" name="verdadeiro" id="verdadeiro" class="form-control" value="">
+            <input type="text" name="verdadeiro" id="verdadeiro" class="form-control" value="{{ $coluna->verdadeiro ?? '' }}">
         </div>
         <div class="search-input input input-float" style="flex: 1;">
             <label class="label-float" for="falso">Falso</label>
-            <input type="text" name="falso" id="falso" class="form-control" value="">
+            <input type="text" name="falso" id="falso" class="form-control" value="{{ $coluna->falso ?? '' }}">
         </div>
     </div>
 </div>

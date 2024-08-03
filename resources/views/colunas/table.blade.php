@@ -14,7 +14,7 @@
                 <td>{{ $coluna->nome }}</td>
                 <td>{{ $coluna->referencia }}</td>
                 <td class="actions">
-                    <div onclick="Tela.abrirJanela('{{ route('colunas.edit', $coluna->id) }}', 'Visualizar', 'md')">
+                    <div onclick="Tela.abrirJanela('{{ route('colunas.edit', $coluna->id) }}', 'Visualizar', 'lg')">
                         <img class="acoes-img" src="{{ asset('img/new/icons/eye.ico') }}">
                     </div>
                     <div onclick="Tela.abrirJanelaExcluir('{{ route('colunas.destroy', [$coluna->id]) }}?_token={{ csrf_token() }}', '{{ $coluna->id }}')">
