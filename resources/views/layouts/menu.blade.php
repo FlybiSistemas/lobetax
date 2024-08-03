@@ -6,7 +6,6 @@
     NF-s
 </x-nav-link>
 
-
 <x-nav-multi-link route="tabela" icon="nf" text="Rotinas">
     <x-nav-link route="tabelas.index" icon="nf" class="sub-item">
         Tabelas
@@ -50,3 +49,7 @@
         CNAEs
     </x-nav-link>
 </x-nav-multi-link>
+
+<x-nav-link route="alertas.index" icon="nf">
+    Alertas
+</x-nav-link>

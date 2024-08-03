@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlertaController;
 use App\Http\Controllers\CnaeController;
 use App\Http\Controllers\ColunaController;
 use App\Http\Controllers\ImpNotaController;
@@ -87,6 +88,9 @@ Route::group(['prefix' => 'parti'], function () {
     Route::post('/search', [LbtaxfullController::class, 'search'])->name('parti.search');
 });
 
+Route::post('/search', [AlertaController::class, 'search'])->name('alertas.search');
+Route::resource('alertas', AlertaController::class);
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -97,3 +101,4 @@ Route::get('/cnaes/find', [CnaeController::class, 'find'])->name('cnaes.find');
 
 
 require __DIR__.'/auth.php';
+
