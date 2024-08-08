@@ -25,4 +25,9 @@ class FormatarValorHelper
         
         return $resultado;
     }
+
+    public static function onlyNumbers($value)
+    {
+        return preg_replace("/\D/", '', $value);
+    }
 }

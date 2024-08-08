@@ -23,6 +23,7 @@ class Coluna extends Model
         'coluna_id2',
         'model_name',
         'buscar_name',
+        'subrelacao_extra',
         'subrelacao_name',
         'verdadeiro',
         'falso',

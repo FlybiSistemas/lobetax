@@ -13,7 +13,7 @@
     {{ $slot }}
 
     <div id="footerModal" class="d-flex justify-content-end mt-4">
-        <div>
+        <div style="display: flex;gap:0">
             <button type="submit" class="button blue">
                 <span>{{ $submit }}</span>
             </button>

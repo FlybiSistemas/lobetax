@@ -3,6 +3,7 @@
 namespace App\Actions;
 
 use App\Models\Cnae;
+use App\Helpers\FormatarValorHelper;
 
 class CreateCnaeFromJsonAction
 {
@@ -15,10 +16,10 @@ class CreateCnaeFromJsonAction
         $cnaes = [];
         $cnaesPrincipal = [];
         foreach ($data as $obj) {
-            $cnae = Cnae::where('codigo', $obj->codigo)->first();
+            $cnae = Cnae::where('codigo', FormatarValorHelper::onlyNumbers($obj->codigo))->first();
             if (! $cnae) {
                 $dadosCnae = [
-                    'codigo' => $obj->codigo,
+                    'codigo' => FormatarValorHelper::onlyNumbers($obj->codigo),
                     'descricao' => $obj->descricao,
                 ];
                 if (strpos($obj->descricao, 'omerci') !== false || strpos($obj->descricao, 'omérci') !== false) {

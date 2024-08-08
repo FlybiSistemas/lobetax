@@ -9,6 +9,7 @@ use App\Models\Lbtax;
 use App\Models\Lbtaxfull;
 use App\Models\Lbtaxlei;
 use App\Models\Lbtaxuf;
+use App\Models\Alerta;
 use SimpleXMLElement;
 
 class GetXMLTagsAction
@@ -51,18 +52,52 @@ class GetXMLTagsAction
                     $modelClass = "\App\Models\\" . $coluna->model_name;
                     $modelInstance = app($modelClass);
 
-                    $result_1 = $modelInstance::where('codigo', $search_value_1)->first();
+                    $result_1 = $modelInstance::where('codigo', FormatarValorHelper::onlyNumbers($search_value_1))->first();
 
                     if(!$result_1){
                         $table[$i][$coluna->nome] = '';
+                        Alerta::firstOrCreate(
+                            [
+                                'model_name'    => $coluna->model_name,
+                                'valor'         => $search_value_1,
+                            ],
+                            [
+                                'descricao'     => 'Valor inexistente no banco',
+                                'rota'          => route('ncms.createByAlerta', FormatarValorHelper::onlyNumbers($search_value_1))
+                            ]
+                        );
                         continue;
                     }
 
-                    continue;
+                    if($coluna->buscar_name == 'subrelacao'){
+                        $search_value_2 = $table[$i][$coluna->coluna2->nome];
+                        $result_2 = $result_1->{$coluna->subrelacao_name}->where('codigo', FormatarValorHelper::onlyNumbers($search_value_2))->first();
+                        if(!$result_2){
+                            $table[$i][$coluna->nome] = $coluna->falso;
+                            continue;
+                        }
+                        $table[$i][$coluna->nome] = $coluna->verdadeiro;
+                        continue;
+                    }
 
+                    if($coluna->buscar_name == 'subrelacao_2'){
+                        if($coluna->subrelacao_extra == 'cnaes_empresa'){
+                            $cnaes = $impNotas->first()->dest->cnaes->pluck('codigo');
+                            $result_2 = $result_1->{$coluna->subrelacao_name}->whereIn('codigo', $cnaes)->first();
+                            if(!$result_2){
+                                $table[$i][$coluna->nome] = $coluna->falso;
+                                continue;
+                            }
+                            $table[$i][$coluna->nome] = $coluna->verdadeiro;
+                            continue;
+                        }
+                    }
 
+                    else{
+                        $result_1->{$coluna->buscar_name};
+                    }
                     
-
+                    continue;
                 }
                 else{
                     $valorIA = $this->getValueIa($xml, $table[$i]);

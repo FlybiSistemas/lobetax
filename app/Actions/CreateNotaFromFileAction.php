@@ -16,7 +16,7 @@ class CreateNotaFromFileAction
      * @param string $chave
      * @return void
      */
-    public function __invoke(string $xmlString, string $chave): void
+    public function __invoke(string $xmlString, string $chave, $emit, $dest): void
     {
         $dom = new DOMDocument();
         $dom->preserveWhiteSpace = false;
@@ -27,8 +27,8 @@ class CreateNotaFromFileAction
 
         foreach ($tagItens as $index => $item) {
             $notaExistente = ImpNota::where('arquivo', $chave)
-                            ->where('nItem', $item->getAttribute('nItem'))
-                            ->first();
+                ->where('nItem', $item->getAttribute('nItem'))
+                ->first();
 
             if(!$notaExistente){
                 $nota = new ImpNota();
@@ -47,6 +47,9 @@ class CreateNotaFromFileAction
                 $nota->nItem = $item->getAttribute('nItem');
     
                 $nota->xml = $xmlStringModified;
+
+                $nota->emit_id = $emit->id;
+                $nota->dest_id = $dest->id;
                 $nota->save();
             }
 

@@ -5,11 +5,12 @@ namespace App\Helpers;
 class CategoriaHelper
 {
     public static $values = [
+        '' => 'NÃO DEFINIDO',
         'C' => 'COMERCIO',
         'I' => 'INDUSTRIA',
         'M' => 'IMOVEIS',
         'S' => 'SERVIÇOS',
-        'T' => 'TRANSPORTE'
+        'T' => 'TRANSPORTE',
     ];
 
     public static function get($valor)

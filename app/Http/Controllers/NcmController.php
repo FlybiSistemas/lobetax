@@ -37,6 +37,15 @@ class NcmController extends AppBaseController
         return view('ncms.create', compact('cnaes'));
     }
 
+    /**
+     * Show the form for creating a new Ncm.
+     */
+    public function createByAlerta($codigo)
+    {
+        $cnaes = Cnae::all();
+        return view('ncms.create', compact('cnaes', 'codigo'));
+    }
+
     public function search(Request $request)
     {
         $searchData = $request->all();

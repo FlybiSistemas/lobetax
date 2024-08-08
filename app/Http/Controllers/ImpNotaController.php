@@ -40,7 +40,7 @@ class ImpNotaController
         $impNotas = $this->impNotaRepository->all($searchData);
         $table = [];
         
-        if($searchData['tabela'])
+        if(isset($searchData['tabela']) && $searchData['tabela'])
             $table = (new GetXMLTagsAction())($impNotas, Tabela::find($searchData['tabela'])->colunas);
         else
             $table = (new GetXMLTagsAction())($impNotas);

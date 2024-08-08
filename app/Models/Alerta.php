@@ -13,7 +13,8 @@ class Alerta extends Model
         'model_id',
         'descricao',
         'valor',
-        'rota'
+        'rota',
+        'status'
     ];
 
     protected $casts = [
@@ -21,7 +22,8 @@ class Alerta extends Model
         'model_id' => 'integer',
         'descricao' => 'string',
         'valor' => 'string',
-        'rota' => 'string'
+        'rota' => 'string',
+        'status' => 'integer'
     ];
 
     public static array $rules = [

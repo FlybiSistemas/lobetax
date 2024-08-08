@@ -39,13 +39,14 @@ class ImportarNotaAction
         //     return;
         // }
         Log::info(">> Importando Nota: {$chNFE}");
-        $impNota = (new CreateNotaFromFileAction())($xmlString, $chNFE);
-
         $emit =(string)$obj->NFe->infNFe->emit->CNPJ;
         $dest =(string)$obj->NFe->infNFe->dest->CNPJ;
 
-        $this->createParticipante($emit);
-        $this->createParticipante($dest);
+        $emit = $this->createParticipante($emit);
+        $dest = $this->createParticipante($dest);
+
+        $impNota = (new CreateNotaFromFileAction())($xmlString, $chNFE, $emit, $dest);
+
         // verifica se possui a tag de protocolo e se foi de cancelamento
         if (isset($obj->protNFe)) {
             if (isset($obj->protNFe->infProt)) {
@@ -79,7 +80,7 @@ class ImportarNotaAction
         if(strlen($cnpj > 11)){
             $participante = Participantes::where('cnpj', $cnpj)->first();
             if($participante){
-                return;
+                return $participante;
             }
             $urlApi = 'https://flytax.com.br/api/empresas';
             try {
@@ -110,6 +111,7 @@ class ImportarNotaAction
     
             $participante = Participantes::create($participante);
             $participante->cnaes()->sync($cnaesCadastrados[0]);
+            return $participante;
         }
     }
 

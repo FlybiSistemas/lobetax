@@ -1,6 +1,7 @@
 <table class="table-list">
     <thead>
         <tr class="titulos" style="display: contents;">
+            <th>Tabela</th>
             <th>Valor</th>
             <th>Descricao</th>
             <th width="100">Ações</th>
@@ -9,14 +10,12 @@
     <tbody style="display: block;">
         @foreach($alertas as $alerta)
             <tr id="row_{{ $alerta->id }}">
+                <td>{{ $alerta->model_name }}</td>
                 <td>{{ $alerta->valor }}</td>
                 <td>{{ $alerta->descricao }}</td>
                 <td class="actions">
-                    <div onclick="Tela.abrirJanela('{{ route('alertas.edit', $alerta->id) }}', 'Visualizar', 'md')">
+                    <div onclick="Tela.abrirJanela('{{ $alerta->rota }}', 'Resolver', 'lg')">
                         <img class="acoes-img" src="{{ asset('img/new/icons/eye.ico') }}">
-                    </div>
-                    <div onclick="Tela.abrirJanelaExcluir('{{ route('alertas.destroy', [$alerta->id]) }}?_token={{ csrf_token() }}', '{{ $alerta->id }}')">
-                        <img class="acoes-img" src="{{ asset('img/new/icons/trash.ico') }}">
                     </div>
                     <div class="border-b"></div>
                 </td>

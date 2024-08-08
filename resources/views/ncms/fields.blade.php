@@ -47,7 +47,7 @@
 <div class="field-row">
     <div class="search-input input input-float" style="flex: 2;">
         <label class="label-float" for="codigo">Codigo:</label>
-        <input type="text" name="codigo" id="codigo" class="form-control" value="{{ $ncm->codigo ?? '' }}">
+        <input type="text" name="codigo" id="codigo" class="form-control" value="@if(isset($ncm)){{ $ncm->codigo }} @elseif(isset($codigo)) {{ $codigo }} @endif">
     </div>
     <div class="search-input input input-float" style="flex: 1;">
         <label class="label-float" for="tipo">Tipo:</label>

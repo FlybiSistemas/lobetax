@@ -50,6 +50,11 @@
                 subrelacaoOption.textContent = 'Subrelação';
                 selectElement.appendChild(subrelacaoOption);
 
+                const subrelacaoOption2 = document.createElement('option');
+                subrelacaoOption2.value = 'subrelacao_2';
+                subrelacaoOption2.textContent = 'Subrelação 2';
+                selectElement.appendChild(subrelacaoOption2);
+
                 data.forEach((value) => {
                     const option = document.createElement('option');
                     option.value = value;
@@ -66,8 +71,15 @@
     });
 
     $('#buscar_name').on('change', function() {
-        if(this.value == 'subrelacao'){
-            debugger;
+        if(this.value == 'subrelacao' || this.value == 'subrelacao_2'){
+            if(this.value == 'subrelacao'){
+                $('#subrelacao_1').css('display', 'block')
+                $('#subrelacao_2').css('display', 'none')
+            }
+            else{
+                $('#subrelacao_1').css('display', 'none')
+                $('#subrelacao_2').css('display', 'block');
+            }
             $('#subrelacao-list').fadeIn();
             var url = '{{ route("colunas.searchModelRelations", "") }}/' + modelSearch;
             $.ajax({
@@ -189,13 +201,21 @@
     </div>
 
     <div id="subrelacao-list" class="field-row" @if(isset($coluna) && $coluna->buscar_name != null) '' @else style="display: none;" @endif>
-        <div class="search-input input input-float" style="flex: 1;">
+        <div class="search-input input input-float" style="flex: 1;@if(isset($coluna) && $coluna->buscar_name == 'subrelacao') display: block; @else display: none; @endif>{{ $col->nome }}" id="subrelacao_1">
             <label class="label-float" for="coluna_id2">Coluna XML 2</label>
             <select id="coluna_id2" name="coluna_id2" class="form-control">
                 <option value="">-</option>
                 @foreach($colunas as $col)
                     <option value="{{ $col->id }}" @if(isset($coluna) && $coluna->coluna_id2 == $col->id) selected @endif>{{ $col->nome }}</option>
                 @endforeach
+            </select>
+        </div>
+
+        <div class="search-input input input-float" style="flex: 1;@if(isset($coluna) && $coluna->buscar_name == 'subrelacao_2') display: block; @else display: none; @endif" id="subrelacao_2">
+            <label class="label-float" for="subrelacao_extra">Dados Empresa</label>
+            <select name="subrelacao_extra" class="form-control">
+                <option value="">-</option>
+                <option value="cnaes_empresa" @if(isset($coluna) && $coluna->subrelacao_extra == 'cnaes_empresa') selected @endif>CNAE (EMPRESA)</option>
             </select>
         </div>
 

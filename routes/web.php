@@ -76,6 +76,7 @@ Route::group(['prefix' => 'parametros'], function () {
 
 Route::group(['prefix' => 'cadastros'], function () {
     Route::post('/participantes/search', [ParticipantesController::class, 'search'])->name('participantes.search');
+    Route::get('/ncms/createByAlerta/{codigo}', [NcmController::class, 'createByAlerta'])->name('ncms.createByAlerta');
     Route::post('/ncms/search', [NcmController::class, 'search'])->name('ncms.search');
     Route::post('/cnaes/search', [CnaeController::class, 'search'])->name('cnaes.search');
 });

@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('alertas', function (Blueprint $table) {
             $table->id('id');
-            $table->string('model_name', 20);
-            $table->integer('model_id');
-            $table->string('descricao', 150);
-            $table->string('valor', 24);
-            $table->string('rota', 150);
+            $table->string('model_name', 20)->nullable();
+            $table->integer('model_id')->nullable();
+            $table->string('descricao', 150)->nullable();
+            $table->string('valor', 24)->nullable();
+            $table->string('rota', 150)->nullable();
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

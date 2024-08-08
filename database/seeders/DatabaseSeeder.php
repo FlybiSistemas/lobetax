@@ -19,12 +19,12 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         $this->call([
-            ColunaSeeder::class,
-            LbtaxSeeder::class,
-            LbtaxfullSeeder::class,
-            LbtaxufSeeder::class,
-            LbtaxleiSeeder::class,
-            CompleteLbtaxRegrasSeeder::class,
+            // ColunaSeeder::class,
+            // LbtaxSeeder::class,
+            // LbtaxfullSeeder::class,
+            // LbtaxufSeeder::class,
+            // LbtaxleiSeeder::class,
+            // CompleteLbtaxRegrasSeeder::class,
         ]);
     }
 }
