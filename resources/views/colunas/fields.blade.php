@@ -215,7 +215,8 @@
             <label class="label-float" for="subrelacao_extra">Dados Empresa</label>
             <select name="subrelacao_extra" class="form-control">
                 <option value="">-</option>
-                <option value="cnaes_empresa" @if(isset($coluna) && $coluna->subrelacao_extra == 'cnaes_empresa') selected @endif>CNAE (EMPRESA)</option>
+                <option value="cnaes_destinatario" @if(isset($coluna) && $coluna->subrelacao_extra == 'cnaes_destinatario') selected @endif>CNAE (Destinatário)</option>
+                <option value="cnaes_emitente" @if(isset($coluna) && $coluna->subrelacao_extra == 'cnaes_emitente') selected @endif>CNAE (Emitente)</option>
             </select>
         </div>
 

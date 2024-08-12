@@ -83,7 +83,6 @@
             @foreach($ncm->cnaes as $i => $cnae)
                 <tr id="row_{{ $i }}">
                     <td>{{ $cnae->codigo }}</td>
-                    {{-- <td>{{ $cnae->descricao }}</td> --}}
                     <td>{{ substr($cnae->descricao, 0, 75) }} {{ strlen($cnae->descricao) > 75 ? '...' : '' }}</td>
                     <td style="text-align: center;">
                         <div onclick="removeCnae({{ $i }})" style="width: 20px;">

@@ -6,6 +6,7 @@ use App\Helpers\FormatterHelper;
 use App\Http\Requests\CreateParticipantesRequest;
 use App\Http\Requests\UpdateParticipantesRequest;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Categoria;
 use App\Repositories\ParticipantesRepository;
 use Illuminate\Http\Request;
 use Flash;
@@ -88,12 +89,13 @@ class ParticipantesController extends AppBaseController
     {
         /** @var Participantes $participantes */
         $participante = $this->participantesRepository->find($id);
+        $categorias = Categoria::all();
 
         if(!$participante){
             return response()->json('Registro não encontrado', 500);
         }
 
-        return view('participantes.edit')->with('participante', $participante);
+        return view('participantes.edit', compact('participante', 'categorias'));
     }
 
     /**
@@ -103,12 +105,20 @@ class ParticipantesController extends AppBaseController
     {
         /** @var Participantes $participantes */
         $participantes = $this->participantesRepository->find($id);
+        $input = $request->all();
+        $input['cnpj'] = FormatterHelper::onlyNumbers($input['cnpj']);
 
         if(!$participantes){
             return response()->json('Registro não encontrado', 500);
         }
 
-        $this->participantesRepository->update($participantes, $request->all());
+        $this->participantesRepository->update($participantes, $input);
+        if(isset($input['categoria'])){
+            $participantes->categorias()->sync($input['categoria']);
+        }
+        else{
+            $participantes->categorias()->detach();
+        }
         return response()->json('Registro atualizado com sucesso', 200);
     }
 

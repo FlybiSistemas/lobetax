@@ -17,7 +17,7 @@
                     <td>{{ $participante->natureza }}</td>
                     <td>{{ \App\Helpers\CategoriaHelper::get($participante->categoria) }}</td>
                     <td class="actions">
-                        <div onclick="Tela.abrirJanela('{{ route('participantes.edit', $participante->id) }}', 'Visualizar', 'md')">
+                        <div onclick="Tela.abrirJanela('{{ route('participantes.edit', $participante->id) }}', 'Visualizar', 'lg')">
                             <img class="acoes-img" src="{{ asset('img/new/icons/eye.ico') }}">
                         </div>
                         <div onclick="Tela.abrirJanelaExcluir('{{ route('participantes.destroy', [$participante->id]) }}?_token={{ csrf_token() }}', '{{ $participante->id }}')">

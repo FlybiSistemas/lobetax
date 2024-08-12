@@ -81,8 +81,18 @@ class GetXMLTagsAction
                     }
 
                     if($coluna->buscar_name == 'subrelacao_2'){
-                        if($coluna->subrelacao_extra == 'cnaes_empresa'){
+                        if($coluna->subrelacao_extra == 'cnaes_destinatario'){
                             $cnaes = $impNotas->first()->dest->cnaes->pluck('codigo');
+                            $result_2 = $result_1->{$coluna->subrelacao_name}->whereIn('codigo', $cnaes)->first();
+                            if(!$result_2){
+                                $table[$i][$coluna->nome] = $coluna->falso;
+                                continue;
+                            }
+                            $table[$i][$coluna->nome] = $coluna->verdadeiro;
+                            continue;
+                        }
+                        if($coluna->subrelacao_extra == 'cnaes_emitente'){
+                            $cnaes = $impNotas->first()->emit->cnaes->pluck('codigo');
                             $result_2 = $result_1->{$coluna->subrelacao_name}->whereIn('codigo', $cnaes)->first();
                             if(!$result_2){
                                 $table[$i][$coluna->nome] = $coluna->falso;

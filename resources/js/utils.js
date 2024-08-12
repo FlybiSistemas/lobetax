@@ -22,7 +22,7 @@ const Utils = {
         let sidebarWidth = $('.sidebar').width();
         let contentWidth = telaWidth - sidebarWidth;
         $('.container').css('width', contentWidth-20);
-        // $(alvo+' tbody').css('display', 'contents');
+        $(alvo+' tbody').css('display', 'contents');
     },
 }
 

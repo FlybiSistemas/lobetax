@@ -13,14 +13,12 @@ class Participantes extends Model
         'cnpj',
         'razao_social',
         'natureza',
-        'categoria'
     ];
 
     protected $casts = [
         'cnpj' => 'string',
         'razao_social' => 'string',
         'natureza' => 'string',
-        'categoria' => 'string'
     ];
 
     public static array $rules = [
@@ -32,5 +30,9 @@ class Participantes extends Model
         return $this->belongsToMany(Cnae::class);
     }
 
+    public function categorias():BelongsToMany
+    {
+        return $this->belongsToMany(Categoria::class);
+    }
     
 }
