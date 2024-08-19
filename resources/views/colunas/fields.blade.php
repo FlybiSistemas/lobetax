@@ -89,7 +89,7 @@
         }
         if(this.value != 'subrelacao_2' && this.value != 'subrelacao'){
             $('#subrelacao-list').fadeOut();
-            getFillableValues(modelSearch, gerarComparacao)
+            getValuesOfModels(modelSearch, this.value, gerarComparacao)
         }
     });
 
@@ -169,13 +169,15 @@
         selectElement.appendChild(valueEmpty);
 
         data.forEach((item) => {
-            const option = document.createElement('option');
-            valor = item.key ? item.key : item;
-            option.value = valor
-            textOption = valor[0].toUpperCase() + valor.substr(1);
-            textOption = textOption.replace(/_/g, ' ');
-            option.textContent = textOption;
-            selectElement.appendChild(option);
+            if(item.key && item.key != null){
+                const option = document.createElement('option');
+                valor = item.key ? item.key : item;
+                option.value = valor
+                textOption = valor[0].toUpperCase() + valor.substr(1);
+                textOption = textOption.replace(/_/g, ' ');
+                option.textContent = textOption;
+                selectElement.appendChild(option);
+            }
         });
     }
 </script>
