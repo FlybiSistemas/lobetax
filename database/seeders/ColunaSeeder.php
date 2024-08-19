@@ -20,6 +20,7 @@ class ColunaSeeder extends Seeder
               "formatacao" => null,
               "coluna_id" => null,
               "referencia_campo" => null,
+              "tipo_coluna" => "r",
               "ordem" => 1,
             ],
             [
@@ -28,6 +29,7 @@ class ColunaSeeder extends Seeder
               "formatacao" => null,
               "coluna_id" => null,
               "referencia_campo" => null,
+              "tipo_coluna" => "r",
               "ordem" => 2,
             ],
             [
@@ -36,6 +38,7 @@ class ColunaSeeder extends Seeder
               "formatacao" => null,
               "coluna_id" => null,
               "referencia_campo" => null,
+              "tipo_coluna" => "r",
               "ordem" => 3,
             ],
             [
@@ -44,6 +47,7 @@ class ColunaSeeder extends Seeder
               "formatacao" => null,
               "coluna_id" => null,
               "referencia_campo" => null,
+              "tipo_coluna" => "r",
               "ordem" => 4,
             ],
             [
@@ -52,6 +56,7 @@ class ColunaSeeder extends Seeder
               "formatacao" => null,
               "coluna_id" => null,
               "referencia_campo" => null,
+              "tipo_coluna" => "r",
               "ordem" => 5,
             ],
             [
@@ -60,6 +65,7 @@ class ColunaSeeder extends Seeder
               "formatacao" => null,
               "coluna_id" => null,
               "referencia_campo" => null,
+              "tipo_coluna" => "r",
               "ordem" => 6,
             ],
             [
@@ -68,6 +74,7 @@ class ColunaSeeder extends Seeder
               "formatacao" => null,
               "coluna_id" => null,
               "referencia_campo" => null,
+              "tipo_coluna" => "r",
               "ordem" => 7,
             ],
             [
@@ -76,6 +83,7 @@ class ColunaSeeder extends Seeder
               "formatacao" => null,
               "coluna_id" => null,
               "referencia_campo" => null,
+              "tipo_coluna" => "r",
               "ordem" => 8,
             ],
             [
@@ -84,6 +92,7 @@ class ColunaSeeder extends Seeder
               "formatacao" => "0000.00.00",
               "coluna_id" => null,
               "referencia_campo" => "ncm",
+              "tipo_coluna" => "r",
               "ordem" => 9,
             ],
             [
@@ -92,6 +101,7 @@ class ColunaSeeder extends Seeder
               "formatacao" => null,
               "coluna_id" => null,
               "referencia_campo" => null,
+              "tipo_coluna" => "",
               "ordem" => 10,
             ],
         ];
