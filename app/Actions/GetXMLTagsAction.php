@@ -22,7 +22,7 @@ class GetXMLTagsAction
     {
         $table = [];
         if(is_null($colunas))
-            $colunas = Coluna::all();
+            $colunas = Coluna::orderBy('ordem')->get();
 
         for($i = 0; $i < $impNotas->count(); $i++){
             $table[$i]['n° Item'] = $impNotas[$i]->nItem;
@@ -39,20 +39,23 @@ class GetXMLTagsAction
                             if($valor) break;
                         }
                     }
-                    if($coluna->nome == 'NCM'){
-                        $valor = FormatarValorHelper::format($valor, '00.00-0000');
+                    if($coluna->formatacao != null){
+                        $valor = FormatarValorHelper::format($valor, $coluna->formatacao);
                     }
                     $table[$i][$coluna->nome] = $valor;
                     continue;
                 }
                 if($coluna->tipo_coluna == 'b'){
                     $table[$i][$coluna->nome] = '';
-                    $search_value_1 = $table[$i][$coluna->coluna->nome];
+                    if($coluna->coluna_id){
+                        $search_value_1 = $table[$i][$coluna->coluna->nome];
+    
+                        $modelClass = "\App\Models\\" . $coluna->model_name;
+                        $modelInstance = app($modelClass);
+    
+                        $result_1 = $modelInstance::where($coluna->comparacao, FormatarValorHelper::onlyNumbers($search_value_1))->first();
+                    }
 
-                    $modelClass = "\App\Models\\" . $coluna->model_name;
-                    $modelInstance = app($modelClass);
-
-                    $result_1 = $modelInstance::where('codigo', FormatarValorHelper::onlyNumbers($search_value_1))->first();
 
                     if(!$result_1){
                         $table[$i][$coluna->nome] = '';
@@ -66,7 +69,6 @@ class GetXMLTagsAction
                                 'rota'          => route('ncms.createByAlerta', FormatarValorHelper::onlyNumbers($search_value_1))
                             ]
                         );
-                        continue;
                     }
 
                     if($coluna->buscar_name == 'subrelacao'){
@@ -80,9 +82,9 @@ class GetXMLTagsAction
                         continue;
                     }
 
-                    if($coluna->buscar_name == 'subrelacao_2'){
+                    if($coluna->buscar_name == 'subrelacao_2' && $result_1){
                         if($coluna->subrelacao_extra == 'cnaes_destinatario'){
-                            $cnaes = $impNotas->first()->dest->cnaes->pluck('codigo');
+                            $cnaes = $impNotas[$i]->dest->cnaes->pluck('codigo');
                             $result_2 = $result_1->{$coluna->subrelacao_name}->whereIn('codigo', $cnaes)->first();
                             if(!$result_2){
                                 $table[$i][$coluna->nome] = $coluna->falso;
@@ -92,7 +94,7 @@ class GetXMLTagsAction
                             continue;
                         }
                         if($coluna->subrelacao_extra == 'cnaes_emitente'){
-                            $cnaes = $impNotas->first()->emit->cnaes->pluck('codigo');
+                            $cnaes = $impNotas[$i]->emit->cnaes->pluck('codigo');
                             $result_2 = $result_1->{$coluna->subrelacao_name}->whereIn('codigo', $cnaes)->first();
                             if(!$result_2){
                                 $table[$i][$coluna->nome] = $coluna->falso;
@@ -103,8 +105,36 @@ class GetXMLTagsAction
                         }
                     }
 
-                    else{
-                        $result_1->{$coluna->buscar_name};
+                    if($coluna->buscar_name != 'subrelacao_2' && $coluna->buscar_name != 'subrelacao'){
+                        if($coluna->coluna_id){
+                            $result_1->{$coluna->buscar_name};
+                        }
+                        else{
+                            if($coluna->parametro_extra == 'cnaes_destinatario'){
+                                $cnaes = $impNotas[$i]->dest->cnaes;
+                                $verdadeiro = false;
+                                foreach($cnaes as $cnae){
+                                    if($cnae->{$coluna->buscar_name} == $coluna->comparacao){
+                                        $verdadeiro = true;
+                                    }
+                                }
+                                
+                                $table[$i][$coluna->nome] = $verdadeiro ? $coluna->verdadeiro : $coluna->falso;
+                                $verdadeiro = false;
+                                continue;
+                            }
+                            if($coluna->parametro_extra == 'cnaes_emitente'){
+                                $cnaes = $impNotas[$i]->emit->cnaes;
+                                foreach($cnaes as $cnae){
+                                    if($cnae->{$coluna->buscar_name} == $coluna->comparacao){
+                                        $table[$i][$coluna->nome] = $coluna->verdadeiro;
+                                        continue;
+                                    }
+                                }
+                                $table[$i][$coluna->nome] = $coluna->falso;
+                                continue;
+                            }
+                        }
                     }
                     
                     continue;
@@ -176,11 +206,13 @@ class GetXMLTagsAction
         }
         else{
             $removeCont = 0;
+            $valorDeBusca = FormatarValorHelper::onlyNumbers($valorDeBusca);
             while (strlen($valorDeBusca) >= 4) {
                 // remover $removeCont caracteres do final do valorDeBusca
                 if($removeCont != 0)
                     $valorDeBusca = substr($valorDeBusca, 0, - $removeCont);
-                $removeCont++;
+                else
+                    $removeCont++;
                 $retorno = Lbtaxfull::where('chave_lei', $legislacao)
                   ->where('chave_campo', $valorDeBusca)
                   ->first();

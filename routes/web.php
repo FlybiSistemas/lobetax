@@ -44,6 +44,7 @@ Route::resource('impNotas', ImpNotaController::class);
 Route::group(['prefix' => 'rotinas'], function () {
     Route::post('/colunas/search', [ColunaController::class, 'search'])->name('colunas.search');
     Route::get('/colunas/searchModelFillable/{model}', [ColunaController::class, 'searchModelFillable'])->name('colunas.searchModelFillable');
+    Route::get('/colunas/searchValuesOfModels/{model}/{column?}', [ColunaController::class, 'searchValuesOfModels'])->name('colunas.searchValuesOfModels');
     Route::get('/colunas/searchModelRelations/{model}', [ColunaController::class, 'searchModelRelations'])->name('colunas.searchModelRelations');
     Route::resource('colunas', ColunaController::class);
     Route::post('/tabelas/search', [TabelaController::class, 'search'])->name('tabelas.search');

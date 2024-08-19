@@ -16,6 +16,13 @@
 
 <div class="field-row">
     <div class="search-input input input-float" style="flex: 1;">
+        <label class="label-float" for="contribuinte">Contribuinte:</label>
+        <input type="text" name="contribuinte" id="contribuinte" class="form-control" value="{{ $cnae->contribuinte ?? '' }}">
+    </div>
+</div>
+
+<div class="field-row">
+    <div class="search-input input input-float" style="flex: 1;">
             <label class="label-float" for="categoria">Categoria:</label>
             <select name="categoria" id="categoria" class="form-control">
             @foreach(\App\Helpers\CategoriaHelper::$values as $key => $value)

@@ -43,6 +43,17 @@ class ColunaController extends Controller
         return response()->json($fillables);
     }
 
+    public function searchValuesOfModels($model, $column)
+    {
+        $modelClass = "\App\Models\\" . $model;
+        $modelInstance = app($modelClass);
+
+        // pegar todos os valores de coluna sem duplicidade
+        return $modelInstance->select($column)->distinct()->get()->map(fn($obj) => [
+            'key' => $obj->{$column}, 'value' => $obj->{$column}
+        ]);
+    }
+
     public function searchModelRelations($model)
     {
         $modelClass = "\App\Models\\" . $model;
@@ -62,6 +73,7 @@ class ColunaController extends Controller
     public function create()
     {
         $colunas = Coluna::all();
+        $ordem = $colunas->count()+1;
         $modelFiles = scandir(app_path('Models'));
         $modelsToUse = [];
 
@@ -74,6 +86,7 @@ class ColunaController extends Controller
         return view("colunas.create", [
             "colunas" => $colunas,
             "modelsToUse" => $modelsToUse,
+            "ordem" => $ordem
         ]);
     }
 
@@ -106,7 +119,7 @@ class ColunaController extends Controller
             return response()->json("Erro ao salvar registro.", 500);
         }
 
-        if($input['referenciax'] && count($input['referenciax']) > 0){
+        if(isset($input['referenciax']) && count($input['referenciax']) > 0){
             $referencias_ids = [];
             foreach($input['referenciax'] as $item)
             {

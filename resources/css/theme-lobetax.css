@@ -528,3 +528,7 @@ tbody .actions {
   overflow-y: scroll;
   max-height: 350px;
 }
+
+#divList {
+  margin-top: 15px;
+}

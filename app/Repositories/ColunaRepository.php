@@ -19,6 +19,8 @@ class ColunaRepository extends AbstractCrudRepository
             $qry = $qry->where('nome', $params['filter_nome']);
         }
 
+        $qry->orderBy('ordem');
+
         return $this->doQuery($qry, $params['filter_take'], true);
     }
 

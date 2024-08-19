@@ -15,6 +15,8 @@ class Coluna extends Model
     protected $fillable = [
         'nome',
         'referencia',
+        'formatacao',
+        'ordem',
         'referencia_campo',
         
         'coluna_id',
@@ -23,7 +25,9 @@ class Coluna extends Model
         'coluna_id2',
         'model_name',
         'buscar_name',
+        'comparacao',
         'subrelacao_extra',
+        'parametro_extra',
         'subrelacao_name',
         'verdadeiro',
         'falso',

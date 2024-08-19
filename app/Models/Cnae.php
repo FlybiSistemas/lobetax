@@ -11,13 +11,15 @@ class Cnae extends Model
     public $fillable = [
         'codigo',
         'descricao',
-        'categoria'
+        'categoria',
+        'contribuinte'
     ];
 
     protected $casts = [
         'codigo' => 'string',
         'descricao' => 'string',
-        'categoria' => 'string'
+        'categoria' => 'string',
+        'contribuinte' => 'string'
     ];
 
     public static array $rules = [
