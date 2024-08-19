@@ -25,6 +25,21 @@ class LbtaxfullRepository extends AbstractCrudRepository
         if (isset($params['filter_id'])) {
             $qry = $qry->where('id', '=', $params['filter_id']);
         }
+        if (isset($params['filter_imposto'])) {
+            $qry = $qry->where('imposto', '=', $params['filter_imposto']);
+        }
+        if (isset($params['filter_chave'])) {
+            $qry = $qry->where('chave', 'ilike', '%'.$params['filter_chave'].'%');
+        }
+        if (isset($params['filter_chave_lei'])) {
+            $qry = $qry->where('chave_lei', 'ilike', '%'.$params['filter_chave_lei'].'%');
+        }
+        if (isset($params['filter_descricao'])) {
+            $qry = $qry->where('descricao', 'ilike', '%'.$params['filter_descricao'].'%');
+        }
+        if (isset($params['filter_tipo_campo'])) {
+            $qry = $qry->where('tipo_campo', '=', $params['filter_tipo_campo']);
+        }
         if (isset($params['filter_cnf'])) {
             $qry = $qry->where('ide_cnf', $params['filter_cnf']);
         }
