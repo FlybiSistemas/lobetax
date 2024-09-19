@@ -53,6 +53,7 @@ class GetXMLTagsAction
                         $modelClass = "\App\Models\\" . $coluna->model_name;
                         $modelInstance = app($modelClass);
     
+                        // Ao se tratar de NCM fazer resumir ate 4 digitos...
                         $result_1 = $modelInstance::where($coluna->comparacao, FormatarValorHelper::onlyNumbers($search_value_1))->first();
                     }
 

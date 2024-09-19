@@ -28,6 +28,10 @@ class LbtaxRepository extends AbstractCrudRepository
             $qry = $qry->where('iafis', 'like', '%'.$params['filter_search'].'%');
         }
 
+        if (isset($params['filter_iafis'])) {
+            $qry = $qry->where('iafis', 'ilike', '%'.$params['filter_iafis'].'%');
+        }
+
         if (isset($params['filter_cnpj'])) {
             $qry = $qry->where(function ($qry) use ($params) {
                 $qry = $qry->where('emit_cnpj', $params['filter_cnpj']);

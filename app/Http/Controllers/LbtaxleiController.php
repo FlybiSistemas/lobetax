@@ -42,7 +42,8 @@ class LbtaxleiController extends AppBaseController
 
         return view("lbtaxleis.table", [
             "lbtaxleis" => $lbtaxleis,
-            "page" => $request->input("page", 0)
+            "page" => $request->input("page", 0),
+            'searchData' => $searchData
         ]);
     }
 

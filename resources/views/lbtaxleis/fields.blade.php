@@ -7,14 +7,27 @@
 
 <div class="field-row">
     <!-- Imposto Field -->
-    <div class="search-input input input-float" style="flex: 1;">
+    <div class="search-input input input-float" style="flex: 2;">
         <label class="label-float" for="imposto">Imposto:</label>
-        <input type="text" name="imposto" id="imposto" class="form-control" value="{{ $lbtaxlei->imposto ?? '' }}">
+        <select name="imposto" id="imposto" class="form-control">
+            @foreach(\App\Helpers\ImpostoHelper::$impostos as $key => $value)
+            <option value="{{ $key }}" {{ isset($lbtaxlei) ?? $lbtaxlei->imposto == $key ? 'selected' : '' }}>{{ $value }}</option>
+            @endforeach
+        </select>
     </div>
     <!-- Cod Field -->
-    <div class="search-input input input-float" style="flex: 1;">
+    <div class="search-input input input-float" style="flex: 3;">
         <label class="label-float" for="cod">Cod:</label>
         <input type="text" name="cod" id="cod" class="form-control" value="{{ $lbtaxlei->cod ?? '' }}">
+    </div>
+    <!-- UF Field -->
+    <div class="search-input input input-float" style="flex: 2;">
+        <label class="label-float" for="uf">Uf:</label>
+        <select name="uf" id="uf" class="form-control">
+            @foreach(\App\Helpers\UfsHelper::$ufs as $key => $value)
+            <option value="{{ $key }}" {{ isset($lbtaxlei) ?? $lbtaxlei->uf == $key ? 'selected' : '' }}>{{ $value }}</option>
+            @endforeach
+        </select>
     </div>
 </div>
 
@@ -33,12 +46,10 @@
 </div>
 
 <div class="field-row chkr">
-    @php $break = true; @endphp
     @foreach(\App\Helpers\TipoCampoHelper::$tipos as $key => $value)
-        @if($loop->index >= count(\App\Helpers\TipoCampoHelper::$tipos) / 2 && $break)
-            @php $break = false; @endphp
+        @if(($loop->index % 4 == 0) || $loop->index == 4)
             </div>
-            <div class="field-row chkr">
+            <div class="field-row chkr" item="{{$loop->index}}">
         @endif
         <div class="search-input input input-float" style="flex: 1;">
             <label class="label-float" for="{{ $key }}">{{ $value }}</label>

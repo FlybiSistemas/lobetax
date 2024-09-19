@@ -10,7 +10,7 @@
                 <th>Chave Campo <img class="icon-grey filter-icon filter_chave_campo" src="{{ isset($searchData['filter_chave_campo']) ? asset('img/new/icons/remove-filter.ico') : '' }}" alt=""></th>
                 <th>Desc. Chave <img class="icon-grey filter-icon filter_descricao_chave_campo" src="{{ isset($searchData['filter_descricao_chave_campo']) ? asset('img/new/icons/remove-filter.ico') : '' }}" alt=""></th>
                 <th>Info <img class="icon-grey filter-icon filter_info" src="{{ isset($searchData['filter_info']) ? asset('img/new/icons/remove-filter.ico') : '' }}" alt=""></th>
-                <th width="100">Açõe <img class="filter-icon" src="" alt="">s</th>
+                <th width="100">Ações<img class="filter-icon" src="" alt=""></th>
             </tr>
             <tr>
                 <th><input class="form-control" name="filter_chave" type="text" style="display:none;" value="{{ isset($searchData['filter_chave']) ? $searchData['filter_chave'] : '' }}"></th>
@@ -178,7 +178,6 @@
         });
     }
     $(document).ready(function() {
-
         tt();
     });
 

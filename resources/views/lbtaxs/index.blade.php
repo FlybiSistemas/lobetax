@@ -3,10 +3,10 @@
         <p class="breadcrumb">
             <span>Lobe</span>
             <span>/</span>
-                            <span>Lbtaxs</span>
-                    </p>
-                    <span class="title">Lbtaxs</span>
-            </x-slot>
+            <span>Lbtaxs</span>
+        </p>
+        <span class="title">Lbtaxs</span>
+    </x-slot>
 
     <div style="padding: 10px 20px 0 10px;display: flex;flex-direction: column;">
         <div class="btn-import" style="display: flex;justify-content: space-between;">

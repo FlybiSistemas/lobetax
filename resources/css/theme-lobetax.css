@@ -80,13 +80,14 @@ a.item.sub-item {
   position: absolute;
   left: 1.3rem;
   top: -10px;
-  background: white;
+  background: #fff;
   padding: 0 6px;
-  font-size: .8rem;
+  font-size: .7rem;
   font-weight: 400;
-  letter-spacing: 0.0168rem;
+  letter-spacing: .0168rem;
   color: #157bda;
   z-index: 1;
+  white-space: nowrap;
 }
 
 .field-row .input {

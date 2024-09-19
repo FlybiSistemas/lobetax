@@ -42,7 +42,8 @@ class LbtaxController extends AppBaseController
 
         return view("lbtaxs.table", [
             "lbtaxs" => $lbtaxs,
-            "page" => $request->input("page", 0)
+            "page" => $request->input("page", 0),
+            'searchData' => $searchData
         ]);
     }
 

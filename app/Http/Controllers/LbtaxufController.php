@@ -34,8 +34,22 @@ class LbtaxufController extends AppBaseController
 
         return view("lbtaxufs.table", [
             "lbtaxufs" => $lbtaxufs,
-            "page" => $request->input("page", 0)
+            "page" => $request->input("page", 0),
+            'searchData' => $searchData
         ]);
+    }
+
+    public function reorder(Request $request)
+    {
+        $request = $request->except('_token'); //remove o token do request
+        $request = array_map(function ($item) {
+            return str_replace('row_', '', $item); //remover o prefixo row_
+        }, $request);
+
+        $input = $request;
+        $this->lbtaxufRepository->reorder($input);
+
+        return response()->json('Salvo com sucesso.', 200);
     }
 
     /**

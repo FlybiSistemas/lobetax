@@ -54,6 +54,7 @@ Route::group(['prefix' => 'rotinas'], function () {
 
 Route::group(['prefix' => 'parametros'], function () {
     Route::group(['prefix' => 'lbtaxufs'], function () {
+        Route::post('/lbtaxufs/reorder', [LbtaxufController::class, 'reorder'])->name('lbtaxufs.reorder');
         Route::post('/lbtaxufs/search', [LbtaxufController::class, 'search'])->name('lbtaxufs.search');
     });
     Route::resource('lbtaxufs', LbtaxufController::class);

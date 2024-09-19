@@ -15,4 +15,10 @@ class ImpostoHelper
     {
         return isset($valor) ? self::$impostos[$valor] : '';
     }
+
+    public static function getKey($valor)
+    {
+        // retornar a key do valor
+        return isset($valor) ? array_search(strtoupper($valor), self::$impostos) : '';
+    }
 }

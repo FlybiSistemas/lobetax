@@ -5,7 +5,6 @@
 
 <script>
     $(document).ready(function() {
-        debugger;
         var chave = $('#chave').val();
         var chks = $('.chk');
 

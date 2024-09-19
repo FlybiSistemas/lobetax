@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Helpers\ImpostoHelper;
 use App\Models\Lbtaxlei;
 
 class LbtaxleiRepository extends AbstractCrudRepository
@@ -30,6 +31,26 @@ class LbtaxleiRepository extends AbstractCrudRepository
                 $qry = $qry->where('emit_cnpj', $params['filter_cnpj']);
                 $qry = $qry->orWhere('dest_cnpj', $params['filter_cnpj']);
             });
+        }
+
+        if (isset($params['filter_imposto'])) {
+            $qry = $qry->where('imposto', ImpostoHelper::getKey($params['filter_imposto']));
+        }
+
+        if (isset($params['filter_uf'])) {
+            $qry = $qry->where('uf', 'ilike', '%'.$params['filter_uf'].'%');
+        }
+
+        if (isset($params['filter_cod'])) {
+            $qry = $qry->where('cod', 'ilike', '%'.$params['filter_cod'].'%');
+        }
+
+        if (isset($params['filter_bsl'])) {
+            $qry = $qry->where('bsl', 'ilike', '%'.$params['filter_bsl'].'%');
+        }
+
+        if (isset($params['filter_chave'])) {
+            $qry = $qry->where('chave', 'ilike', '%'.$params['filter_chave'].'%');
         }
 
         if (isset($params['filter_sort'])) {

@@ -12,14 +12,16 @@ class Lbtaxlei extends Model
         'imposto',
         'cod',
         'bsl',
-        'chave'
+        'chave',
+        'uf'
     ];
 
     protected $casts = [
         'imposto' => 'string',
         'cod' => 'string',
         'bsl' => 'string',
-        'chave' => 'string'
+        'chave' => 'string',
+        'uf' => 'string'
     ];
 
     public static array $rules = [

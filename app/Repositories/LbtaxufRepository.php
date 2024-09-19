@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Helpers\ImpostoHelper;
 use App\Models\Lbtaxuf;
 
 class LbtaxufRepository extends AbstractCrudRepository
@@ -30,9 +31,28 @@ class LbtaxufRepository extends AbstractCrudRepository
             });
         }
 
+        if (isset($params['filter_uf'])) {
+            $qry = $qry->where('uf', $params['filter_uf']);
+        }
+
+        if (isset($params['filter_imposto'])) {
+            $qry = $qry->where('imposto', ImpostoHelper::getKey($params['filter_imposto']));
+        }
+
+        if (isset($params['filter_legislacao'])) {
+            $qry = $qry->where('legislacao', 'ilike', '%'.$params['filter_legislacao'].'%');
+        }
+
+        if (isset($params['filter_uf'])) {
+            $qry = $qry->where('uf', $params['filter_uf']);
+        }
+
         if (isset($params['filter_sort'])) {
             $qry = $qry->orderBy($params['filter_sort'], $params['filter_order']);
         }
+
+        // $qry = $qry->orderBy('legislacao', 'asc');
+        // $qry = $qry->orderBy('uf', 'asc');
 
         return $this->doQuery($qry, $params['filter_take'], true);
     }
@@ -56,5 +76,12 @@ class LbtaxufRepository extends AbstractCrudRepository
     public function model(): string
     {
         return Lbtaxuf::class;
+    }
+
+    public function reorder($input)
+    {
+        foreach ($input['ordem'] as $ordem => $id) {
+            $this->modelClass::where('id', $id)->update(['ordem' => $ordem+1]);
+        }
     }
 }
